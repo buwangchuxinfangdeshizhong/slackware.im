@@ -1,0 +1,5 @@
+slackiss_slackware:
+    resource: "@SlackissSlackwareBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
