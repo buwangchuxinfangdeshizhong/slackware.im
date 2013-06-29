@@ -40,7 +40,66 @@
     </script>
   </head>
   <body  data-spy="scroll" data-target=".bs-docs-sidebar">
-    {% block body %}{% endblock %}
+      <div class="header">
+        <div class="wrapper">
+          <div class="header-content clearfix">
+            <div class="header-left">
+              <div class="header-left-logo box bold">
+                Slackware Linux 中文社区
+              </div>
+            </div>
+            <div class="header-right pull-right">
+              <div class="header-right-logo">
+                <a href="{{path('welcome')}}">
+                  <img class="box" src="{{asset('bundles/slackissslackware/images/logo.png')}}" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="wrapper">
+          <div class="row-fluid">
+            <div class="span2">
+              <div class="box mini-bold left-nav">
+                <span class="left-nav-item"><a href="">资讯</a></span>
+              </div>
+
+              <div class="box bold left-nav">
+                <span class="left-nav-item"><a href="">常见问题</a></span>
+                <span class="left-nav-item"><a href="">slackbook</a></span>
+                <span class="left-nav-item"><a href=""></a></span>
+                <span class="left-nav-item"><a href="">下载</a></span>
+                <span class="left-nav-item"><a href="">安装帮助</a></span>
+                <span class="left-nav-item"><a href="">系统配置</a></span>
+                <span class="left-nav-item"><a href="">软件包</a></span>
+                <span class="left-nav-item"><a href="">ChangeLogs</a></span>
+                <span class="left-nav-item"><a href="">宣传画</a></span>
+                <span class="left-nav-item"><a href="">其他版本</a></span>
+                <span class="left-nav-item"><a href="">相关网站</a></span>
+                <span class="left-nav-item"><a href="">中文社区</a></span>
+                <span class="left-nav-item"><a href="">官方联系</a></span>
+                <span class="left-nav-item"><a href="">邮件列表</a></span>
+                <span class="left-nav-item"><a href="">关于我们</a></span>
+              </div>
+            </div>
+            <div class="span10 right-content">
+            {% block body %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="wrapper">
+          <div class="clearfix">
+            <div class="pull-right box text-box">
+              <small>Slackware&reg; 是 <A HREF="http://slackware.com/trademark/trademark.php">Slackware Linux, Inc的注册商标</A>，本站是非官方的中文Slackware社区。<a href="https://github.com/saharabear/slackware.im" target="_blank">查看源代码</a>。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/jquery.js')}}"></script>
     <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/bootstrap-transition.js')}}"></script>
     <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/bootstrap-alert.js')}}"></script>

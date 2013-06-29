@@ -1,1 +1,52 @@
-Hello, Slackware
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}The Slackware Linux Project{% endblock %}
+
+{% block body %}
+<div class="news-item">
+
+<div class="box content-box mini-bold news-item-box">
+   Slackware switching to the MariaDB database
+</div>
+
+<div class="row-fluid">
+  <div class="span10 news-item-box box content-box">
+    <p>From today's Slackware -current ChangeLog:</p>
+    <P>
+      The big news here is the removal of MySQL in favor of MariaDB.  This
+      shouldn't really be a surprise on any level.  The poll on LQ showed a large
+      majority of our users were in favor of the change.  It's my belief that
+      the MariaDB Foundation will do a better job with the code, be more
+      responsive to security concerns, and be more willing to work with the
+      open source community.  And while I don't think there is currently any
+      issue with MySQL's licensing of the community edition for commercial uses,
+      several threads on LQ showed that there is confusion about this, whereas
+      with MariaDB the freedom to use the software is quite clear.  Thanks are
+      due to Heinz Wiesinger for his work on transitioning the build script,
+      testing, and getting us all behind this move.  He's been working with
+      MariaDB (and their developers) for several years now.  Vincent Batts also
+      had a hand in the early discussions here -- he met Daniel Bartholomew of
+      MariaDB on a train last year and got a copy of the source to play with to
+      pass the time on the journey (ah, the miracle of thumbdrives :), and was
+      impressed with not only MariaDB itself, but also with the welcome that
+      Slackware was getting.  We expect they'll be responsive to any concerns
+      we have.  In the vast majority of situations, MariaDB is entirely
+      compatible with existing MySQL databases and will drop right in with no
+      changes required.  There's an article available outlining the areas in
+      which MariaDB differs from MySQL that I'd recommend reading:
+      <br>
+      <a href="https://kb.askmonty.org/v/mariadb-versus-mysql-compatibility/"><b>https://kb.askmonty.org/v/mariadb-versus-mysql-compatibility/</b></a>
+      <br>
+      Thanks to the MariaDB Foundation!  We look forward to working with you.
+    </P>
+    <p>
+      For more information about MariaDB, visit their website:  <a href="http://mariadb.org"><b>http://mariadb.org</b></a>
+    </p>
+   </div>
+  <div class="span2 text-box min-bold box news-item-box">
+    2013-03-23
+  </div>
+</div>
+
+</div>
+{% endblock %}

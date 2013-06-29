@@ -1,0 +1,104 @@
+body{
+    background-image:url("../images/background.jpg");
+}
+
+a{
+    color:#000000;
+    text-decoration:underline;
+}
+
+a:hover{
+    color:#000000;
+    text-decoration:underline;
+}
+
+
+.wrapper{
+    width:85%;
+    margin:0 auto;
+}
+
+.header{
+    padding-top:67px;
+    padding-bottom:20px;
+}
+
+.header-content{
+    width:95%;
+    position:relative;
+}
+
+.header-left{
+    
+}
+.header-left-logo{
+    width:42%;
+    margin-left:6%;
+    padding:5px 0px;
+    text-align:center;
+    bottom:0px;
+    position:absolute;
+}
+
+.header-right{
+    width:40%;
+}
+
+.header-right-logo{
+    padding-right:8px;
+    text-align:right;
+}
+
+.body{
+    min-height:400px;
+}
+
+.footer{
+    margin-top:40px;
+    margin-bottom:20px;
+}
+
+.box{
+    border:2px solid #000000;
+    background-color:#fefefe;
+}
+
+.text-box{
+    padding:2px 4px;
+}
+
+.content-box{
+    padding:5px 10px;
+}
+
+.mini-bold{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.bold{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.left-nav{
+    padding:10px 20px;
+    margin-bottom:15px;
+}
+
+.left-nav-item{
+    display:block;
+    margin:15px 0px;
+}
+
+.right-content{
+
+}
+
+.news-item{
+    
+}
+
+.news-item-box{
+    margin-bottom:5px;
+}
