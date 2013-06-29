@@ -1,0 +1,44 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}Slackware官方联系方式{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware的官方联系方式<br />
+    <small>
+      Slackware Linux官方提供了多个电子信箱用于联系Slackware Linux项目。请选择合适的信箱来发送不同的邮件，同时请注意在发送邮件之前先阅读常见问题或者其他的帮助文档。
+    </small>
+  </h2>
+</div>
+
+<div class="contact-emails">
+<div class="text-box box">
+  <h4><a href="mailto:info@slackware.com">info@slackware.com</a></h4>
+  <p>
+    可以使用这个电子信箱与我们沟通Slackware Linux相关的普通问题。
+  </p>
+</div>
+
+
+<div class="text-box box">
+  <h4><a href="mailto:security@slackware.com">security@slackware.com</a></h4>
+  <p>
+    这个电子信箱用于报告与Slackware系统安全相关的问题，可以在<a href="http://slackware.com/gpg-key" target="_blank">获取官方的GPG key以提高邮件内容的安全性。
+  </p>
+</div>
+
+
+<div class="text-box box">
+  <h4><a href="http://slackware.com/getslack/mirroring_guidelines.txt"
+         target="_blank">建立Slackware镜像</a></h4>
+  <p>
+    如果你想建立一个Slackware的镜像，请访问<a href="http://slackware.com/getslack/mirroring_guidelines.txt" target="_blank">这个镜像指南</a>,这份指南包括了所有你需要的建立Slackware镜像的信息。
+  </p>
+
+  <p>
+    建立Slackware镜像是Slackware社区极为需要的，因此在这里表示诚挚的感谢。
+  </p>
+</div>
+</div>
+
+{% endblock %}

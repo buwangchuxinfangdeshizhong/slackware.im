@@ -107,3 +107,18 @@ a:hover{
 .propaganda img{
     max-width:200px;
 }
+
+/* site */
+.related-sites .row-fluid{
+    margin:20px 0px;
+}
+
+/* contact */
+.contact-emails .box{
+    margin:20px 0px;
+    padding:10px;
+}
+
+.contact-emails p{
+    margin:15px 10px 10px 30px;
+}

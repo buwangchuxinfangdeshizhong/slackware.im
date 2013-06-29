@@ -102,10 +102,30 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
+                {% if nav_active|default('')== 'nav_active_site' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('site')}}">相关网站</a></span>
+                {% if nav_active|default('')== 'nav_active_site' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
 
-                <span class="left-nav-item"><a href="">相关网站</a></span>
+
                 <span class="left-nav-item"><a href="">中文社区</a></span>
-                <span class="left-nav-item"><a href="">官方联系</a></span>
+
+
+                {% if nav_active|default('')== 'nav_active_contact' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('contact')}}">官方联系</a></span>
+                {% if nav_active|default('')== 'nav_active_contact' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
                 <span class="left-nav-item"><a href="">邮件列表</a></span>
                 <span class="left-nav-item"><a href="">关于我们</a></span>
               </div>
