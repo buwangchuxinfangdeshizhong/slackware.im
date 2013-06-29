@@ -69,13 +69,25 @@
               <div class="box bold left-nav">
                 <span class="left-nav-item"><a href="">常见问题</a></span>
                 <span class="left-nav-item"><a href="">slackbook</a></span>
-                <span class="left-nav-item"><a href=""></a></span>
+                <span class="left-nav-item"><a href="">介绍</a></span>
                 <span class="left-nav-item"><a href="">下载</a></span>
                 <span class="left-nav-item"><a href="">安装帮助</a></span>
                 <span class="left-nav-item"><a href="">系统配置</a></span>
                 <span class="left-nav-item"><a href="">软件包</a></span>
                 <span class="left-nav-item"><a href="">ChangeLogs</a></span>
-                <span class="left-nav-item"><a href="">宣传画</a></span>
+
+                {% if nav_active|default('')== 'nav_active_propaganda' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item">
+                  <a href="{{path('propaganda')}}">宣传画</a>
+                </span>
+                {% if nav_active|default('')== 'nav_active_propaganda' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
                 <span class="left-nav-item"><a href="">其他版本</a></span>
                 <span class="left-nav-item"><a href="">相关网站</a></span>
                 <span class="left-nav-item"><a href="">中文社区</a></span>
