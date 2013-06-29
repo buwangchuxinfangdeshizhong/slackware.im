@@ -126,7 +126,18 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
-                <span class="left-nav-item"><a href="">邮件列表</a></span>
+
+                {% if nav_active|default('')== 'nav_active_mail' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('mail')}}">邮件列表</a></span>
+                {% if nav_active|default('')== 'nav_active_mail' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
+
                 <span class="left-nav-item"><a href="">关于我们</a></span>
               </div>
             </div>

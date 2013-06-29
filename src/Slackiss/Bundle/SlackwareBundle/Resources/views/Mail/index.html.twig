@@ -1,0 +1,40 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}Slackware Linux 官方邮件列表{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware Linux 官方邮件列表<br />
+    <small>
+      <p>
+      Slackware Linux 拥有多个邮件列表，如果你希望订阅一个邮件列表：
+      </p>
+      <p>
+        请在邮件正文中仅包含"subscribe [name of list]"，发送邮件给
+        <address>majordomo@slackware.com</address>
+      </p>
+    </small>
+  </h2>
+</div>
+
+<div class="mailing-list">
+  <div class="box text-box bold mailing-archive">
+    <center>
+    <a href="http://slackware.com/lists/archive/" target="_blank">官方邮件列表存档</a>
+    </center>
+  </div>
+
+  <div class="box text-box bold"><center> slackware-announce </center></div>
+  <div class="box text-box mail-desc">
+    这个邮件列表是一个低流量的用于新版本发布，主要版本升级和其他的信息的通知。
+  </div>
+
+  <div class="box text-box bold"><center>  slackware-security  </center></div>
+  <div class="box text-box mail-desc">
+    这个邮件列表用于发布安全相关的通知。
+  </div>
+</div>
+
+
+
+{% endblock %}

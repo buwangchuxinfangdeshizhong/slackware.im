@@ -122,3 +122,18 @@ a:hover{
 .contact-emails p{
     margin:15px 10px 10px 30px;
 }
+
+/* mail */
+.mailing-archive{
+    margin-bottom:40px;
+}
+
+.mailing-list .bold{
+    padding:5px 0px;
+}
+
+.mailing-list .mail-desc{
+    margin:5px 0px;
+    padding:20px;
+    margin-bottom:40px;
+}
