@@ -76,6 +76,8 @@
                 <span class="left-nav-item"><a href="">软件包</a></span>
                 <span class="left-nav-item"><a href="">ChangeLogs</a></span>
 
+
+
                 {% if nav_active|default('')== 'nav_active_propaganda' %}
                 </div>
                 <div class="box mini-bold left-nav">
@@ -88,7 +90,19 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
-                <span class="left-nav-item"><a href="">其他版本</a></span>
+
+                {% if nav_active|default('')== 'nav_active_fork' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item">
+                  <a href="{{path('fork')}}">其他版本</a></span>
+                {% if nav_active|default('')== 'nav_active_fork' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
+
                 <span class="left-nav-item"><a href="">相关网站</a></span>
                 <span class="left-nav-item"><a href="">中文社区</a></span>
                 <span class="left-nav-item"><a href="">官方联系</a></span>
