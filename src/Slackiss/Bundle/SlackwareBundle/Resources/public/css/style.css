@@ -143,3 +143,17 @@ a:hover{
     padding:20px;
     margin-bottom:30px;
 }
+
+.about-box{
+    margin-top:30px;
+    padding:10px 0px;
+}
+
+.about{
+    padding:20px;
+    margin-top:5px;
+}
+
+.about h4{
+    margin:20px 0px 0px 0px;
+}

@@ -1,0 +1,65 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}关于我们{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>关于我们<br />
+    <small>
+      这个网站关注于Slackware Linux的资讯，动态，文档，应用案例以及配置管理，同时提供Slackers展示自己，相互帮助的功能。
+    </small>
+  </h2>
+</div>
+
+
+<div class="box text-box bold about-box">
+<center>
+<a href="http://www.slackware.com/about/" target="_blank">Slackware创始人及项目贡献者官方说明</a>
+</center>
+</div>
+
+
+<div class="box text-box bold about-box">
+<center>
+    slackware.im创始人及其他贡献者
+</center>
+</div>
+
+<div class="box text-box about">
+
+    <h4>saharabear</h4>
+    <p>
+      一个有点呆板的胖子。他们说，也许应该在这里放一张照片，因为无图无真相。
+    </p>
+
+    <h4>虚位以待</h4>
+    <p>
+      slackware.im的发展离不开广大slacker们，在网站功能完善后，需要大家一起贡献自己的力量。
+    </p>
+</div>
+
+
+<div class="box text-box bold about-box">
+<center>
+    站点运行环境
+</center>
+</div>
+
+<div class="box text-box about">
+  目前这个网站运行在一台合租的VPS上，512M内存，OpenVZ，20G硬盘，与十几个博客和论坛运行在一起。网站功能完善后，会迁移到独立的512M内存的VPS主机上。根据访问速度的反馈，届时会确定使用国内的VPS并备案，还是继续使用国外VPS。
+</div>
+
+
+
+<div class="box text-box bold about-box">
+<center>
+    站点源代码
+</center>
+</div>
+
+<div class="box text-box about">
+  slackware.im基于Symfony2.3.1开发，全部源代码托管在<a href="https://github.com/saharabear/slackware.im" target="_blank">github.com</a>。SlackBook的翻译工作也会提交到github.com,在初始化代码库以后，会在这里补充项目地址。
+</div>
+
+
+{% endblock %}

@@ -144,9 +144,13 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
+                {% if nav_active|default('')== 'nav_active_about' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('about')}}">关于我们</a></span>
+                </div>
 
-                <span class="left-nav-item"><a href="">关于我们</a></span>
-              </div>
             </div>
             <div class="span10 right-content">
             {% block body %}{% endblock %}
