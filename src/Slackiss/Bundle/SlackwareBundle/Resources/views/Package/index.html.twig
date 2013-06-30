@@ -1,0 +1,31 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}软件包{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware软件包<br />
+    <small>
+      Slackware Linux提供了大多数常用的软件包，可以通过官方软件包查询网站查看每个版本的Slackware提供的软件包的名称和具体版本；另外还有一个优秀的SlackBuilds项目，提供了官方软件包以外的其他常用软件包的下载与更新。
+    </small>
+  </h2>
+</div>
+
+
+<div class="box text-box bold about-box">
+<center>
+  Slackware软件包查询
+</center>
+</div>
+
+<div class="box text-box about">
+
+  <ul>
+    <li><a href="http://packages.slackware.com/" target="_blank">http://packages.slackware.com/</a></li>
+    <li><a href="http://slackbuilds.org/" target="_blank">http://slackbuilds.org/</a></li>
+  </ul>
+
+</div>
+
+
+{% endblock %}

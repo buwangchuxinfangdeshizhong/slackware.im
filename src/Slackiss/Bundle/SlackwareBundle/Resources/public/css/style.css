@@ -157,3 +157,11 @@ a:hover{
 .about h4{
     margin:20px 0px 0px 0px;
 }
+
+/* changelog */
+.changelog li{
+    margin-top:10px;
+}
+.changelog li>a:first-child{
+    font-weight:bold;
+}

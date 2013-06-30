@@ -83,9 +83,25 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
+                {% if nav_active|default('')== 'nav_active_package' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('package')}}">软件包</a></span>
+                {% if nav_active|default('')== 'nav_active_package' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
 
-                <span class="left-nav-item"><a href="">软件包</a></span>
-                <span class="left-nav-item"><a href="">变更日志</a></span>
+                {% if nav_active|default('')== 'nav_active_changelog' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('changelog')}}">变更日志</a></span>
+                {% if nav_active|default('')== 'nav_active_changelog' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
 
 
                 {% if nav_active|default('')== 'nav_active_propaganda' %}

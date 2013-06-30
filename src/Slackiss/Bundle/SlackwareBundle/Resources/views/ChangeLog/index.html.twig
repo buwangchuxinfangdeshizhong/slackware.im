@@ -1,0 +1,123 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}变更日志{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware变更日志<br />
+    <small>
+      Slackware Linux可以有两种安装的选择，其一是使用稳定版，其二是追随开发进度使用Current版本。如果你安装了稳定版，依然可以升级至Current版本。推荐所有Slackware黑客使用Current版本，因为你可以帮助Slackware的开发团队测试系统，寻找Bug，反馈相关的问题。
+    </small>
+  </h2>
+</div>
+
+
+<div class="box text-box bold about-box">
+<center>
+  Slackware ChangeLogs
+</center>
+</div>
+
+<div class="box text-box about changelog">
+  <h3>Slackware-current ChangeLog</h3>
+  <ul>
+    <li>
+      <a href="http://www.slackware.com/changelog/current.php?cpu=i386" target="_blank">
+      x86 (32-bit) Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.osuosl.org/pub/slackware/slackware-current/ChangeLog.txt" target="_blank">
+      (ftp://ftp.osuosl.org/pub/slackware/slackware-current/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/current.php?cpu=x86_64" target="_blank">
+      x86_64 Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.osuosl.org/pub/slackware/slackware64-current/ChangeLog.txt" target="_blank">
+      (ftp://ftp.osuosl.org/pub/slackware/slackware64-current/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/current.php?cpu=s390" target="_blank">
+      S/390 (31-bit) Architecture
+      </a>
+      <br>
+      <a href="ftp://distro.ibiblio.org/slack390/slack390-current/ChangeLog.txt" target="_blank">
+      (ftp://distro.ibiblio.org/slack390/slack390-current/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/current.php?cpu=arm" target="_blank">
+      ARM Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.armedslack.org/slackwarearm/slackwarearm-current/ChangeLog.txt" target="_blank">
+      (ftp://ftp.armedslack.org/slackwarearm/slackwarearm-current/ChangeLog.txt)
+      </a>
+    </li>
+  </ul>
+
+</div>
+
+<div class="box text-box about changelog">
+  <h3>Slackware-stable ChangeLog</h3>
+  <ul>
+    <li>
+      <a href="http://www.slackware.com/changelog/stable.php?cpu=i386" target="_blank">
+      x86 (32-bit) Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.osuosl.org/pub/slackware/slackware-14.0/ChangeLog.txt" target="_blank">
+      (ftp://ftp.osuosl.org/pub/slackware/slackware-14.0/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/stable.php?cpu=x86_64" target="_blank">
+      x86_64 Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.osuosl.org/pub/slackware/slackware64-14.0/ChangeLog.txt" target="_blank">
+      (ftp://ftp.osuosl.org/pub/slackware/slackware64-14.0/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/stable.php?cpu=s390" target='_blank'>
+      S/390 (31-bit) Architecture
+      </a>
+      <br>
+      <a href="ftp://distro.ibiblio.org/slack390/slack390-10.0/ChangeLog.txt" target="_blank">
+      (ftp://distro.ibiblio.org/slack390/slack390-10.0/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/stable.php?cpu=s390x" target="_blank">
+      S/390x (64-bit) Architecture
+      </a>
+      <br>
+      <a href="ftp://distro.ibiblio.org/slack390/slack390x-11.0/ChangeLog.txt" target="_blank">
+      (ftp://distro.ibiblio.org/slack390/slack390x-11.0/ChangeLog.txt)
+      </a>
+    </li>
+
+    <li>
+      <a href="http://www.slackware.com/changelog/stable.php?cpu=arm" target="_blank">
+      ARM Architecture
+      </a>
+      <br>
+      <a href="ftp://ftp.armedslack.org/slackwarearm/slackwarearm-14.0/ChangeLog.txt" target="_blank">
+      (ftp://ftp.armedslack.org/slackwarearm/slackwarearm-14.0/ChangeLog.txt)
+      </a>
+    </li>
+  </ul>
+
+</div>
+
+{% endblock %}
