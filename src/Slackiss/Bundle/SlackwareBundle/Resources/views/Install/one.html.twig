@@ -1,0 +1,137 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}Slackware Linux 安装： 选择软件包{% endblock %}
+
+{% block body %}
+
+<div class="row-fluid box text-box slackbook-box">
+  <p>
+    Slackware把提供的软件包做了简单的分类，叫做“集合”，每一个集合包含一些特定应用，这样可以方便地定制安装Slackware或者基于Slackware定制自己的发行版。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+<table width="100%" class="table">
+  <tr>
+    <td width="10%" align="right"><strong>A</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      基础系统。包括Slackware启动所需要的基本软件包以及一些编辑器和交流工具。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>AP</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      一些不需要运行在X窗口中的应用程序。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>D</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      开发工具包，包括编译，调试和常用手册。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>E</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      GNU Emacs. 没错，GNU Emacs是如此地强大，所以不得不专门为它制作一个软件包集合
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>F</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      FAQs,HOWTOs和各种五花八门的文档
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>K</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      Linux的内核源代码
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>KDE</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      KDE桌面系统
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>KDEI</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      KDE桌面系统的国际化语言包
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>L</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      系统类库
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>N</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      网络程序，各种守护程序，邮件服务器，新闻阅读器等等。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>T</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      Tex文字排版系统。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>TCL</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      Tk, TclX 和 TkDesk
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>X</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      基本的X桌面系统和窗口管理器
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>XAP</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      需要运行在X桌面环境下的应用程序，比如Ghostscript。
+    </td>
+  </tr>
+
+  <tr>
+    <td width="10%" align="right"><strong>Y</strong></td>
+    <td width="10%" align="center"> - </td>
+    <td width="80%">
+      一些简单的游戏。
+    </td>
+  </tr>
+</table>
+</div>
+
+{% endblock %}

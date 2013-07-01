@@ -1,0 +1,56 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}Slackware Linux 安装帮助{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware Linux安装帮助<br />
+    <small>
+      Slackware Linux没有提供图形化的安装界面，但是只要你敢于尝试Slackware Linux提供的安装界面，用不了多久你就会喜欢上它的简单。
+    </small>
+  </h2>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_zero')}}">0.系统需求</a></h4>
+  <p>
+    安装Slackware之前，请确保你的计算机能够满足Slackware安装所需要的最低硬件条件。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_one')}}">1.选择软件包</a></h4>
+  <p>
+    当你决定安装Slackware的时候，你应该考虑安装哪些软件包。对于Slacker来讲，选择FULL，完全安装系统，是明智的选择，除非你希望对系统进行裁剪。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_two')}}">2.设置启动项</a></h4>
+  <p>
+    Slackware支持使用光盘，软盘，U盘或者网络进行安装，同时Slackware提供多种内核以适应你的CPU,内存以及硬盘。你需要选择一个适合你的硬件条件内核进行安装。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_three')}}">3.设置根磁盘</a></h4>
+  <p>
+    你必须设置根磁盘以运行安装程序(setup)。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_four')}}">4.磁盘分区</a></h4>
+  <p>
+    在运行安装程序(setup)之前，你需要先对磁盘进行分区。
+  </p>
+</div>
+
+<div class="row-fluid box text-box slackbook-box">
+  <h4><a href="{{path('install_five')}}">5.安装程序</a></h4>
+  <p>
+    最后一步是运行安装程序(setup)，这是一个易于使用的，通过菜单选择来完成所有操作的程序，可以帮助你快速完成Slackware Linux的安装。
+  </p>
+</div>
+
+{% endblock %}
