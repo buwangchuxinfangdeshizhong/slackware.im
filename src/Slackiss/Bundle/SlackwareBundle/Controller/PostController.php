@@ -100,7 +100,75 @@ class PostController extends Controller
         }
         $param['post'] = $post;
 
+        $page = $request->query->get('page',1);
+        $comments = $this->getComments($post,$page);
+        $param['comments'] = $comments;
+
+        $comment = new PostComment();
+        $form = $this->getCommentForm($post,$comment);
+
+        $param['form'] = $form->createView();
         return $param;
+    }
+
+    /**
+     * @Route("/member/post/comment/update/{id}",name="post_comment_create")
+     * @Template("SlackissSlackwareBundle:Post:post_show.html.twig")
+     * @Method({"POST"})
+     */
+    public function commentCreateAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_post');   
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
+        if(!$post){
+            throw $this->createNotFoundException("这个帖子不存在");
+        }
+        $param['post'] = $post;
+
+        $comment = new PostComment();
+        $form = $this->getCommentForm($post,$comment);
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $current = $this->get('security.context')->getToken()->getUser();
+            $comment->setPost($post);
+            $comment->setMember($current);
+            $em->persist($comment);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','回复成功');
+            return $this->redirect($this->generateUrl('post_show',array('id'=>$post->getId())));
+        }
+
+        $param['form'] = $form->createView();
+
+        $page = $request->query->get('page',1);
+        $comments = $this->getComments($post,$page);
+        $param['comments'] = $comments;
+
+        return $param;
+    }
+
+    private function getCommentForm($post,$comment)
+    {
+        $commentType = new PostCommentType();
+        $form = $this->createForm($commentType,$comment,array(
+            'action'=>$this->generateUrl('post_comment_create',array('id'=>$post->getId())),
+            'method'=>'POST'
+        ));
+        return $form;
+    }
+
+    private function getComments($post,$page)
+    {
+        $query = $this->getDoctrine()->getManager()
+                      ->getRepository('SlackissSlackwareBundle:PostComment')
+                      ->createQueryBuilder('c')
+                      ->where('c.post = :post')
+                      ->setParameters(array(':post'=>$post->getId()))
+                      ->orderBy('c.id','asc')
+                      ->getQuery();
+        $comments = $this->get('knp_paginator')->paginate($query,$page,50);
+        return $comments;
     }
 }
 

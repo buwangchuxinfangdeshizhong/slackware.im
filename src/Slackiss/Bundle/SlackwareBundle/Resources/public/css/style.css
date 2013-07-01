@@ -187,3 +187,15 @@ a:hover{
     padding:20px;
     width:100%;
 }
+
+.post-comment{
+    margin:10px 0px;
+}
+
+.post-comment .span10{
+    min-height:120px;
+}
+
+.post-comment-form{
+    margin:30px 0px;
+}

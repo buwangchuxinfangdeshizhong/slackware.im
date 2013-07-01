@@ -11,12 +11,26 @@ class PostCommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content')
-            ->add('created')
-            ->add('modified')
-            ->add('attachment')
-            ->add('post')
-            ->add('member')
+            ->add('content','textarea',array(
+                'label'=>'评论内容(必填)',
+                'required'=>true,
+                'attr'=>array(
+                    'class'=>'input-block-level',
+                    'rows'=>6,
+                    'placeholder'=>'评论内容:支持使用<pre></pre>标签贴代码'
+                )
+            ))
+            ->add('attachment','file',array(
+                'label'=>'附加图片',
+                'required'=>false,
+                'attr'=>array(
+                )
+            ))
+            ->add('创建评论','submit',array(
+                'attr'=>array(
+                    'style'=>'margin-top:20px'
+                )
+            ))
         ;
     }
 
