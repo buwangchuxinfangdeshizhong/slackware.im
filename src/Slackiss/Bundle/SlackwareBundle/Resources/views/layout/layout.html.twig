@@ -124,7 +124,25 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
-                <span class="left-nav-item"><a href="">SlackDesk</a></span>
+                {% if nav_active|default('')== 'nav_active_slackdesk' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item">
+                  <a href="{{path('slackdesk')}}">SlackDesk</a>
+                  {% if nav_active|default('')== 'nav_active_slackdesk' %}
+                  <div class="left-sub-nav">
+                    <span class="left-sub-nav-item">
+                      <a href="{{path('member_slackdesk_new')}}">分享SlackDesk</a>
+                    </span>
+                  </div>
+                  {% endif %}
+                </span>
+                {% if nav_active|default('')== 'nav_active_slackdesk' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
                 <span class="left-nav-item"><a href="">SlackParty</a></span>
 
 

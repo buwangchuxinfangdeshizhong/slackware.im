@@ -1,0 +1,19 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}SlackDesk:Slackware用户的工作台，背包，开发工具和桌面{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>SlackDesk<br />
+    <small>
+      Slackware用户的工作台，背包，开发工具和桌面
+    </small>
+  </h2>
+</div>
+
+{% for slackdesk in slackdesks %}
+<img src="vich_uploader_asset(slackdesk,'image')|imagine_filter('slacker_image')"/>
+{% endfor %}
+
+{{knp_pagination_render(slackdesks)}}
+{% endblock %}

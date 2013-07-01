@@ -1,0 +1,20 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}第{{slackdesk.id}}个SlackDesk分享{% endblock %}
+
+{% block body %}
+<div class="row-fluid">
+{% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+  <div class="span8 offset2">
+    <img class="thumbnail" src="{{vich_uploader_asset(slackdesk,'image')|imagine_filter('page_image')}}"/>
+  </div>
+</div>
+
+{% if slackdesk.description %}
+<div class="row-flud">
+<div class="span8 offset2 box slackdesk-box">
+      {{slackdesk.description|nl2br}}
+</div>
+</div>
+{% endif %}
+{% endblock %}
