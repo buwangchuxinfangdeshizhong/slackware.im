@@ -62,7 +62,6 @@ class Member extends BaseUser
     /**
      *
      * @ORM\Column(name="nickname",type="string",length=255,nullable=true)
-     * @Assert\NotBlank(message="昵称不可为空")
      * @Assert\Length(
      *     min="2",
      *     max="36",

@@ -35,7 +35,11 @@ class Event
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="活动名称不能为空")
+     * @Assert\Length(
+     *     max="100",
+     *     maxMessage="活动名称不能超过100个字"
+     * )
      * @ORM\Column(name="title", type="string", length=2000)
      */
     private $title;
@@ -59,9 +63,12 @@ class Event
 	 */
     private $image;
 
-    public function setImage(UploadedFile $image)
+    public function setImage($image)
     {
         $this->image = $image;
+        if($image){
+            $this->avatar = $image->getFileName();
+        }
         return $this;
     }
 
@@ -72,7 +79,11 @@ class Event
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="活动介绍不能为空")
+     * @Assert\Length(
+     *     max="5000",
+     *     maxMessage="活动介绍不能超过5000个字"
+     * )
      * @ORM\Column(name="content", type="text",nullable=true)
      */
     private $content;
@@ -93,6 +104,12 @@ class Event
     protected $players;
 
     /**
+     * @Assert\Length(
+     *     min="1",
+     *     max="100",
+     *     minMessage="时间介绍不能为空",
+     *     maxMessage="时间介绍不能超过100个字"
+     * )
      * @ORM\Column(name="eventdate", type="string",length=100,nullable=false)
      */
     protected $eventdate;
@@ -107,11 +124,24 @@ class Event
    /**
     * @var string
     *
+    * @Assert\Length(
+    *     min="1",
+    *     max="250",
+    *     minMessage="活动地点不能为空",
+    *     maxMessage="活动地点不能超过250个字"
+    * )
     * @ORM\Column(name="address",type="string",length=250)
 	*/
 	private $address;
 
     /**
+     *
+     * @Assert\Length(
+     *     min="1",
+     *     max="250",
+     *     minMessage="活动费用不能为空",
+     *     maxMessage="活动费用不能超过250个字"
+     * )
 	 * @ORM\Column(name="fee",type="string",length=250)
 	 */
 	private $fee;

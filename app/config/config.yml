@@ -87,6 +87,10 @@ knp_time: ~
 
 liip_imagine:
     filter_sets:
+        face_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [175, 260], mode: outbound}
         large_avatar_image:
             quality: 75
             filters:

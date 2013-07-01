@@ -173,8 +173,24 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
-                <span class="left-nav-item"><a href="">SlackParty</a></span>
-
+                {% if nav_active|default('')== 'nav_active_slackparty' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item">
+                  <a href="{{path('slackparty')}}">SlackParty</a>
+                  {% if nav_active|default('')== 'nav_active_slackparty' %}
+                  <div class="left-sub-nav">
+                    <span class="left-sub-nav-item">
+                      <a href="{{path('member_slackparty_new')}}">创建活动</a>
+                    </span>
+                  </div>
+                  {% endif %}
+                </span>
+                {% if nav_active|default('')== 'nav_active_slackparty' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
 
                 {% if nav_active|default('')== 'nav_active_download' %}
                 </div>
