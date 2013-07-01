@@ -42,6 +42,10 @@ class Member extends BaseUser
      *     minMessage="用户名不能少于4个字符",
      *     maxMessage="用户名不能多于36个字符"
      * )
+     * @Assert\Regex(
+     *    pattern="/^[A-z0-9]*$/i",
+     *    message="用户名只能使用英文字母和数字"
+     * )
      */
     protected $username;
 
@@ -53,6 +57,71 @@ class Member extends BaseUser
      * )
      */
     protected $email;
+
+    /**
+     *
+     * @ORM\Column(name="nickname",type="string",length=255,nullable=true)
+     * @Assert\NotBlank(message="昵称不可为空")
+     * @Assert\Length(
+     *     min="2",
+     *     max="36",
+     *     minMessage="昵称不能少于2个字符",
+     *     maxMessage="昵称不能多于36个字符"
+     * )
+     */
+    protected $nickname;
+
+    /**
+     * @ORM\Column(name="website", type="string",length=500, nullable=true)
+     * @Assert\Url(message="请使用合法的URL地址")
+     */
+    protected $website;
+
+    /**
+     * @ORM\Column(name="description", type="text", nullable=true)
+     * @Assert\Length(
+     *     max="400",
+     *     maxMessage="个人介绍不能超过400个字"
+     * )
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(name="twitter",type="string", length=255,nullable=true)
+     * @Assert\Url(
+     *     message="请使用合法的URL"
+     * )
+     */
+    protected $twitter;
+
+    /**
+     * @ORM\Column(name="googleplus",type="string",length=255,nullable=true)
+     * @Assert\Url(
+     *     message="请使用合法的URL"
+     * )
+     */
+    protected $googleplus;
+
+    /**
+     * @ORM\Column(name="facebook",type="string",length=255,nullable=true)
+     * @Assert\Url(message="请使用合法的URL")
+     */
+    protected $facebook;
+
+    /**
+     * @ORM\Column(name="weibo",type="string",length=255,nullable=true)
+     * @Assert\Url(message="请使用合法的URL")
+     */
+    protected $weibo;
+
+    /**
+     * @ORM\Column(name="city",type="string",length=60,nullable=true)
+     * @Assert\Length(
+     *    max="60",
+     *    maxMessage="所在位置不能超过60个字"
+     * )
+     */
+    protected $city;
 
     /**
      * @ORM\Column(type="string", length=255, name="avatar",nullable = true)
@@ -149,6 +218,9 @@ class Member extends BaseUser
 	public function setImage($image)
 	{
 		$this->image = $image;
+        if($image){
+            $this->avatar = $image->getFileName();
+        }
 		return $this;
 	}
 
@@ -167,4 +239,188 @@ class Member extends BaseUser
         return $this->id;
     }
 
+
+    /**
+     * Set nickname
+     *
+     * @param string $nickname
+     * @return Member
+     */
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+    
+        return $this;
+    }
+
+    /**
+     * Get nickname
+     *
+     * @return string 
+     */
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     * @return Member
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+    
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string 
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Member
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return Member
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set googleplus
+     *
+     * @param string $googleplus
+     * @return Member
+     */
+    public function setGoogleplus($googleplus)
+    {
+        $this->googleplus = $googleplus;
+    
+        return $this;
+    }
+
+    /**
+     * Get googleplus
+     *
+     * @return string 
+     */
+    public function getGoogleplus()
+    {
+        return $this->googleplus;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return Member
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set weibo
+     *
+     * @param string $weibo
+     * @return Member
+     */
+    public function setWeibo($weibo)
+    {
+        $this->weibo = $weibo;
+    
+        return $this;
+    }
+
+    /**
+     * Get weibo
+     *
+     * @return string 
+     */
+    public function getWeibo()
+    {
+        return $this->weibo;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Member
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }
