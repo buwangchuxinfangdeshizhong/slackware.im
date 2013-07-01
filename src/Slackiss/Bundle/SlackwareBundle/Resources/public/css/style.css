@@ -166,3 +166,9 @@ a:hover{
 .changelog li>a:first-child{
     font-weight:bold;
 }
+
+/* slackbook */
+.slackbook-box{
+    margin-bottom:30px;
+    padding:20px;
+}
