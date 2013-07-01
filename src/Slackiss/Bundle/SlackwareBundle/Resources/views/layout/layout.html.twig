@@ -62,14 +62,27 @@
         <div class="wrapper">
           <div class="row-fluid">
             <div class="span2">
+
               <div class="box mini-bold left-nav">
                 <span class="left-nav-item">
                   <a href="{{path('welcome')}}">
                     资讯
                   </a>
                 </span>
-                <span class="left-nav-item"><a href="">介绍</a></span>
+
+                {% if nav_active|default('')== 'nav_active_intro' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item"><a href="{{path('intro')}}">介绍</a></span>
+                {% if nav_active|default('')== 'nav_active_intro' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
+
                 <span class="left-nav-item"><a href="">安装帮助</a></span>
+
 
                 {% if nav_active|default('')== 'nav_active_slackbook' %}
                 </div>
