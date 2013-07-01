@@ -116,8 +116,24 @@
                 <div class="box mini-bold left-nav">
                 {% endif %}
 
-
-                <span class="left-nav-item"><a href="">中文社区</a></span>
+                {% if nav_active|default('')== 'nav_active_post' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+                <span class="left-nav-item">
+                  <a href="{{path('post')}}">中文社区</a>
+                  {% if nav_active|default('')== 'nav_active_post' %}
+                  <div class="left-sub-nav">
+                    <span class="left-sub-nav-item">
+                      <a href="{{path('post_new')}}">创建讨论</a>
+                    </span>
+                  </div>
+                  {% endif %}
+                </span>
+                {% if nav_active|default('')== 'nav_active_post' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
 
                 {% if nav_active|default('')== 'nav_active_slacker' %}
                 </div>

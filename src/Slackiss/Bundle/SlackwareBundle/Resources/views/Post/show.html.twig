@@ -1,0 +1,45 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block body %}
+
+<div class="news-item">
+<div class="box content-box mini-bold news-item-box">
+  {{post.title}}
+</div>
+
+<div class="row-fluid">
+  <div class="span10 news-item-box box content-box">
+    {{post.content|striptags('<pre>')|raw|nl2br}}
+    {% if post.attachment %}
+    <div style="text-align:center;margin:20px 0px">
+      <a href="{{vich_uploader_asset(post,'image')}}" target="_blank">
+      <img src="{{vich_uploader_asset(post,'image')|imagine_filter('page_image')}}"/>
+      </a>
+    </div>
+    {% endif %}
+   </div>
+  <div class="span2 text-box min-bold box news-item-box">
+    <p>
+    {{time_diff(post.created)}}
+    </p>
+    <p>
+    {% if post.member.nickname %}
+    <a title="{{post.member.nickname}}" href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+      <img src='{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}' />
+      <br />
+      {{post.member.nickname}}
+    </a>
+    {% else %}
+    {{post.member.username}}
+    {% endif %}
+    </p>
+    <p>
+      {{post.commentCount}}回复
+    </p>
+  </div>
+</div>
+</div>
+
+{% endblock %}

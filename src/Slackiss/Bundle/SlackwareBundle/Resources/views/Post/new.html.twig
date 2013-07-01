@@ -1,0 +1,46 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}创建讨论 -- Slackware中文讨论区{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>创建讨论 </h2>
+</div>
+<div class="row-fluid">
+  <div class="span8 box download-box">
+    {{form(form)}}
+  </div>
+  <div class="span3">
+    推荐创建讨论前,仔细阅读下面的文章:
+    <ul>
+      <li>
+        <a href="https://github.com/seajs/seajs/issues/545" target="_blank">
+          如何向开源社区提问题
+        </a>
+      </li>
+      <li>
+        <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs-cn.html">
+          如何有效地报告 Bug
+        </a>
+      </li>
+      <li>
+        <a href="http://code.google.com/p/cpyug/wiki/ZenForAsk" target="_blank">
+          回答的智慧
+        </a>
+      </li>
+      <li>
+        <a href="http://www.wapm.cn/smart-questions/smart-questions-zh.html" target="_blank">
+          提问的智慧中文版
+        </a>
+      </li>
+      <li>
+        <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
+          提问的智慧英文版
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+{% endblock %}

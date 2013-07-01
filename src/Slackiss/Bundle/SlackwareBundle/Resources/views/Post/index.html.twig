@@ -1,0 +1,38 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}Slackware中文讨论区{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>Slackware中文讨论区<br />
+    <small>
+      提问之前,请先阅读<a href="https://github.com/seajs/seajs/issues/545" target="_blank">如何向开源社区提问题</a>,<a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs-cn.html">如何有效地报告 Bug</a>,<a href="http://code.google.com/p/cpyug/wiki/ZenForAsk" target="_blank">回答的智慧</a>和提问的智慧:<a href="http://www.wapm.cn/smart-questions/smart-questions-zh.html" target="_blank">中文版</a><a href="http://www.catb.org/~esr/faqs/smart-questions.html">英文版</a>
+    </small>
+  </h2>
+</div>
+
+<div class="box">
+<table class="table">
+{% for post in posts %}
+<td>
+  {{post.title}}
+</td>
+{% if post.member.nickname %}
+<td>
+  <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+    {{post.member.nickname}}
+  </a>
+</td>
+{% else %}
+<td>{{post.member.username}}</td>
+{% endif %}
+<td>{{time_diff(post.created)}}</td>
+<td>{{post.commentCount}}回复</td>
+{% endfor %}
+</table>
+
+{{knp_pagination_render(posts)}}
+</div>
+
+
+{% endblock %}

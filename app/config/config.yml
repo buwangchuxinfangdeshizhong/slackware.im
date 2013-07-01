@@ -120,6 +120,9 @@ knp_gaufrette:
         desk_adapter:
             local:
                 directory: %kernel.root_dir%/../web/assets/desk
+        discuss_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/discuss
     filesystems:
         image_fs:
             adapter:    image_adapter
@@ -129,6 +132,8 @@ knp_gaufrette:
             adapter:    party_adapter
         desk_fs:
             adapter:    desk_adapter
+        discuss_fs:
+            adapter:    discuss_adapter
 
 vich_uploader:
     db_driver: orm
@@ -158,5 +163,11 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             uri_prefix: /assets/desk
             upload_destination: desk_fs
+            delete_on_remove: true
+            inject_on_load: true
+        discuss_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/discuss
+            upload_destination: discuss_fs
             delete_on_remove: true
             inject_on_load: true

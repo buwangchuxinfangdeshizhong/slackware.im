@@ -7,9 +7,12 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Post
- *
+ * @Vich\Uploadable
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\PostRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -92,6 +95,39 @@ class Post
      * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post")
      */
     protected $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="attachment",nullable = true)
+     *
+     * @var string $imageName
+     */
+	private $attachment;
+    
+    /**
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
+	 *                          "image/jpg","image/gif"}
+     * )
+     * @Vich\UploadableField(mapping="discuss_image", fileNameProperty="attachment")
+     *
+     * @var File $image
+     */
+	private $image;
+
+    public function setImage($image)
+    {
+        if($image){
+            $this->attachment = $image->getFileName();
+        }
+        $this->image = $image;
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Member")
@@ -249,10 +285,10 @@ class Post
     /**
      * Add comments
      *
-     * @param \Slackiss\Bundle\KneworkBundle\Entity\PostComment $comments
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\PostComment $comments
      * @return Post
      */
-    public function addComment(\Slackiss\Bundle\KneworkBundle\Entity\PostComment $comments)
+    public function addComment(\Slackiss\Bundle\SlackwareBundle\Entity\PostComment $comments)
     {
         $this->comments[] = $comments;
 
@@ -262,9 +298,9 @@ class Post
     /**
      * Remove comments
      *
-     * @param \Slackiss\Bundle\KneworkBundle\Entity\PostComment $comments
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\PostComment $comments
      */
-    public function removeComment(\Slackiss\Bundle\KneworkBundle\Entity\PostComment $comments)
+    public function removeComment(\Slackiss\Bundle\SlackwareBundle\Entity\PostComment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -282,10 +318,10 @@ class Post
     /**
      * Set member
      *
-     * @param \Slackiss\Bundle\KneworkBundle\Entity\Member $member
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\Member $member
      * @return Post
      */
-    public function setMember(\Slackiss\Bundle\KneworkBundle\Entity\Member $member = null)
+    public function setMember(\Slackiss\Bundle\SlackwareBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 
@@ -295,10 +331,33 @@ class Post
     /**
      * Get member
      *
-     * @return \Slackiss\Bundle\KneworkBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
      */
     public function getMember()
     {
         return $this->member;
+    }
+
+    /**
+     * Set attachment
+     *
+     * @param string $attachment
+     * @return Post
+     */
+    public function setAttachment($attachment)
+    {
+        $this->attachment = $attachment;
+    
+        return $this;
+    }
+
+    /**
+     * Get attachment
+     *
+     * @return string 
+     */
+    public function getAttachment()
+    {
+        return $this->attachment;
     }
 }
