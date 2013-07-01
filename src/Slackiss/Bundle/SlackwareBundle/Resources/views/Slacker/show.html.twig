@@ -1,0 +1,24 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}{{member.nickname}}{% endblock %}
+{% block header %}
+{% if member.css %}
+<style>
+{{member.css}}
+</style>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row-fluid">
+  <div class="span4 offset4">
+    <img class="thumbnail pull-left" src="{{vich_uploader_asset(member,'image')|imagine_filter('slacker_image')}}"/>
+    <div>
+      github,website, googleplus, facebook,weibo,twitter
+    </div>
+    {{member.nickname}}
+    {{member.city}}
+    {{member.description}}
+  </div>
+</div>
+{% endblock %}

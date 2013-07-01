@@ -111,6 +111,13 @@
                 {% endif %}
                 <span class="left-nav-item">
                   <a href="{{path('slacker')}}">Slackers</a>
+                  {% if nav_active|default('')== 'nav_active_slacker' %}
+                  <div class="left-sub-nav">
+                    <span class="left-sub-nav-item">
+                      <a href="{{path('member_slacker_edit')}}">维护档案</a>
+                    </span>
+                  </div>
+                  {% endif %}
                 </span>
                 {% if nav_active|default('')== 'nav_active_slacker' %}
                 </div>

@@ -1,0 +1,38 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}维护Slacker档案{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>维护Slacker档案<br />
+    <small>
+      骄傲地说：我是Slackware用户，我是Slacker。
+    </small>
+  </h2>
+</div>
+
+<div class="row-fluid">
+  {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+  <div class="span7 box slackbook-box">
+    {{form(form)}}
+  </div>
+  <div class="span4">
+    {% if member.avatar %}
+    <div class="clearfix">
+    <img class="thumbnail pull-left" src="{{vich_uploader_asset(member,'image')|imagine_filter('slacker_image')}}"/>
+    <img class="thumbnail pull-left" src="{{vich_uploader_asset(member,'image')|imagine_filter('large_avatar_image')}}"/>
+    <img class="thumbnail pull-left" src="{{vich_uploader_asset(member,'image')|imagine_filter('avatar_image')}}"/>
+    </div>
+    <div class="box slackbook-box">
+      <a href="{{path('slacker_show',{id:member.id})}}" target="_blank">
+      <center>查看Slacker档案</center>
+      </a>
+    </div>
+    {% else %}
+    <div class="box slackbook-box">
+      Slacker档案是拥有独立URL的Slackware用户档案，你可以自由选择是否创建Slacker档案，创建后可以随时维护修改个人信息，也可以将URL分享给其他好友，同时你的Slacker档案会在搜索引擎中检索到。
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -32,6 +32,7 @@ class Member extends BaseUser
         parent::__construct();
         $this->created = new \DateTime();
         $this->modified = $this->created;
+        $this->addRole(self::ROLE_USER);
     }
 
     /**
@@ -88,6 +89,10 @@ class Member extends BaseUser
 
     /**
      * @ORM\Column(name="twitter",type="string", length=255,nullable=true)
+     * @assert\Length(
+     *         max="255",
+     *         maxMessage="不能超过255个字符"
+     * )
      * @Assert\Url(
      *     message="请使用合法的URL"
      * )
@@ -96,6 +101,10 @@ class Member extends BaseUser
 
     /**
      * @ORM\Column(name="googleplus",type="string",length=255,nullable=true)
+     * @assert\Length(
+     *         max="255",
+     *         maxMessage="不能超过255个字符"
+     * )
      * @Assert\Url(
      *     message="请使用合法的URL"
      * )
@@ -104,16 +113,33 @@ class Member extends BaseUser
 
     /**
      * @ORM\Column(name="facebook",type="string",length=255,nullable=true)
+     * @assert\Length(
+     *         max="255",
+     *         maxMessage="不能超过255个字符"
+     * )
      * @Assert\Url(message="请使用合法的URL")
      */
     protected $facebook;
 
     /**
      * @ORM\Column(name="weibo",type="string",length=255,nullable=true)
+     * @assert\Length(
+     *         max="255",
+     *         maxMessage="不能超过255个字符"
+     * )
      * @Assert\Url(message="请使用合法的URL")
      */
     protected $weibo;
 
+    /**
+     * @ORM\Column(name="github",type="string",length=255,nullable=true)
+     * @assert\Length(
+     *         max="255",
+     *         maxMessage="不能超过255个字符"
+     * )
+     * @Assert\Url(message="请使用合法的URL")
+     */
+    protected $github;
     /**
      * @ORM\Column(name="city",type="string",length=60,nullable=true)
      * @Assert\Length(
@@ -122,6 +148,15 @@ class Member extends BaseUser
      * )
      */
     protected $city;
+
+    /**
+     * @ORM\Column(name="css",type="text", nullable=true)
+     * @Assert\Length(
+     *      max="2500",
+     *      maxMessage="自定义样式不能超过2500个字符"
+     * )
+     */
+    protected $css;
 
     /**
      * @ORM\Column(type="string", length=255, name="avatar",nullable = true)
@@ -422,5 +457,51 @@ class Member extends BaseUser
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set css
+     *
+     * @param string $css
+     * @return Member
+     */
+    public function setCss($css)
+    {
+        $this->css = $css;
+    
+        return $this;
+    }
+
+    /**
+     * Get css
+     *
+     * @return string 
+     */
+    public function getCss()
+    {
+        return $this->css;
+    }
+
+    /**
+     * Set github
+     *
+     * @param string $github
+     * @return Member
+     */
+    public function setGithub($github)
+    {
+        $this->github = $github;
+    
+        return $this;
+    }
+
+    /**
+     * Get github
+     *
+     * @return string 
+     */
+    public function getGithub()
+    {
+        return $this->github;
     }
 }

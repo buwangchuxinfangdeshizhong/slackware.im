@@ -95,7 +95,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [64, 64], mode: outbound }
-
+        slacker_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [256, 256], mode: outbound }
         page_image:
             quality: 75
             filters:

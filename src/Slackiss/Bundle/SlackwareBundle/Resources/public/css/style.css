@@ -91,6 +91,15 @@ a:hover{
     margin:15px 0px;
 }
 
+.left-sub-nav{
+
+}
+
+.left-sub-nav-item a{
+    font-size:12px;
+    font-weight:normal;
+}
+
 .right-content{
 
 }
