@@ -35,6 +35,26 @@ class Member extends BaseUser
     }
 
     /**
+     * @Assert\NotBlank(message="用户名不可为空")
+     * @Assert\Length(
+     *     min="4",
+     *     max="36",
+     *     minMessage="用户名不能少于4个字符",
+     *     maxMessage="用户名不能多于36个字符"
+     * )
+     */
+    protected $username;
+
+
+    /**
+     * @Assert\Email(
+     *    checkMX=true,
+     *    message="请使用合法的电子信箱"
+     * )
+     */
+    protected $email;
+
+    /**
      * @ORM\Column(type="string", length=255, name="avatar",nullable = true)
      *
      * @var string $imageName
