@@ -12,7 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Slackiss\Bundle\SlackwareBundle\Entity\Member;
 use Slackiss\Bundle\SlackwareBundle\Entity\SlackDesk;
+use Slackiss\Bundle\SlackwareBundle\Entity\DeskComment;
 use Slackiss\Bundle\SlackwareBundle\Form\MemberSlackDeskType;
+use Slackiss\Bundle\SlackwareBundle\Form\MemberDeskCommentType;
+
 
 class SlackDeskController extends Controller
 {
@@ -97,13 +100,76 @@ class SlackDeskController extends Controller
         $param=array('nav_active'=>'nav_active_slackdesk');
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('SlackissSlackwareBundle:SlackDesk');
-        $slackdesk = $repo->find($id);
-        if(!$slackdesk){
+        $slackDesk = $repo->find($id);
+        if(!$slackDesk){
             throw $this->createNotFoundException("没有这个Slacker档案");
         }
+        $param['slackdesk']=$slackDesk;
+        
+        $comment = new DeskComment();
+        $param['form'] = $this->getCommentForm($slackDesk,$comment)->createView();
 
-        $param['slackdesk']=$slackdesk;
+        $page = $request->query->get('page',1);
+        $param['comments'] = $this->getComments($slackDesk,$page);
         return $param;
+    }
+
+    /**
+     * @Route("/member/slackdesk/comment/create/{id}",name="member_slackdesk_comment_create")
+     * @Method({"POST"})
+     * @Template("SlackissSlackwareBundle:SlackDesk:show.html.twig")
+     */
+    public function commentCreateAction(Request $request, $id)
+    {
+        $param=array('nav_active'=>'nav_active_slackdesk');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('SlackissSlackwareBundle:SlackDesk');
+        $slackDesk = $repo->find($id);
+        if(!$slackDesk){
+            throw $this->createNotFoundException("没有这个Slacker档案");
+        }
+        $param['slackdesk']=$slackDesk;
+     
+        $comment = new DeskComment();   
+        $form = $this->getCommentForm($slackDesk,$comment);
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $current = $this->get('security.context')->getToken()->getUser();
+            $comment->setSlackDesk($slackDesk);
+            $comment->setMember($current);
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirect($this->generateUrl('slackdesk_show',array('id'=>$slackDesk->getId())));
+        }
+        $param['form'] = $form->createView();
+        $page = $request->query->get('page',1);
+        $param['comments'] = $this->getComments($slackDesk,$page);
+        return $param;
+    }
+
+    private function getCommentForm($slackDesk,$comment)
+    {
+        $commentType = new MemberDeskCommentType();
+        $form = $this->createForm($commentType,$comment,array(
+            'action'=>$this->generateUrl('member_slackdesk_comment_create',array(
+                'id'=>$slackDesk->getId()
+            )),
+            'method'=>'POST'
+        ));
+        return $form;
+    }
+
+    private function getComments($slackDesk,$page)
+    {
+        $query = $this->getDoctrine()->getManager()
+                      ->getRepository("SlackissSlackwareBundle:DeskComment")
+                      ->createQueryBuilder("c")
+                      ->where("c.slackDesk = :slackdesk")
+                      ->setParameters(array(':slackdesk'=>$slackDesk->getId()))
+                      ->orderBy('c.id','asc')
+                      ->getQuery();
+        $comments = $this->get('knp_paginator')->paginate($query,$page,10);
+        return $comments;
     }
 }
 

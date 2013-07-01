@@ -17,4 +17,14 @@
 </div>
 </div>
 {% endif %}
+
+<div class="row-flud">
+<div class="span8 offset2 box slackdesk-box">
+{{form(form)}}
+
+{% for comment in comments %}
+{{comment.content}}
+{% endfor %}
+</div>
+</div>
 {% endblock %}
