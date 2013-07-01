@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -63,3 +63,97 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+
+# app/config/config.yml                                                        
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'  
+    firewall_name: main
+    user_class: Slackiss\Bundle\SlackwareBundle\Entity\Member
+
+
+knp_paginator:
+    page_range: 5                   # default page range used in pagination control                 
+    default_options:
+        page_name: page                # page query parameter name                         
+        sort_field_name: sort          # sort field query parameter name                  
+        sort_direction_name: direction # sort direction query parameter name               
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements                                                                                
+    template:
+        pagination: SlackissSlackwareBundle:include:pagination.html.twig
+
+
+knp_time: ~
+
+liip_imagine:
+    filter_sets:
+        large_avatar_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [128, 128], mode: outbound }
+        avatar_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [64, 64], mode: outbound }
+
+        page_image:
+            quality: 75
+            filters:
+                relative_resize: { widen: 600 }
+
+
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        image_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/images
+        avatar_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/avatar
+        party_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/desk
+        party_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/desk
+    filesystems:
+        image_fs:
+            adapter:    image_adapter
+        avatar_fs:
+            adapter:    avatar_adapter
+        party_fs:
+            adapter:    party_adapter
+        desk_fs:
+            adapter:    desk_adapter
+
+vich_uploader:
+    db_driver: orm
+    twig: true
+    gaufrette: true
+    storage: vich_uploader.storage.gaufrette
+    mappings:
+        image_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/images
+            upload_destination: image_fs
+            delete_on_remove: true
+            inject_on_load: true
+        avatar_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/avatar
+            upload_destination: avatar_fs
+            delete_on_remove: true
+            inject_on_load: true
+        party_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/party
+            upload_destination: party_fs
+            delete_on_remove: true
+            inject_on_load: true
+        desk_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/desk
+            upload_destination: desk_fs
+            delete_on_remove: true
+            inject_on_load: true
