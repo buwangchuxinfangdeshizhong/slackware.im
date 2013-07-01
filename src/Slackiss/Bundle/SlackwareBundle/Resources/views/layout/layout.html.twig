@@ -202,6 +202,23 @@
                 <span class="left-nav-item"><a href="{{path('about')}}">关于我们</a></span>
                 </div>
 
+                <div class="box mini-bold left-nav">
+                    {% if app.user %}
+                    <span class="left-nav-item">
+                    <a href="{{path('fos_user_change_password')}}">修改密码</a>
+                    </span>
+                    <span class="left-nav-item">
+                    <a href="{{path('fos_user_security_logout')}}">登出</a>
+                    </span>
+                    {% else %}
+                    <span class="left-nav-item">
+                    <a href="{{path('fos_user_registration_register')}}">注册</a>
+                    </span>
+                    <span class="left-nav-item">
+                    <a href="{{path('fos_user_security_login')}}">登录</a>
+                    </span>
+                    {% endif %}
+                </div>
             </div>
             <div class="span10 right-content">
             {% block body %}{% endblock %}

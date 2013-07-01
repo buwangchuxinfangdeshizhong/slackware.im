@@ -113,8 +113,8 @@ knp_gaufrette:
                 directory: %kernel.root_dir%/../web/assets/avatar
         party_adapter:
             local:
-                directory: %kernel.root_dir%/../web/assets/desk
-        party_adapter:
+                directory: %kernel.root_dir%/../web/assets/party
+        desk_adapter:
             local:
                 directory: %kernel.root_dir%/../web/assets/desk
     filesystems:
