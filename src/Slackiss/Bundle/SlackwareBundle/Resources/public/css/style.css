@@ -192,8 +192,8 @@ a:hover{
     margin:10px 0px;
 }
 
-.post-comment .span10{
-    min-height:120px;
+.post-comment .span2{
+    padding:20px 0px 0px 0px;
 }
 
 .post-comment-form{

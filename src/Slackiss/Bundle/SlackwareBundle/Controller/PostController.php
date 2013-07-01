@@ -78,7 +78,7 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success','成功创建讨论'.$post->getTitle());
+            $this->get('session')->getFlashBag()->add('success','成功创建讨论:'.$post->getTitle());
             return $this->redirect($this->generateUrl('post_show',array('id'=>$post->getId())));
         }
         $param['form']=$form->createView();
