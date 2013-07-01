@@ -1,0 +1,19 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}我们都是Slacker{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>我们都是Slacker<br />
+    <small>
+      所有注册会员都可以上传一张照片并制作自己的Slacker档案。
+    </small>
+  </h2>
+</div>
+
+{% for member in members %}
+<img src="vich_uploader_asset(member,'image')|imagine_filter('large_avatar_image')"/>
+{% endfor %}
+
+{{knp_pagination_render(members)}}
+{% endblock %}
