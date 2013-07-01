@@ -21,10 +21,32 @@
 <div class="row-flud">
 <div class="span8 offset2 box slackdesk-box">
 {{form(form)}}
+</div>
+</div>
 
+<div class="row-fluid">
+<div class="span7 offset2">
 {% for comment in comments %}
-{{comment.content}}
+<div class="box slackdesk-box">
+  <div class="clearfix">
+    <div class="clearfix">
+    {{comment.content}}
+    </div>
+    <div class="pull-right">
+      {% if comment.member.nickname%}
+      <a href="{{path('slacker_show',{id:comment.member.id})}}" target="_blank">
+      {{comment.member.nickname}}
+      </a>
+      {% else %}
+      {{comment.member.username}}
+      {% endif %}
+      {{time_diff(comment.created)}}
+    </div>
+  </div>
+</div>
 {% endfor %}
 </div>
 </div>
+
+
 {% endblock %}

@@ -68,7 +68,21 @@
                   <a href="{{path('welcome')}}">
                     资讯
                   </a>
+                  {% if nav_active|default('')== 'nav_active_news' %}
+                  <div class="left-sub-nav">
+                    {% if is_granted('ROLE_MANAGER')%}
+                    <span class="left-sub-nav-item">
+                      <a href="">新建资讯</a>
+                    </span>
+                    {% endif %}
+                  </div>
+                  {% endif %}
                 </span>
+                {% if nav_active|default('')== 'nav_active_news' %}
+                </div>
+                <div class="box mini-bold left-nav">
+                {% endif %}
+
 
                 {% if nav_active|default('')== 'nav_active_intro' %}
                 </div>
