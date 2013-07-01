@@ -1,5 +1,5 @@
 <?php
-namespace Slackiss\Bundle\KneworkBundle\Entity;
+namespace Slackiss\Bundle\SlackwareBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,15 +12,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity
  * @Vich\Uploadable
  * @ORM\Table(name="member")
- * @ORM\Entity(repositoryClass="Slackiss\Bundle\KneworkBundle\Entity\MemberRepository")
+ * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\MemberRepository")
  */
 class Member extends BaseUser
 {
-    const ROLE_SUPER_ADMIN='ROLE_SUPER_ADMIN';
     const ROLE_ADMIN='ROLE_ADMIN';
     const ROLE_USER='ROLE_USER';
-    const ROLE_COMPANY='ROLE_COMPANY';
-    const ROLE_AGENT='ROLE_AGENT';
+    const ROLE_MANAGER='ROLE_MANAGER';
 
     /**
      * @ORM\Id
@@ -32,7 +30,6 @@ class Member extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
         $this->created = new \DateTime();
         $this->modified = $this->created;
     }
@@ -70,11 +67,6 @@ class Member extends BaseUser
      */
     private $modified;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id",nullable=true)
-     */
-    private $city;
 
     /**
      * Set created
@@ -155,26 +147,4 @@ class Member extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Set city
-     *
-     * @param \Slackiss\Bundle\KneworkBundle\Entity\City $city
-     * @return Member
-     */
-    public function setCity(\Slackiss\Bundle\KneworkBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \Slackiss\Bundle\KneworkBundle\Entity\City 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
 }
