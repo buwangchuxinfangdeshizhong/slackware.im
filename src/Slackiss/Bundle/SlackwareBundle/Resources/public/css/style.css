@@ -204,3 +204,37 @@ a:hover{
     margin:20px 0;
     padding:20px;
 }
+
+.slacker_icon{
+    background: url("../images/icons.png") no-repeat scroll left center transparent;
+    cursor: pointer;
+    display: inline-block !important;
+    height: 32px !important;
+    width:  32px !important;
+    line-height: 32px !important;
+    overflow: hidden;
+    text-align: left;
+}
+
+.slacker{
+    padding:20px;
+}
+
+.slacker-social{
+
+}
+
+.slacker-info{
+    margin-top:10px;
+}
+
+.slacker a{
+    text-decoration:none;
+}
+
+.slacker a:hover{
+    text-decoration:none;
+}
+
+
+
