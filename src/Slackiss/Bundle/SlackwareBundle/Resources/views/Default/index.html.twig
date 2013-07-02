@@ -16,7 +16,7 @@
     {{news.content|striptags('<br><img><p><div><span><hr><h1><h2><h3><h4>')|raw|nl2br}}
    </div>
   <div class="span2 text-box min-bold box news-item-box">
-    2013-03-23
+    {{news.created|date("Y-m-d")}}
     {% if is_granted('ROLE_MANAGER') %}
     <p>
       <a onclick="return confirm('确定要删除这个资讯?')"
