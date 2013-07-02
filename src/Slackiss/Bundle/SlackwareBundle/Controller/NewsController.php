@@ -37,7 +37,7 @@ class NewsController extends Controller
     
     /**
      * @Method({"POST"})
-     * @Template()
+     * @Template("SlackissSlackwareBundle:News:new.html.twig")
      * @Route("/manager/news/create",name="news_create")
      */
     public function createAction(Request $request)
@@ -49,7 +49,7 @@ class NewsController extends Controller
             'action'=>$this->generateUrl('news_create'),
             'method'=>'POST'
         ));
-        
+        $form->handleRequest($request);
         if($form->isValid()){
             $current = $this->get('security.context')->getToken()->getUser();
             $news->setMember($current);
@@ -66,6 +66,23 @@ class NewsController extends Controller
         $param['news'] = $news;
         return $param;
     }
-
+    
+    /**
+     *
+     * @Route("/manager/news/delete/{id}",name="news_delete")
+     * @Method({"GET","DELETE"})
+     *
+     */
+    public function deleteAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $news = $em->getRepository('SlackissSlackwareBundle:News')->find($id);
+        if($news){
+            $em->remove($news);
+            $em->flush();
+        }
+        $this->get('session')->getFlashBag()->add('success','删除成功');
+        return $this->redirect($this->generateUrl('welcome'));
+    }
 }
 

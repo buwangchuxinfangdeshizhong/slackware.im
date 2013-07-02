@@ -148,6 +148,42 @@ class PostController extends Controller
         return $param;
     }
 
+    /**
+     *
+     * @Route("/manager/post/delete/{id}",name="post_delete")
+     * @Method({"GET","DELETE"})
+     *
+     */
+    public function deletePostAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
+        if($post){
+            $em->remove($post);
+            $em->flush();
+        }
+        $this->get('session')->getFlashBag()->add('success','删除成功');
+        return $this->redirect($this->generateUrl('post'));
+    }
+
+    /**
+     *
+     * @Route("/manager/postcomment/delete/{id}",name="postcomment_delete")
+     * @Method({"GET","DELETE"})
+     *
+     */
+    public function deletePostCommentAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postComment = $em->getRepository('SlackissSlackwareBundle:PostComment')->find($id);
+        if($postComment){
+            $em->remove($postComment);
+            $em->flush();
+        }
+        $this->get('session')->getFlashBag()->add('success','删除成功');
+        return $this->redirect($this->generateUrl('post'));
+    }
+
     private function getCommentForm($post,$comment)
     {
         $commentType = new PostCommentType();

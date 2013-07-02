@@ -38,6 +38,10 @@
     <p>
       {{post.commentCount}}回复
     </p>
+    {% if is_granted('ROLE_MANAGER')%}
+    <a onclick="return confirm('您确定要删除这个帖子吗?')"
+       href="{{path('post_delete',{'id':post.id})}}">删除</a>
+    {% endif %}
   </div>
 </div>
 </div>
@@ -70,6 +74,10 @@
     <p>
     {{time_diff(comment.created)}}
     </p>
+    {% if is_granted('ROLE_MANAGER')%}
+    <a onclick="return confirm('您确定要删除这个回复吗?')"
+       href="{{path('postcomment_delete',{'id':comment.id})}}">删除</a>
+    {% endif %}
   </div>
 </div>
 {% endfor %}

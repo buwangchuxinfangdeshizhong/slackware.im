@@ -92,7 +92,7 @@ class Post
     private $commentCount;
 
     /**
-     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post",cascade="remove")
      */
     protected $comments;
 
