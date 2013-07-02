@@ -72,7 +72,7 @@
                   <div class="left-sub-nav">
                     {% if is_granted('ROLE_MANAGER')%}
                     <span class="left-sub-nav-item">
-                      <a href="">新建资讯</a>
+                      <a href="{{path('news_new')}}">新建资讯</a>
                     </span>
                     {% endif %}
                   </div>
