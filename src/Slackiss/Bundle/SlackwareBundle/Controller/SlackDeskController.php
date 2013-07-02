@@ -147,6 +147,27 @@ class SlackDeskController extends Controller
         return $param;
     }
 
+    /**
+     *
+     * @Route("/manager/deskcomment/delete/{id}",name="deskcomment_delete")
+     * @Method({"GET","DELETE"})
+     *
+     */
+    public function deleteDeskCommentAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $deskComment = $em->getRepository('SlackissSlackwareBundle:DeskComment')->find($id);
+        if($deskComment){
+            $deskId = $deskComment->getSlackDesk()->getId();
+            $em->remove($deskComment);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','删除成功');
+            return $this->redirect($this->generateUrl('slackdesk_show',array('id'=>$deskId)));
+        }
+        return $this->redirect($this->generateUrl('slackdesk'));
+    }
+
+
     private function getCommentForm($slackDesk,$comment)
     {
         $commentType = new MemberDeskCommentType();

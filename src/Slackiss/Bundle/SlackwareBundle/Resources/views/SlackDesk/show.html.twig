@@ -6,13 +6,16 @@
 <div class="row-fluid">
 {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
   <div class="span8 offset2">
+    <a href="{{vich_uploader_asset(slackdesk,'image')}}" target="_blank">
     <img class="thumbnail" src="{{vich_uploader_asset(slackdesk,'image')|imagine_filter('page_image')}}"/>
+    </a>
   </div>
 </div>
 
 {% if slackdesk.description %}
 <div class="row-flud">
 <div class="span8 offset2 box slackdesk-box">
+  <h3>SlackDesk故事</h3>
       {{slackdesk.description|nl2br}}
 </div>
 </div>
@@ -26,6 +29,7 @@
 
 <div class="row-fluid">
 <div class="span7 offset2">
+{% include "SlackissSlackwareBundle:include:notice.html.twig" %}
 {% for comment in comments %}
 <div class="box slackdesk-box">
   <div class="clearfix">
@@ -41,6 +45,9 @@
       {{comment.member.username}}
       {% endif %}
       {{time_diff(comment.created)}}
+      {% if is_granted('ROLE_MANAGER')%}
+      <a href="{{path('deskcomment_delete',{id:comment.id})}}" onclick="return confirm('您确定要删除这个评论吗?')">删除</a>
+      {% endif %}
     </div>
   </div>
 </div>

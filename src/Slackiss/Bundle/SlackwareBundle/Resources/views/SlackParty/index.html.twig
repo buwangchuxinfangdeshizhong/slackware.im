@@ -1,0 +1,54 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}SlackParty:Slackware用户的聚会{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>SlackParty<br />
+    <small>
+      Slackware用户的聚会
+    </small>
+  </h2>
+</div>
+
+
+
+{% for event in events %}
+<div class="box thumbnails clearfix" style="margin-bottom:20px;padding:20px">
+
+<a href="{{path('slackparty_show',{id:event.id})}}" target="_blank">
+<img class="pull-left thumbnail" style="margin:0px 20px 20px 0px" src="{{vich_uploader_asset(event,'image')|imagine_filter('face_image')}}"/>
+<div class="pull-left">
+   <table class="table">
+      <tr>
+        <td><strong>时间</strong></td>
+        <td>{{event.eventdate}}</td>
+      </tr>
+      <tr>
+        <td><strong>地点</strong></td>
+        <td>{{event.address}}</td>
+      </tr>
+      <tr>
+        <td><strong>费用</strong></td>
+        <td>{{event.fee}}</td>
+      </tr>
+      <tr>
+        <td><strong>发起人</strong></td>
+        <td>
+          {% if event.member.nickname%}
+          <a href="{{path('slacker_show',{id:event.member.id})}}" target="_blank">
+          {{event.member.nickname}}
+          </a>
+          {% else %}
+          {{event.member.username}}
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+</div>
+</a>
+</div>
+{% endfor %}
+
+{{knp_pagination_render(events)}}
+{% endblock %}

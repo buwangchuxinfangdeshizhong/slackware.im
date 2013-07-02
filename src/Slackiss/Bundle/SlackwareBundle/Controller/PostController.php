@@ -113,7 +113,7 @@ class PostController extends Controller
 
     /**
      * @Route("/member/post/comment/update/{id}",name="post_comment_create")
-     * @Template("SlackissSlackwareBundle:Post:post_show.html.twig")
+     * @Template("SlackissSlackwareBundle:Post:show.html.twig")
      * @Method({"POST"})
      */
     public function commentCreateAction(Request $request,$id)
@@ -134,6 +134,8 @@ class PostController extends Controller
             $comment->setPost($post);
             $comment->setMember($current);
             $em->persist($comment);
+            $em->flush();
+            $em->persist($comment->getPost());
             $em->flush();
             $this->get('session')->getFlashBag()->add('success','回复成功');
             return $this->redirect($this->generateUrl('post_show',array('id'=>$post->getId())));
@@ -178,6 +180,8 @@ class PostController extends Controller
         $postComment = $em->getRepository('SlackissSlackwareBundle:PostComment')->find($id);
         if($postComment){
             $em->remove($postComment);
+            $em->flush();
+            $em->persist($postComment->getPost());
             $em->flush();
         }
         $this->get('session')->getFlashBag()->add('success','删除成功');

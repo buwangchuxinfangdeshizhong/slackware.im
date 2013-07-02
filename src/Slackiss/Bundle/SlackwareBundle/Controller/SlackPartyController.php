@@ -32,7 +32,7 @@ class SlackPartyController extends Controller
                     ->createQueryBuilder('m')
                     ->orderBy('m.id','desc')
                     ->getQuery();
-        $events = $paginator->paginate($query,$page,30);
+        $events = $paginator->paginate($query,$page,4);
         $param['events']=$events;
         return $param;
     }

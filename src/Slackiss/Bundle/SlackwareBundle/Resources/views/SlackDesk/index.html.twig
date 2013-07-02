@@ -11,9 +11,14 @@
   </h2>
 </div>
 
+
+<div class="thumbnails">
 {% for slackdesk in slackdesks %}
-<img src="vich_uploader_asset(slackdesk,'image')|imagine_filter('slacker_image')"/>
+<a href="{{path('slackdesk_show',{id:slackdesk.id})}}" target="_blank">
+<img class="pull-left thumbnail" style="margin:0px 20px 20px 0px" src="{{vich_uploader_asset(slackdesk,'image')|imagine_filter('large_avatar_image')}}"/>
+</a>
 {% endfor %}
+</div>
 
 {{knp_pagination_render(slackdesks)}}
 {% endblock %}
