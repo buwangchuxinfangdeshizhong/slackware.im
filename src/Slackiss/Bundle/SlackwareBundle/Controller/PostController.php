@@ -135,7 +135,9 @@ class PostController extends Controller
             $comment->setMember($current);
             $em->persist($comment);
             $em->flush();
-            $em->persist($comment->getPost());
+            $post = $comment->getPost();
+            $post->setLastCommentTime(new \DateTime());
+            $em->persist($post);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success','回复成功');
             return $this->redirect($this->generateUrl('post_show',array('id'=>$post->getId())));
