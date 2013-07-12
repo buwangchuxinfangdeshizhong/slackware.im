@@ -1,20 +1,23 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="slackiss_slackware.example.class">Slackiss\Bundle\SlackwareBundle\Example</parameter>
-    </parameters>
+  <parameters>
+    <parameter key="slackiss_slackware.mail.class">Slackiss\Bundle\SlackwareBundle\Service\MialService</parameter>
+    <parameter key="slackiss_slackware.post.class">Slackiss\Bundle\SlackwareBundle\Service\PostService</parameter>
+  </parameters>
 
-    <services>
-        <service id="slackiss_slackware.example" class="%slackiss_slackware.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
+  <services>
+    <service id="slackiss_slackware.mail" class="%slackiss_slackware.mail.class%">
+      <argument type="service" id="mailer">mailer</argument>
+    </service>
+    <service id="slackiss_slackware.post" class="%slackiss_slackware.post.class%">
+      <argument type="service" id="doctrine.orm.entity_manager">em</argument>
+      <argument type="service" id="slackiss_slackware.amil">mail</argument>
+      <argument type="service" id="security.context">security</argument>
+    </service>
+  </services>
+
 </container>
