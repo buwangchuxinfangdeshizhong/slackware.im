@@ -5,18 +5,21 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
   <parameters>
-    <parameter key="slackiss_slackware.mail.class">Slackiss\Bundle\SlackwareBundle\Service\MialService</parameter>
+    <parameter key="slackiss_slackware.mail.class">Slackiss\Bundle\SlackwareBundle\Service\MailService</parameter>
     <parameter key="slackiss_slackware.post.class">Slackiss\Bundle\SlackwareBundle\Service\PostService</parameter>
   </parameters>
 
   <services>
     <service id="slackiss_slackware.mail" class="%slackiss_slackware.mail.class%">
       <argument type="service" id="mailer">mailer</argument>
+      <argument type="service" id="templating">template</argument>
     </service>
-    <service id="slackiss_slackware.post" class="%slackiss_slackware.post.class%">
+    <service id="slackiss_slackware.post" class="%slackiss_slackware.post.class%" scope="request">
       <argument type="service" id="doctrine.orm.entity_manager">em</argument>
-      <argument type="service" id="slackiss_slackware.amil">mail</argument>
+      <argument type="service" id="slackiss_slackware.mail">mail</argument>
       <argument type="service" id="security.context">security</argument>
+      <argument type="service" id="router">route</argument>
+      <argument type="service" id="request">req</argument>
     </service>
   </services>
 
