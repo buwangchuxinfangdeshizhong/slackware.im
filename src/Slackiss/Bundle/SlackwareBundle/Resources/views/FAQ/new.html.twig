@@ -1,0 +1,15 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}创建FAQ{% endblock %}
+
+{% block body -%}
+    <h1>创建FAQ</h1>
+
+    <form action="{{ path('faq_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+</ul>
+{% endblock %}

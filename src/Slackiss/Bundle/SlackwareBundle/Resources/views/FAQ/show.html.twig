@@ -1,0 +1,26 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}{{entity.title}}{% endblock %}
+
+{% block body -%}
+    <h2>{{entity.title}}</h2>
+
+    <div class="box download-box">
+    {{entity.content|striptags('<br><img><p><div><span><hr><h1><h2><h3><h4><h5><pre><code>')|raw|nl2br}}
+    </div>
+
+    {% if is_granted('ROLE_MANAGER') %}
+        <div class="clearfix">
+        <a  class="pull-left btn" href="{{ path('faq_edit', { 'id': entity.id }) }}">
+            编辑
+        </a>
+        <form class="pull-right" action="{{ path('faq_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit"
+                    onclick="return confirm('您确定要删除这个FAQ吗？')"
+                    class="btn btn-warning">删除</button>
+        </form>
+        </div>
+    {% endif %}
+{% endblock %}

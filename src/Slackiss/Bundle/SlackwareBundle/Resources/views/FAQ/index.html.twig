@@ -1,0 +1,20 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}常见问题(FAQ){% endblock %}
+
+{% block body -%}
+    <h1>常见问题(FAQ)</h1>
+
+    <div class="box download-box">
+      <ul>
+        {% for entity in entities %}
+        <li><a href="{{ path('faq_show', { 'id': entity.id }) }}">
+            {{ entity.title }}
+            </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {{knp_pagination_render(entities)}}
+    </div>
+
+    {% endblock %}
