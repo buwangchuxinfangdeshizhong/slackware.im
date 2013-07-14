@@ -1,0 +1,35 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}图片管理{% endblock %}
+
+{% block body -%}
+    <h2>图片管理</h2>
+
+    <div class="box download-box">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>预览</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>
+                  <a href="{{vich_uploader_asset(entity,'image')}}" target="_blank">
+                    <img src="{{vich_uploader_asset(entity,'image')|imagine_filter('slacker_image')}}"/>
+                  </a>
+                <td>
+                  <a href="{{path('manage_image__delete',{id:entity.id})}}"
+                     onclick="return confirm('您确定要删除这个图片吗？')">
+                    删除
+                  </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{knp_pagination_render(entities)}}
+    </div>
+    {% endblock %}

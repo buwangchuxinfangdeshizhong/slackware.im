@@ -1,0 +1,13 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}上传图片{% endblock %}
+
+{% block body -%}
+    <h2>上传图片</h2>
+    <div class="box download-box">
+    <form action="{{ path('manage_image__create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+    </form>
+    </div>
+
+{% endblock %}

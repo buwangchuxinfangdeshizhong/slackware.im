@@ -127,6 +127,9 @@ knp_gaufrette:
         discuss_adapter:
             local:
                 directory: %kernel.root_dir%/../web/assets/discuss
+        misc_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/misc
     filesystems:
         image_fs:
             adapter:    image_adapter
@@ -138,6 +141,8 @@ knp_gaufrette:
             adapter:    desk_adapter
         discuss_fs:
             adapter:    discuss_adapter
+        misc_fs:
+            adapter:    misc_adapter
 
 vich_uploader:
     db_driver: orm
@@ -175,3 +180,9 @@ vich_uploader:
             upload_destination: discuss_fs
             delete_on_remove: true
             inject_on_load: true
+        misc_image:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/misc
+            upload_destination: misc_fs
+            delete_on_remove: true
+            inject_on_load: true     
