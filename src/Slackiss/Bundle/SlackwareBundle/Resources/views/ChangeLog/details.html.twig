@@ -14,11 +14,10 @@
 
   <div class="row-fluid">
     <div class="span10 news-item-box box content-box">
-      {{changeLog.content|striptags('<br><img><p><div><span><ul><li><ol><hr><h1><h2><h3><h4>')|raw|nl2br}}
-        </div>
-        <div class="span2 text-box min-bold box news-item-box">
-          {{changeLog.created|date("Y-m-d")}}
-        </div>
+      {{changeLog.content|nl2br}}
+    </div>
+    <div class="span2 text-box min-bold box news-item-box">
+      {{changeLog.created|date("Y-m-d")}}
     </div>
   </div>
 </div>
