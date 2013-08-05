@@ -8,7 +8,11 @@
 </div>
 <div class="row-fluid">
   <div class="span8 box download-box">
-    {{form(form)}}
+{% if is_granted('ROLE_USER') %}
+{{form(form)}}
+{% else %}
+<center>请登录后再参与社区讨论</center>
+{% endif %}
   </div>
   <div class="span3">
     推荐创建讨论前,仔细阅读下面的文章:
