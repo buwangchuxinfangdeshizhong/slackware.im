@@ -35,7 +35,7 @@ class SlackerController extends Controller
         $param['members']=$members;
         return $param;
     }
-    
+
     /**
      * @Route("/member/slacker/edit",name="member_slacker_edit")
      * @Template()
@@ -51,7 +51,8 @@ class SlackerController extends Controller
         if(!$member->getNickname()){
             $member->setNickname($member->getUsername());
         }
-        $slackerType = new SlackerType();
+		$isEdit = $member->getAvatar()!='';
+        $slackerType = new SlackerType($isEdit);
         $form = $this->createForm($slackerType,$member,array(
             'action'=>$this->generateUrl('member_slacker_update'),
             'method'=>'POST'
@@ -73,7 +74,8 @@ class SlackerController extends Controller
         $member = $this->getDoctrine()->getManager()
                        ->getRepository('SlackissSlackwareBundle:Member')
                        ->find($current->getId());
-        $slackerType = new SlackerType();
+		$isEdit = $member->getAvatar()!='';
+        $slackerType = new SlackerType($isEdit);
         $form = $this->createForm($slackerType,$member,array(
             'action'=>$this->generateUrl('member_slacker_update'),
             'method'=>'POST'
@@ -88,7 +90,7 @@ class SlackerController extends Controller
         }
         $param['member']=$member;
         $param['form']=$form->createView();
-        return $param;        
+        return $param;
     }
 
     /**
@@ -110,4 +112,3 @@ class SlackerController extends Controller
         return $param;
     }
 }
-

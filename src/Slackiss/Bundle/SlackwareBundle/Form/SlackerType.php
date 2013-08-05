@@ -8,6 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SlackerType extends AbstractType
 {
+	private $isEdit;
+	public function __construct($isEdit=false)
+	{
+		$this->isEdit = $isEdit;
+	}
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,15 +31,26 @@ class SlackerType extends AbstractType
                     'class'=>'input-block-level',
                     'placeholder'=>'比如：北京西直门'
                 )
-            ))
-            ->add('image','file',array(
-                'label'=>'个人头像设置(必须上传头像)',
-                'required'=>true,
-                'attr'=>array(
-                    
-                )
-            ))
-            ->add('description','textarea',array(
+            ));
+		    if($this->isEdit){
+				$builder->add('image','file',array(
+					'label'=>'个人头像设置',
+					'required'=>false,
+					'attr'=>array(
+
+					)
+				));
+			}else{
+				$builder->add('image','file',array(
+					'label'=>'个人头像设置(必须上传头像)',
+					'required'=>true,
+					'attr'=>array(
+
+					)
+				));
+			}
+			$builder
+				  ->add('description','textarea',array(
                 'label'=>'Slacker介绍(必填)',
                 'required'=>true,
                 'attr'=>array(
