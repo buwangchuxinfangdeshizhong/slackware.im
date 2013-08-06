@@ -70,7 +70,15 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'  
     firewall_name: main
     user_class: Slackiss\Bundle\SlackwareBundle\Entity\Member
-
+    from_email:
+        address:        slackwareim@163.com
+        sender_name:    Slackware.im
+    resetting:
+        token_ttl: 86400
+        form:
+            type:               fos_user_resetting
+            name:               fos_user_resetting_form
+            validation_groups:  [ResetPassword, Default]
 
 knp_paginator:
     page_range: 5                   # default page range used in pagination control                 
