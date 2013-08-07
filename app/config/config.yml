@@ -71,7 +71,7 @@ fos_user:
     firewall_name: main
     user_class: Slackiss\Bundle\SlackwareBundle\Entity\Member
     from_email:
-        address:        slackwareim@163.com
+        address:        slackwareim@126.com
         sender_name:    Slackware.im
     resetting:
         token_ttl: 86400
