@@ -7,9 +7,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
- * @ORM\Entity
+ * @UniqueEntity(
+ *     fields={"username", "email"},
+ *     message="用户名和电子信箱不能重复"
+ * )
  * @Vich\Uploadable
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\MemberRepository")
@@ -163,7 +166,7 @@ class Member extends BaseUser
      * @var string $imageName
      */
 	private $avatar;
-    
+
     /**
      * @Assert\File(
      *     maxSize="10M",
@@ -207,7 +210,7 @@ class Member extends BaseUser
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -230,7 +233,7 @@ class Member extends BaseUser
     /**
      * Get modified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModified()
     {
@@ -266,7 +269,7 @@ class Member extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -283,14 +286,14 @@ class Member extends BaseUser
     public function setNickname($nickname)
     {
         $this->nickname = $nickname;
-    
+
         return $this;
     }
 
     /**
      * Get nickname
      *
-     * @return string 
+     * @return string
      */
     public function getNickname()
     {
@@ -306,14 +309,14 @@ class Member extends BaseUser
     public function setWebsite($website)
     {
         $this->website = $website;
-    
+
         return $this;
     }
 
     /**
      * Get website
      *
-     * @return string 
+     * @return string
      */
     public function getWebsite()
     {
@@ -329,14 +332,14 @@ class Member extends BaseUser
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -352,14 +355,14 @@ class Member extends BaseUser
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
-    
+
         return $this;
     }
 
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -375,14 +378,14 @@ class Member extends BaseUser
     public function setGoogleplus($googleplus)
     {
         $this->googleplus = $googleplus;
-    
+
         return $this;
     }
 
     /**
      * Get googleplus
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleplus()
     {
@@ -398,14 +401,14 @@ class Member extends BaseUser
     public function setFacebook($facebook)
     {
         $this->facebook = $facebook;
-    
+
         return $this;
     }
 
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -421,14 +424,14 @@ class Member extends BaseUser
     public function setWeibo($weibo)
     {
         $this->weibo = $weibo;
-    
+
         return $this;
     }
 
     /**
      * Get weibo
      *
-     * @return string 
+     * @return string
      */
     public function getWeibo()
     {
@@ -444,14 +447,14 @@ class Member extends BaseUser
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -467,14 +470,14 @@ class Member extends BaseUser
     public function setCss($css)
     {
         $this->css = $css;
-    
+
         return $this;
     }
 
     /**
      * Get css
      *
-     * @return string 
+     * @return string
      */
     public function getCss()
     {
@@ -490,14 +493,14 @@ class Member extends BaseUser
     public function setGithub($github)
     {
         $this->github = $github;
-    
+
         return $this;
     }
 
     /**
      * Get github
      *
-     * @return string 
+     * @return string
      */
     public function getGithub()
     {
