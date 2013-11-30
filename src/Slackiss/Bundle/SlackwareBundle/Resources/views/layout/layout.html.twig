@@ -245,17 +245,18 @@
                 {% endif %}
                 <span class="left-nav-item"><a href="{{path('changelog')}}">变更日志</a></span>
                   {% if nav_active|default('')== 'nav_active_changelog' %}
-                  <div class="left-sub-nav">
+                    {% if is_granted('ROLE_ADMIN')%}
+                <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('changelog_details')}}">详细信息</a>
                     </span>
-                    {% if is_granted('ROLE_ADMIN')%}
+
                     <br />
                     <span class="left-sub-nav-item">
                       <a href="{{path('admin_changelog_new')}}">添加变更日志</a>
                     </span>
-                    {% endif %}
                   </div>
+                    {% endif %}
                   {% endif %}
                 {% if nav_active|default('')== 'nav_active_changelog' %}
                 </div>
