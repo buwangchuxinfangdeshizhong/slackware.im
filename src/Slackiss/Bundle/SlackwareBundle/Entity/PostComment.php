@@ -77,19 +77,19 @@ class PostComment
      *
      * @var string $imageName
      */
-	private $attachment;
-    
+    private $attachment;
+
     /**
      * @Assert\File(
      *     maxSize="10M",
      *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-	 *                          "image/jpg","image/gif"}
+     *                          "image/jpg","image/gif"}
      * )
      * @Vich\UploadableField(mapping="discuss_image", fileNameProperty="attachment")
      *
      * @var File $image
      */
-	private $image;
+    private $image;
 
     public function setImage($image)
     {
@@ -104,7 +104,7 @@ class PostComment
     {
         return $this->image;
     }
-    
+
     /**
      * @ORM\PostPersist
      */
@@ -125,7 +125,7 @@ class PostComment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -148,7 +148,7 @@ class PostComment
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -171,7 +171,7 @@ class PostComment
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -194,7 +194,7 @@ class PostComment
     /**
      * Get modified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModified()
     {
@@ -217,7 +217,7 @@ class PostComment
     /**
      * Get post
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Post 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Post
      */
     public function getPost()
     {
@@ -240,7 +240,7 @@ class PostComment
     /**
      * Get member
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member
      */
     public function getMember()
     {
@@ -256,14 +256,14 @@ class PostComment
     public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
-    
+
         return $this;
     }
 
     /**
      * Get attachment
      *
-     * @return string 
+     * @return string
      */
     public function getAttachment()
     {

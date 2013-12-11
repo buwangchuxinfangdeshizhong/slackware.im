@@ -20,7 +20,7 @@ class PostCommentType extends AbstractType
                     'placeholder'=>'评论内容:支持使用<pre></pre>标签贴代码'
                 )
             ))
-            ->add('attachment','file',array(
+            ->add('image',null,array(
                 'label'=>'附加图片',
                 'required'=>false,
                 'attr'=>array(
