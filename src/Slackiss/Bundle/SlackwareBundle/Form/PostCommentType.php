@@ -17,7 +17,7 @@ class PostCommentType extends AbstractType
                 'attr'=>array(
                     'class'=>'input-block-level',
                     'rows'=>6,
-                    'placeholder'=>'评论内容:支持使用<pre></pre>标签贴代码'
+                    'placeholder'=>'评论内容:支持使用<code></code>标签贴代码'
                 )
             ))
             ->add('image',null,array(

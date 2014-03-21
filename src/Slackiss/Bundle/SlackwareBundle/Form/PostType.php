@@ -25,7 +25,7 @@ class PostType extends AbstractType
                 'attr'=>array(
                     'class'=>'input-block-level',
                     'rows'=>10,
-                    'placeholder'=>'讨论内容:支持<pre></pre>标签用于贴代码.'
+                    'placeholder'=>'讨论内容:支持<code></code>标签用于贴代码.'
                 )
             ))
             ->add('image','file',array(
