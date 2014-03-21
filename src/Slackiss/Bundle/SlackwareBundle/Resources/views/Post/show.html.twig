@@ -11,7 +11,7 @@
 
 <div class="row-fluid box">
   <div class="span10 news-item-box content-box">
-    {{post.content|striptags('<pre>')|raw|nl2br}}
+    {{post.content|code|striptags('<pre>')|raw|nl2br}}
     {% if post.attachment %}
     <div style="text-align:center;margin:20px 0px">
       <a href="{{vich_uploader_asset(post,'image')}}" target="_blank">
@@ -50,7 +50,7 @@
 {% for comment in comments %}
 <div class="row-fluid post-comment box">
   <div class="span10 news-item-box content-box">
-    {{comment.content|striptags('<pre>')|raw|nl2br}}
+    {{comment.content|code|striptags('<pre>')|raw|nl2br}}
     {% if comment.attachment %}
     <div style="text-align:center;margin:20px 0px">
       <a href="{{vich_uploader_asset(comment,'image')}}" target="_blank">

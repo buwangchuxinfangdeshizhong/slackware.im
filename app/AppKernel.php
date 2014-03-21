@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-
+            new Slackend\Bundle\TwigExtraBundle\SlackendTwigExtraBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
