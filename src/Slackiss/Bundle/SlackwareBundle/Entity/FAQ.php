@@ -45,7 +45,7 @@ class FAQ
     /**
      * @var string
      * @Assert\NotBlank(message="内容不能为空")
-     * @ORM\Column(name="content", type="string", length=255)
+     * @ORM\Column(name="content", type="text")
      */
     private $content;
 
@@ -88,7 +88,7 @@ class FAQ
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,14 +104,14 @@ class FAQ
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -127,14 +127,14 @@ class FAQ
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
 
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -150,14 +150,14 @@ class FAQ
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -173,14 +173,14 @@ class FAQ
     public function setModified($modified)
     {
         $this->modified = $modified;
-    
+
         return $this;
     }
 
     /**
      * Get modified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModified()
     {
@@ -196,14 +196,14 @@ class FAQ
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -219,14 +219,14 @@ class FAQ
     public function setRemark($remark)
     {
         $this->remark = $remark;
-    
+
         return $this;
     }
 
     /**
      * Get remark
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRemark()
     {
@@ -242,14 +242,14 @@ class FAQ
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
+
         return $this;
     }
 
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
