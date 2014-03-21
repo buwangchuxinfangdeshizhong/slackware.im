@@ -25,10 +25,11 @@
         "gedmo/doctrine-extensions": "2.3.*@dev",
         "vich/uploader-bundle": "dev-master",
         "simplepie/simplepie": "dev-master",
-        "liip/imagine-bundle": "dev-master",
+        "liip/imagine-bundle": "v0.21.1",
         "simplethings/form-extra-bundle": "dev-master",
         "knplabs/knp-gaufrette-bundle" : "dev-master",
-        "knplabs/gaufrette": "0.2.*@dev"
+        "knplabs/gaufrette": "0.2.*@dev",
+        "slackiss/slackend-twigextra-bundle": "2.3.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
