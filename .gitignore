@@ -11,3 +11,5 @@
 /web/assets/
 /web/media/
 /app/SymfonyRequirements.php
+/.idea/.name
+/.idea/workspace.xml
