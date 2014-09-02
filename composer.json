@@ -2,63 +2,75 @@
     "name": "symfony/framework-standard-edition",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "slackware.im",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "": "src/","SymfonyStandard":"app/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
+        "symfony/symfony": "2.5.*",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
+        "knplabs/gaufrette": "0.2.*@dev",
+        "vich/uploader-bundle": "0.9",
+        "knplabs/knp-gaufrette-bundle": "dev-master",
+        "liip/imagine-bundle": "dev-master",
+        "helios-ag/fm-elfinder-bundle": "1.x",
+        "exercise/htmlpurifier-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-time-bundle": "dev-master",
+        "Trsteel/ckeditor-bundle": "~1.4"
         "gedmo/doctrine-extensions": "2.3.*@dev",
-        "vich/uploader-bundle": "dev-master",
         "simplepie/simplepie": "dev-master",
         "liip/imagine-bundle": "v0.21.1",
-        "simplethings/form-extra-bundle": "dev-master",
-        "knplabs/knp-gaufrette-bundle" : "dev-master",
-        "knplabs/gaufrette": "0.2.*@dev",
         "slackiss/slackend-twigextra-bundle": "2.3.*@dev"
     },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "4.1.*"
+    },
     "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ]
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.5-dev"
         }
     }
 }
