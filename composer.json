@@ -27,7 +27,7 @@
         "exercise/htmlpurifier-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-time-bundle": "dev-master",
-        "Trsteel/ckeditor-bundle": "~1.4"
+        "Trsteel/ckeditor-bundle": "~1.4",
         "gedmo/doctrine-extensions": "2.3.*@dev",
         "simplepie/simplepie": "dev-master",
         "liip/imagine-bundle": "v0.21.1",
