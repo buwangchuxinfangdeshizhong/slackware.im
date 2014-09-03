@@ -24,6 +24,7 @@
 *** TODO 移除底部错误的链接地址
 *** TODO 全局设置是否接收邮件通知
 *** TODO Slacker档案编辑的时候，增加notice
+*** TODO 优化Slacker页面，包括列表页与展示页
 *** TODO 修复记住密码不能使用的问题
 *** TODO 提供一个社区知识库功能，提供slackware和linux相关的知识内容
 *** TODO 提供站内搜索功能[分为社区搜索和知识库搜索]
