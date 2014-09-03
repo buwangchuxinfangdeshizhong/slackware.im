@@ -14,3 +14,24 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "pdo_sqlite"
+        host:     "localhost"
+        dbname:   "slackware.im"
+        user:     "slackware.im"
+        password: "slackware.im"
+        charset:  UTF8
+        #memory: true
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        path:     "%kernel.root_dir%/cache/slackware.im.db"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+        metadata_cache_driver: apc
+        result_cache_driver: apc
+        query_cache_driver: apc
