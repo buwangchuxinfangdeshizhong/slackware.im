@@ -14,8 +14,9 @@
 *** SlackParty+校园支持
 *** 维护更多的SlackBuilds
 ** Development
-*** TODO 增加单元测试设置
+*** DONE 增加单元测试设置
 *** TODO 引入gulp和less，同时压缩css
+*** TODO 突出显示网站的中文社区
 *** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
 *** TODO 压缩JQuery和Bootstrap相关的javascript
 *** TODO 向未设置头像的会员提醒可以设置头像
