@@ -3,13 +3,16 @@
 ** Bug
 
 ** Optimize
-
+*** 增加宣传语：学会了Fedora，你就会了Fedora，学会了Slackware，你就学会了Linux
 ** Feature
 *** 社区知识库
 *** 更加现代化的中文社区
 *** 个人消息中心
 *** 站内搜索
 *** 移动设备支持[还没有决定是否要开发app]
+*** 基于Slackware的发行版
+*** SlackParty+校园支持
+*** 维护更多的SlackBuilds
 ** Development
 *** TODO 增加单元测试设置
 *** TODO 引入gulp和less，同时压缩css
@@ -32,3 +35,6 @@
 **** TODO 使用更现代化的方式提供社区的列表页显示
 **** TODO 给社区提供一个更优雅的文件上传功能
 **** TODO 社区能够更好地支持显示代码
+**** TODO 社区支持固定的标签，同时标签带有分类，可以参考linuxsir和http://forum.ubuntu.org.cn/
+**** TODO 分享到微博和微信
+**** TODO 社会化登录
