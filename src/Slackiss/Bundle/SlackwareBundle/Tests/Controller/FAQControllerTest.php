@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FAQControllerTest extends WebTestCase
 {
+    public function testAction()
+    {
+        $this->assertTrue(true);
+    }
     /*
     public function testCompleteScenario()
     {
