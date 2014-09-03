@@ -1,0 +1,34 @@
+* slackware.im TODO
+
+** Bug
+
+** Optimize
+
+** Feature
+*** 社区知识库
+*** 更加现代化的中文社区
+*** 个人消息中心
+*** 站内搜索
+*** 移动设备支持[还没有决定是否要开发app]
+** Development
+*** TODO 增加单元测试设置
+*** TODO 引入gulp和less，同时压缩css
+*** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
+*** TODO 压缩JQuery和Bootstrap相关的javascript
+*** TODO 向未设置头像的会员提醒可以设置头像
+*** TODO 测试SlackParty的功能是否够用
+*** TODO 修改关于我们
+*** TODO 移除底部错误的链接地址
+*** TODO 全局设置是否接收邮件通知
+*** TODO Slacker档案编辑的时候，增加notice
+*** TODO 修复记住密码不能使用的问题
+*** TODO 提供一个社区知识库功能，提供slackware和linux相关的知识内容
+*** TODO 提供站内搜索功能[分为社区搜索和知识库搜索]
+*** 中文社区
+**** TODO 优化社区图片的显示
+**** TODO 在帖子回复的24小时内，自己可以编辑自己的帖子
+**** TODO 在帖子阅读页，显示楼层
+**** TODO 楼主可以为帖子做出补充
+**** TODO 使用更现代化的方式提供社区的列表页显示
+**** TODO 给社区提供一个更优雅的文件上传功能
+**** TODO 社区能够更好地支持显示代码
