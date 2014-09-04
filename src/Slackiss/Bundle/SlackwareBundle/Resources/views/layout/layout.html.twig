@@ -333,6 +333,7 @@
                 </div>
             </div>
             <div class="span10 right-content">
+                {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
             {% block body %}{% endblock %}
             </div>
           </div>
@@ -351,7 +352,6 @@
     </div>
     <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/jquery.js')}}"></script>
     <script src="{{asset('bundles/slackissslackware/bootstrap/js/bootstrap.min.js')}}"></script>
-
     <script src="{{asset('bundles/slackissslackware/js/application.js')}}"></script>
     {% block layout_footer %}{% endblock %}
     {% block footer %}{% endblock %}
