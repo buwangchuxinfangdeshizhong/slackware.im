@@ -25,7 +25,10 @@ security:
             logout:       true
             anonymous:    true
             remember_me:
+                 key:      "%secret%"
                  lifetime: 2592000  # 60*60*24*30
+                 path:     /
+                 domain:   ~
 
     access_control:
         - { path: ^/login$,      role: IS_AUTHENTICATED_ANONYMOUSLY }
