@@ -58,7 +58,7 @@ class PostController extends Controller
 
     /**
      * @Route("/member/post/create",name="post_create")
-     * @Template()
+     * @Template("SlackissSlackwareBundle:post:new.html.twig")
      * @Method({"POST"})
      */
     public function createAction(Request $request)

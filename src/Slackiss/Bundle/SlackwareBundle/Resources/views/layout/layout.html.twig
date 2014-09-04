@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-  <!--[if IE 8]>
-      <html class="no-js lt-ie9" lang="en" >
-  <![endif]-->
-  <!--[if gt IE 8]>
-  <!--><html class="no-js" lang="en" >
-  <!--<![endif]-->
-  <head>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en" >
+<![endif]-->
+<!--[if gt IE 8]>
+<!--><html class="no-js" lang="en" >
+<!--<![endif]-->
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -13,125 +13,126 @@
     <title>{% block title %}{% endblock %}</title>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/html5shiv.js')}}"></script>
-      <script src="{{asset('bundles/slackissslackware/vendor/css3-mediaqueries.js')}}"></script>
+    <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/html5shiv.js')}}"></script>
+    <script src="{{asset('bundles/slackissslackware/vendor/css3-mediaqueries.js')}}"></script>
     <![endif]-->
     <!-- Le fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
           href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-144-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
           href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-114-precomposed.png')}}">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72"
-            href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png')}}">
-        <link rel="apple-touch-icon-precomposed"
-                          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed"
+          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png')}}">
     <link rel="shortcut icon"
-                href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/favicon.png')}}">
+          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/favicon.png')}}">
 
     <link rel="stylesheet" href="{{asset('bundles/slackissslackware/css/style.css')}}">
     {% block layout_header %}{% endblock %}
     {% block header %}{% endblock %}
+    {% block top %}{% endblock %}
     <script>
         if(top!==self)
             top.location.href=this.location.href;
     </script>
-  </head>
-  <body  data-spy="scroll" data-target=".bs-docs-sidebar">
-      <div class="header">
-        <div class="wrapper">
-          <div class="header-content clearfix">
+</head>
+<body  data-spy="scroll" data-target=".bs-docs-sidebar">
+<div class="header">
+    <div class="wrapper">
+        <div class="header-content clearfix">
             <div class="header-left">
-              <div class="header-left-logo box bold">
-                Slackware Linux 中文社区
-              </div>
+                <div class="header-left-logo box bold">
+                    Slackware Linux 中文社区
+                </div>
             </div>
             <div class="header-right pull-right">
-              <div class="header-right-logo">
-                <a href="{{path('welcome')}}">
-                  <img class="box" src="{{asset('bundles/slackissslackware/images/logo.png')}}" />
-                </a>
-              </div>
+                <div class="header-right-logo">
+                    <a href="{{path('welcome')}}">
+                        <img class="box" src="{{asset('bundles/slackissslackware/images/logo.png')}}" />
+                    </a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="body">
-        <div class="wrapper">
-          <div class="row-fluid">
-            <div class="span2">
+    </div>
+</div>
+<div class="body">
+<div class="wrapper">
+<div class="row-fluid">
+<div class="span2">
 
-              <div class="box mini-bold left-nav">
+<div class="box mini-bold left-nav">
                 <span class="left-nav-item">
                   <a href="{{path('welcome')}}">
-                    资讯
+                      资讯
                   </a>
-                  {% if nav_active|default('')== 'nav_active_news' %}
-                  <div class="left-sub-nav">
-                    {% if is_granted('ROLE_MANAGER')%}
-                    <span class="left-sub-nav-item">
+                    {% if nav_active|default('')== 'nav_active_news' %}
+                        <div class="left-sub-nav">
+                            {% if is_granted('ROLE_MANAGER')%}
+                                <span class="left-sub-nav-item">
                       <a href="{{path('news_new')}}">新建资讯</a>
                     </span>
+                            {% endif %}
+                        </div>
                     {% endif %}
-                  </div>
-                  {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_news' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_news' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_intro' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('intro')}}">介绍</a></span>
-                {% if nav_active|default('')== 'nav_active_intro' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_intro' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('intro')}}">介绍</a></span>
+    {% if nav_active|default('')== 'nav_active_intro' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_slackbook' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_slackbook' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('slackbook')}}">slackbook</a>
                 </span>
-                {% if nav_active|default('')== 'nav_active_slackbook' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_slackbook' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_post' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_post' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('post')}}">中文社区</a>
-                  {% if nav_active|default('')== 'nav_active_post' %}
-                  <div class="left-sub-nav">
+        {% if nav_active|default('')== 'nav_active_post' %}
+            <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('post_new')}}">创建讨论</a>
                     </span>
-                  </div>
-                  {% endif %}
+            </div>
+        {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_post' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_post' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_faq' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_faq' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('faq')}}">常见问题</a>
-                  {% if nav_active|default('')== 'nav_active_faq' %}
-                  {% if is_granted('ROLE_MANAGER') %}
-                  <div class="left-sub-nav">
+        {% if nav_active|default('')== 'nav_active_faq' %}
+            {% if is_granted('ROLE_MANAGER') %}
+                <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('faq_new')}}">创建FAQ</a>
                       <br>
@@ -139,244 +140,245 @@
                       <br>
                       <a href="{{path('manage_image__new')}}">上传图片</a>
                     </span>
-                  </div>
-                  {% endif %}
-                  {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_faq' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_faq' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_slacker' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_slacker' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('slacker')}}">Slackers</a>
-                  {% if nav_active|default('')== 'nav_active_slacker' %}
-                  <div class="left-sub-nav">
+        {% if nav_active|default('')== 'nav_active_slacker' %}
+            <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('member_slacker_edit')}}">维护档案</a>
                     </span>
-                  </div>
-                  {% endif %}
+            </div>
+        {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_slacker' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_slacker' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_slackdesk' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_slackdesk' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('slackdesk')}}">SlackDesk</a>
-                  {% if nav_active|default('')== 'nav_active_slackdesk' %}
-                  <div class="left-sub-nav">
+        {% if nav_active|default('')== 'nav_active_slackdesk' %}
+            <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('member_slackdesk_new')}}">分享SlackDesk</a>
                     </span>
-                  </div>
-                  {% endif %}
+            </div>
+        {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_slackdesk' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_slackdesk' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_slackparty' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_slackparty' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('slackparty')}}">SlackParty</a>
-                  {% if nav_active|default('')== 'nav_active_slackparty' %}
-                  <div class="left-sub-nav">
+        {% if nav_active|default('')== 'nav_active_slackparty' %}
+            <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('member_slackparty_new')}}">创建活动</a>
                     </span>
-                  </div>
-                  {% endif %}
+            </div>
+        {% endif %}
                 </span>
-                {% if nav_active|default('')== 'nav_active_slackparty' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_slackparty' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_download' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('download')}}">下载</a></span>
-                {% if nav_active|default('')== 'nav_active_download' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_download' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('download')}}">下载</a></span>
+    {% if nav_active|default('')== 'nav_active_download' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_package' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('package')}}">软件包</a></span>
-                {% if nav_active|default('')== 'nav_active_package' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_package' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('package')}}">软件包</a></span>
+    {% if nav_active|default('')== 'nav_active_package' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_changelog' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('changelog')}}">变更日志</a></span>
-                  {% if nav_active|default('')== 'nav_active_changelog' %}
-                    {% if is_granted('ROLE_ADMIN')%}
-                <div class="left-sub-nav">
+    {% if nav_active|default('')== 'nav_active_changelog' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('changelog')}}">变更日志</a></span>
+    {% if nav_active|default('')== 'nav_active_changelog' %}
+        {% if is_granted('ROLE_ADMIN')%}
+            <div class="left-sub-nav">
                     <span class="left-sub-nav-item">
                       <a href="{{path('changelog_details')}}">详细信息</a>
                     </span>
 
-                    <br />
+                <br />
                     <span class="left-sub-nav-item">
                       <a href="{{path('admin_changelog_new')}}">添加变更日志</a>
                     </span>
-                  </div>
-                    {% endif %}
-                  {% endif %}
-                {% if nav_active|default('')== 'nav_active_changelog' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+    {% if nav_active|default('')== 'nav_active_changelog' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_propaganda' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_propaganda' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('propaganda')}}">宣传画</a>
                 </span>
-                {% if nav_active|default('')== 'nav_active_propaganda' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_propaganda' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_fork' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_fork' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item">
                   <a href="{{path('fork')}}">其他版本</a></span>
-                {% if nav_active|default('')== 'nav_active_fork' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_fork' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_site' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('site')}}">相关网站</a></span>
-                {% if nav_active|default('')== 'nav_active_site' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-
-
-                {% if nav_active|default('')== 'nav_active_contact' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('contact')}}">官方联系</a></span>
-                {% if nav_active|default('')== 'nav_active_contact' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_site' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('site')}}">相关网站</a></span>
+    {% if nav_active|default('')== 'nav_active_site' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
 
-                {% if nav_active|default('')== 'nav_active_mail' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('mail')}}">邮件列表</a></span>
-                {% if nav_active|default('')== 'nav_active_mail' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
+    {% if nav_active|default('')== 'nav_active_contact' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('contact')}}">官方联系</a></span>
+    {% if nav_active|default('')== 'nav_active_contact' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
 
-                {% if nav_active|default('')== 'nav_active_about' %}
-                </div>
-                <div class="box mini-bold left-nav">
-                {% endif %}
-                <span class="left-nav-item"><a href="{{path('about')}}">关于我们</a></span>
-                </div>
 
-                <div class="box mini-bold left-nav">
-                    {% if app.user %}
-                    <span class="left-nav-item">
+    {% if nav_active|default('')== 'nav_active_mail' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('mail')}}">邮件列表</a></span>
+    {% if nav_active|default('')== 'nav_active_mail' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+
+    {% if nav_active|default('')== 'nav_active_about' %}
+</div>
+<div class="box mini-bold left-nav">
+    {% endif %}
+    <span class="left-nav-item"><a href="{{path('about')}}">关于我们</a></span>
+</div>
+
+<div class="box mini-bold left-nav">
+    {% if app.user %}
+        <span class="left-nav-item">
                     <a href="{{path('fos_user_change_password')}}">修改密码</a>
                     </span>
-                    <span class="left-nav-item">
+        <span class="left-nav-item">
                     <a href="{{path('fos_user_security_logout')}}">登出</a>
                     </span>
-                    {% else %}
-                    <span class="left-nav-item">
+    {% else %}
+        <span class="left-nav-item">
                     <a href="{{path('fos_user_registration_register')}}">注册</a>
                     </span>
-                    <span class="left-nav-item">
+        <span class="left-nav-item">
                     <a href="{{path('fos_user_security_login')}}">登录</a>
                     </span>
-                    {% endif %}
-                </div>
+    {% endif %}
+</div>
+</div>
+<div class="span10 right-content">
+    {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+    {% if app.user %}
+        {% if not app.user.avatar %}
+            <div class="alert alert-warning">
+                {{ app.user.username }}，您好，自从您于{{ time_diff(app.user.created) }}加入Slackware中文社区以来，还没有上传您的社区头像，请点击
+                <a href="{{path('member_slacker_edit')}}" target="_blank">维护档案</a>
+                上传您的社区头像，谢谢。
             </div>
-            <div class="span10 right-content">
-                {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
-                {% if app.user %}
-                    {% if not app.user.avatar %}
-                        <div class="alert alert-warning">
-                        {{ app.user.username }}，您好，自从您于{{ time_diff(app.user.created) }}加入Slackware中文社区以来，还没有上传您的社区头像，请点击
-                        <a href="{{path('member_slacker_edit')}}" target="_blank">维护档案</a>
-                        上传您的社区头像，谢谢。
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% block body %}{% endblock %}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="wrapper">
-          <div class="clearfix">
+        {% endif %}
+    {% endif %}
+    {% block body %}{% endblock %}
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <div class="clearfix">
             <div class="pull-right box text-box">
-              <small>Slackware&reg; 是 <A HREF="http://slackware.com/trademark/trademark.php">Slackware Linux, Inc的注册商标</A>，本站是非官方的中文Slackware社区。<a href="https://github.com/saharabear/slackware.im" target="_blank">查看源代码</a>,
-              </small>
+                <small>Slackware&reg; 是 <A HREF="http://slackware.com/trademark/trademark.php">Slackware Linux, Inc的注册商标</A>，本站是非官方的中文Slackware社区。<a href="https://github.com/saharabear/slackware.im" target="_blank">查看源代码</a>,
+                </small>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/jquery.js')}}"></script>
-    <script src="{{asset('bundles/slackissslackware/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('bundles/slackissslackware/js/application.js')}}"></script>
-    {% block layout_footer %}{% endblock %}
-    {% block footer %}{% endblock %}
-    {% if not app.debug %}
+</div>
+</div>
+<script src="{{asset('bundles/slackissslackware/vendor/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset('bundles/slackissslackware/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('bundles/slackissslackware/js/application.js')}}"></script>
+{% block layout_footer %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block bottom %}{% endblock %}
+{% if not app.debug %}
     <!-- analytics -->
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-42106454-1', 'slackware.im');
-      ga('send', 'pageview');
+        ga('create', 'UA-42106454-1', 'slackware.im');
+        ga('send', 'pageview');
 
     </script>
     <!-- end analytics -->
-    {% endif %}
-  </body>
+{% endif %}
+</body>
 </html>
