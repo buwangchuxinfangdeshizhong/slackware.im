@@ -1,240 +1,175 @@
-body{
-    background-image:url("../images/background.jpg");
+body {
+  background-image: url("../images/background.jpg");
 }
-
-a{
-    color:#000000;
-    text-decoration:underline;
+a {
+  color: #000000;
+  text-decoration: underline;
 }
-
-a:hover{
-    color:#000000;
-    text-decoration:underline;
+a:hover {
+  color: #000000;
+  text-decoration: underline;
 }
-
-
-.wrapper{
-    width:85%;
-    margin:0 auto;
+.wrapper {
+  width: 85%;
+  margin: 0 auto;
 }
-
-.header{
-    padding-top:67px;
-    padding-bottom:20px;
+.header {
+  padding-top: 67px;
+  padding-bottom: 20px;
 }
-
-.header-content{
-    width:95%;
-    position:relative;
+.header-content {
+  width: 95%;
+  position: relative;
 }
-
-.header-left{
-    
+.header-left-logo {
+  width: 42%;
+  margin-left: 6%;
+  padding: 5px 0px;
+  text-align: center;
+  bottom: 0px;
+  position: absolute;
 }
-.header-left-logo{
-    width:42%;
-    margin-left:6%;
-    padding:5px 0px;
-    text-align:center;
-    bottom:0px;
-    position:absolute;
+.header-right {
+  width: 40%;
 }
-
-.header-right{
-    width:40%;
+.header-right-logo {
+  padding-right: 8px;
+  text-align: right;
 }
-
-.header-right-logo{
-    padding-right:8px;
-    text-align:right;
+.body {
+  min-height: 400px;
 }
-
-.body{
-    min-height:400px;
+.footer {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
-
-.footer{
-    margin-top:40px;
-    margin-bottom:20px;
+.box {
+  border: 2px solid #000000;
+  background-color: #fefefe;
 }
-
-.box{
-    border:2px solid #000000;
-    background-color:#fefefe;
+.text-box {
+  padding: 2px 4px;
 }
-
-.text-box{
-    padding:2px 4px;
+.content-box {
+  padding: 5px 10px;
 }
-
-.content-box{
-    padding:5px 10px;
+.mini-bold {
+  font-size: 14px;
+  font-weight: bold;
 }
-
-.mini-bold{
-    font-size:14px;
-    font-weight:bold;
+.bold {
+  font-size: 16px;
+  font-weight: bold;
 }
-
-.bold{
-    font-size:16px;
-    font-weight:bold;
+.left-nav {
+  padding: 10px 20px;
+  margin-bottom: 15px;
 }
-
-.left-nav{
-    padding:10px 20px;
-    margin-bottom:15px;
+.left-nav-item {
+  display: block;
+  margin: 15px 0px;
 }
-
-.left-nav-item{
-    display:block;
-    margin:15px 0px;
+.left-sub-nav-item a {
+  font-size: 12px;
+  font-weight: normal;
 }
-
-.left-sub-nav{
-
+.news-item-box {
+  margin-bottom: 5px;
 }
-
-.left-sub-nav-item a{
-    font-size:12px;
-    font-weight:normal;
-}
-
-.right-content{
-
-}
-
-.news-item{
-    
-}
-
-.news-item-box{
-    margin-bottom:5px;
-}
-
 /* propaganda */
-.propaganda img{
-    max-width:200px;
+.propaganda img {
+  max-width: 200px;
 }
-
 /* site */
-.related-sites .row-fluid{
-    margin:20px 0px;
-    padding:20px;
+.related-sites .row-fluid {
+  margin: 20px 0px;
+  padding: 20px;
 }
-
 /* contact */
-.contact-emails .box{
-    margin:20px 0px;
-    padding:10px;
+.contact-emails .box {
+  margin: 20px 0px;
+  padding: 10px;
 }
-
-.contact-emails p{
-    margin:15px 10px 10px 30px;
+.contact-emails p {
+  margin: 15px 10px 10px 30px;
 }
-
 /* mail */
-.mailing-archive{
-    margin-bottom:40px;
+.mailing-archive {
+  margin-bottom: 40px;
 }
-
-.mailing-list .bold{
-    padding:5px 0px;
+.mailing-list .bold {
+  padding: 5px 0px;
 }
-
-.mailing-list .mail-desc{
-    margin:5px 0px;
-    padding:20px;
-    margin-bottom:40px;
+.mailing-list .mail-desc {
+  margin: 5px 0px;
+  padding: 20px;
+  margin-bottom: 40px;
 }
-
 /* download */
-.download-box{
-    padding:20px;
-    margin-bottom:30px;
+.download-box {
+  padding: 20px;
+  margin-bottom: 30px;
 }
-
-.about-box{
-    margin-top:30px;
-    padding:10px 0px;
+.about-box {
+  margin-top: 30px;
+  padding: 10px 0px;
 }
-
-.about{
-    padding:20px;
-    margin-top:5px;
+.about {
+  padding: 20px;
+  margin-top: 5px;
 }
-
-.about h4{
-    margin:20px 0px 0px 0px;
+.about h4 {
+  margin: 20px 0px 0px 0px;
 }
-
 /* changelog */
-.changelog li{
-    margin-top:10px;
+.changelog li {
+  margin-top: 10px;
 }
-.changelog li>a:first-child{
-    font-weight:bold;
+.changelog li > a:first-child {
+  font-weight: bold;
 }
-
 /* slackbook */
-.slackbook-box{
-    margin-bottom:30px;
-    padding:20px;
+.slackbook-box {
+  margin-bottom: 30px;
+  padding: 20px;
 }
-
-.slackdesk-box{
-    margin:20px 0px;
-    padding:20px;
-    width:100%;
+.slackdesk-box {
+  margin: 20px 0px;
+  padding: 20px;
+  width: 100%;
 }
-
-.post-comment{
-    margin:10px 0px;
+.post-comment {
+  margin: 10px 0px;
 }
-
-.post-comment .span2{
-    padding:20px 0px 0px 0px;
+.post-comment .span2 {
+  padding: 20px 0px 0px 0px;
 }
-
-.post-comment-form{
-    margin:30px 0px;
+.post-comment-form {
+  margin: 30px 0px;
 }
-
-.event-content{
-    margin:20px 0;
-    padding:20px;
+.event-content {
+  margin: 20px 0;
+  padding: 20px;
 }
-
-.slacker_icon{
-    background: url("../images/icons.png") no-repeat scroll left center transparent;
-    cursor: pointer;
-    display: inline-block !important;
-    height: 32px !important;
-    width:  32px !important;
-    line-height: 32px !important;
-    overflow: hidden;
-    text-align: left;
+.slacker_icon {
+  background: url("../images/icons.png") no-repeat scroll left center transparent;
+  cursor: pointer;
+  display: inline-block !important;
+  height: 32px !important;
+  width: 32px !important;
+  line-height: 32px !important;
+  overflow: hidden;
+  text-align: left;
 }
-
-.slacker{
-    padding:20px;
+.slacker {
+  padding: 20px;
 }
-
-.slacker-social{
-
+.slacker-info {
+  margin-top: 10px;
 }
-
-.slacker-info{
-    margin-top:10px;
+.slacker a {
+  text-decoration: none;
 }
-
-.slacker a{
-    text-decoration:none;
+.slacker a:hover {
+  text-decoration: none;
 }
-
-.slacker a:hover{
-    text-decoration:none;
-}
-
-
-
