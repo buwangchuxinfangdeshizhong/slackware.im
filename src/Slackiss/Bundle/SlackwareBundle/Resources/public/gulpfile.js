@@ -23,8 +23,8 @@ gulp.task('watch-js', function() {
         return bundler.bundle()
             // log errors if they happen
             .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-            .pipe(source('bundle.js'))
-            .pipe(gulp.dest('./dist'));
+            .pipe(source('slackware.im.js'))
+            .pipe(gulp.dest('./js/'));
     }
     return rebundle();
 })
@@ -32,20 +32,24 @@ gulp.task('watch-js', function() {
 gulp.task('browserify', function() {
     return browserify('./src/main.js').bundle()
         // vinyl-source-stream makes the bundle compatible with gulp
-        .pipe(source('bundle.js')) // Desired filename
+        .pipe(source('slackware.im.js')) // Desired filename
         // Output the file
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./js/'));
 });
 
+gulp.task('js',['browserify'],function(){
+
+})
+
 gulp.task('less', function () {
-    gulp.src(['./less/style.less'
+    return gulp.src(['./less/style.less'
              ])
         .pipe(less())
         .pipe(gulp.dest('./css/'));
 });
 
 gulp.task('css',['less'],function(){
-    gulp.src(['./bootstrap/css/bootstrap.css',
+    return gulp.src(['./bootstrap/css/bootstrap.css',
              './css/style.css'])
         .pipe(concat('slackware.im.css'))
         .pipe(minifyCSS({keepBreaks:false}))
@@ -53,8 +57,8 @@ gulp.task('css',['less'],function(){
 })
 
 gulp.task('watch-less',function(){
-    gulp.watch('./less/style.less', ['less']);  // Watch all the .less files, then run the less task
+    return gulp.watch('./less/style.less', ['less']);  // Watch all the .less files, then run the less task
 })
 
 gulp.task('default', ['watch-js','watch-less']);
-gulp.task('dist',['browserify','css']);
+gulp.task('dist',['js','css']);
