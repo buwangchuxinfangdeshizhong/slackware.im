@@ -9,24 +9,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="{{asset('bundles/slackissslackware/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
     <title>{% block title %}{% endblock %}</title>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/html5shiv.js')}}"></script>
     <script src="{{asset('bundles/slackissslackware/vendor/css3-mediaqueries.js')}}"></script>
     <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed"
-          href="{{asset('bundles/slackissslackware/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png')}}">
-
+    {% if not app.debug %}
+    <link href="{{asset('bundles/slackissslackware/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('bundles/slackissslackware/css/style.css')}}">
+    {% else %}
+    <link rel="stylesheet" href="{{asset('bundles/slackissslackware/css/slackware.im.css')}}">
+    {% endif %}
     {% block layout_header %}{% endblock %}
     {% block header %}{% endblock %}
     {% block top %}{% endblock %}

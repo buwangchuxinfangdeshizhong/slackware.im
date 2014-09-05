@@ -6,7 +6,8 @@ var source = require('vinyl-source-stream');
 var less = require('gulp-less');
 var path = require('path');
 var uglify = require('gulp-uglify');
-
+var minifyCSS = require('gulp-minify-css');
+var concat = require('gulp-concat');
 
 gulp.task('watch-js', function() {
     var bundler = watchify(browserify('./src/main.js', watchify.args));
@@ -37,16 +38,23 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('less', function () {
-    gulp.src('./less/**/*.less')
-        .pipe(less({
-            paths: [ path.join(__dirname, 'less', 'includes') ]
-        }))
+    gulp.src(['./less/style.less'
+             ])
+        .pipe(less())
         .pipe(gulp.dest('./css/'));
 });
 
-gulp.task('watch-less',function(){
-    gulp.watch('./src/**/*.less', ['less']);  // Watch all the .less files, then run the less task
+gulp.task('css',['less'],function(){
+    gulp.src(['./bootstrap/css/bootstrap.css',
+             './css/style.css'])
+        .pipe(concat('slackware.im.css'))
+        .pipe(minifyCSS({keepBreaks:false}))
+        .pipe(gulp.dest('./css/'))
 })
 
-gulp.task('dist',['browserify','less']);
+gulp.task('watch-less',function(){
+    gulp.watch('./less/style.less', ['less']);  // Watch all the .less files, then run the less task
+})
+
 gulp.task('default', ['watch-js','watch-less']);
+gulp.task('dist',['browserify','css']);
