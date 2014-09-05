@@ -350,11 +350,10 @@
         </div>
     </div>
 </div>
-</div>
-{% if not app.debug %}
+{ if app.debug %}
 <script src="{{asset('bundles/slackissslackware/vendor/jquery-1.11.1.min.js')}}"></script>
 <script src="{{asset('bundles/slackissslackware/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('bundles/slackissslackware/src/main.js')}}"></script>
+<script src="{{asset('bundles/slackissslackware/src/slackware.im.js')}}"></script>
 {% else %}
 <script src="{{asset('bundles/slackissslackware/js/slackware.im.js')}}"></script>
 {% endif %}

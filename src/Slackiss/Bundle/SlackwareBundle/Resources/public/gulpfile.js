@@ -38,7 +38,9 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('js',['browserify'],function(){
-
+    return gulp.src('./js/slackware.im.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./js/'))
 })
 
 gulp.task('less', function () {
