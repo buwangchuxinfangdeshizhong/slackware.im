@@ -17,7 +17,7 @@
   {% if post.member.image %}
   <img src="{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
   {% else %}
-  <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" width=32 class="thumbnail" style="display:inline-block"/>
+  <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
   {% endif %}
     <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
 </td>
