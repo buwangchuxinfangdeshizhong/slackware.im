@@ -1,41 +1,5 @@
-* slackware.im TODO
-** Bug
-** Optimize
-*** DONE 宣传语: Slackware,最Linux的Linux发行版
-    CLOSED: [2014-09-07 日 06:16]
-** Feature
-*** 社区知识库
-*** 更加现代化的中文社区
-*** 个人消息中心
-*** 站内搜索
-*** 移动设备支持[还没有决定是否要开发app]
-*** 基于Slackware的发行版
-*** SlackParty+校园支持
-*** 维护更多的SlackBuilds
-** Development
-*** DONE 增加单元测试设置
-*** DONE 引入gulp和less，同时压缩css
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE 压缩JQuery和Bootstrap相关的javascript
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE 向未设置头像的会员提醒可以设置头像
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE 修改关于我们
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE 移除底部错误的链接地址
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE Slacker档案编辑的时候，增加notice
-    CLOSED: [2014-09-07 日 04:33]
-*** DONE 提供一个社区知识库功能，提供slackware和linux相关的知识内容
-    CLOSED: [2014-09-07 日 04:34]
-*** TODO 突出显示网站的中文社区
-*** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
-*** TODO 测试SlackParty的功能是否够用
-*** TODO 全局设置是否接收邮件通知
-*** TODO 优化Slacker页面，包括列表页与展示页
-*** TODO 修复记住密码不能使用的问题
-*** TODO 提供站内搜索功能[分为社区搜索和知识库搜索]
-*** 中文社区
+* slackware.im
+** 中文社区
 **** TODO 优化社区图片的显示
 **** TODO 在帖子回复的24小时内，自己可以编辑自己的帖子
 **** TODO 在帖子阅读页，显示楼层
@@ -44,12 +8,22 @@
 **** TODO 给社区提供一个更优雅的文件上传功能
 **** TODO 社区能够更好地支持显示代码
 **** TODO 社区支持固定的标签，同时标签带有分类，可以参考linuxsir和http://forum.ubuntu.org.cn/
-**** TODO 分享到微博和微信
+
+** 知识库
+** 个人中心
 **** TODO 社会化登录
-*** 知识库
-**** TODO 整合FAQ到知识库中
-**** TODO 知识库可以设置无限级分类
-**** TODO
-*** Slacker工具
-**** 寻找基于Slackware的发行版,聚合资源
-**** 研究SlackBuilds自动化的可能性
+**** TODO 整合Slacker功能
+** 站内搜索
+** Slacker工具
+** SlackParty
+** 消息中心
+*** TODO 全局设置是否接收邮件通知
+** 站点优化
+**** TODO 分享到微博和微信
+*** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
+** Bugs
+** APP
+*** API
+*** Android
+*** iOS
+*** WP
