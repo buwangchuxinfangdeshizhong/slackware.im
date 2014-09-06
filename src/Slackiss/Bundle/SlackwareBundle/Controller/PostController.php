@@ -33,7 +33,7 @@ class PostController extends Controller
                       ->createQueryBuilder('p')
                       ->orderBy('p.lastCommentTime','desc')
                       ->getQuery();
-        $posts = $this->get('knp_paginator')->paginate($query,$page,100);
+        $posts = $this->get('knp_paginator')->paginate($query,$page,50);
         $param['posts']=$posts;
         return $param;
     }
@@ -45,7 +45,7 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
-        $param=array('nav_active'=>'nav_active_post');        
+        $param=array('nav_active'=>'nav_active_post');
         $post = new Post();
         $postType = new PostType();
         $form = $this->createForm($postType,$post,array(
@@ -63,14 +63,14 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-        $param=array('nav_active'=>'nav_active_post');        
+        $param=array('nav_active'=>'nav_active_post');
         $post = new Post();
         $postType = new PostType();
         $form = $this->createForm($postType,$post,array(
             'action'=>$this->generateUrl('post_create'),
             'method'=>'POST'
         ));
-        
+
         $form->handleRequest($request);
         if($form->isValid()){
             $current = $this->get('security.context')->getToken()->getUser();
@@ -92,7 +92,7 @@ class PostController extends Controller
      */
     public function showAction(Request $request, $id)
     {
-        $param=array('nav_active'=>'nav_active_post');   
+        $param=array('nav_active'=>'nav_active_post');
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
         if(!$post){
@@ -118,7 +118,7 @@ class PostController extends Controller
      */
     public function commentCreateAction(Request $request,$id)
     {
-        $param=array('nav_active'=>'nav_active_post');   
+        $param=array('nav_active'=>'nav_active_post');
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
         if(!$post){
@@ -214,4 +214,3 @@ class PostController extends Controller
         return $comments;
     }
 }
-
