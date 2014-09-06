@@ -1,9 +1,7 @@
 * slackware.im TODO
-
 ** Bug
-
 ** Optimize
-*** 增加宣传语：学会了Fedora，你就会了Fedora，学会了Slackware，你就学会了Linux
+*** 宣传语: Slackware,最Linux的Linux发行版
 ** Feature
 *** 社区知识库
 *** 更加现代化的中文社区
@@ -15,19 +13,26 @@
 *** 维护更多的SlackBuilds
 ** Development
 *** DONE 增加单元测试设置
-*** TODO 引入gulp和less，同时压缩css
+*** DONE 引入gulp和less，同时压缩css
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE 压缩JQuery和Bootstrap相关的javascript
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE 向未设置头像的会员提醒可以设置头像
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE 修改关于我们
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE 移除底部错误的链接地址
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE Slacker档案编辑的时候，增加notice
+    CLOSED: [2014-09-07 日 04:33]
+*** DONE 提供一个社区知识库功能，提供slackware和linux相关的知识内容
+    CLOSED: [2014-09-07 日 04:34]
 *** TODO 突出显示网站的中文社区
 *** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
-*** TODO 压缩JQuery和Bootstrap相关的javascript
-*** TODO 向未设置头像的会员提醒可以设置头像
 *** TODO 测试SlackParty的功能是否够用
-*** TODO 修改关于我们
-*** TODO 移除底部错误的链接地址
 *** TODO 全局设置是否接收邮件通知
-*** TODO Slacker档案编辑的时候，增加notice
 *** TODO 优化Slacker页面，包括列表页与展示页
 *** TODO 修复记住密码不能使用的问题
-*** TODO 提供一个社区知识库功能，提供slackware和linux相关的知识内容
 *** TODO 提供站内搜索功能[分为社区搜索和知识库搜索]
 *** 中文社区
 **** TODO 优化社区图片的显示
@@ -40,3 +45,10 @@
 **** TODO 社区支持固定的标签，同时标签带有分类，可以参考linuxsir和http://forum.ubuntu.org.cn/
 **** TODO 分享到微博和微信
 **** TODO 社会化登录
+*** 知识库
+**** TODO 整合FAQ到知识库中
+**** TODO 知识库可以设置无限级分类
+**** TODO
+*** Slacker工具
+**** 寻找基于Slackware的发行版,聚合资源
+**** 研究SlackBuilds自动化的可能性
