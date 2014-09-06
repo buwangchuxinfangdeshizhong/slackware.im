@@ -1,7 +1,8 @@
 * slackware.im TODO
 ** Bug
 ** Optimize
-*** 宣传语: Slackware,最Linux的Linux发行版
+*** DONE 宣传语: Slackware,最Linux的Linux发行版
+    CLOSED: [2014-09-07 日 06:16]
 ** Feature
 *** 社区知识库
 *** 更加现代化的中文社区
