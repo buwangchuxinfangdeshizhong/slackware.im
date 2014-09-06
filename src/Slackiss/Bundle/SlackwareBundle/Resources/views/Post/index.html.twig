@@ -12,22 +12,32 @@
 {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
 <table class="table">
 {% for post in posts %}
+<td width=70>
+    <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+  {% if post.member.image %}
+  <img src="{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
+  {% else %}
+  <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" width=32 class="thumbnail" style="display:inline-block"/>
+  {% endif %}
+    <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+</td>
 <td>
-  <a href="{{path('post_show',{id:post.id})}}">
+  <a href="{{path('post_show',{id:post.id})}}"  style="display:inline-block;font-size:14px;margin:10px 0px 5px 0px;text-decoration:none">
   {{post.title}}
   </a>
+  <br />
+  <small>
+    {% if post.member.nickname %}
+    <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank" style="text-decoration:none">
+      {{post.member.nickname}}
+    </a>
+    {% else %}
+    {{post.member.username}}
+    {% endif %}
+    发布于 {{time_diff(post.created)}}
+  </small>
 </td>
-{% if post.member.nickname %}
-<td>
-  <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
-    {{post.member.nickname}}
-  </a>
-</td>
-{% else %}
-<td>{{post.member.username}}</td>
-{% endif %}
-<td>{{time_diff(post.created)}}</td>
-<td>{{post.commentCount}}回复</td>
+<td width=100>{{post.commentCount}}回复</td>
 </tr>
 {% endfor %}
 </table>
