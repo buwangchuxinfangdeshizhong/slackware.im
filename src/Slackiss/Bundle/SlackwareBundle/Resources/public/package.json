@@ -9,6 +9,7 @@
   "author": "Haulyn Jason",
   "license": "MIT",
   "dependencies": {
+    "brfs": "^1.2.0",
     "browserify": "^5.11.0",
     "gulp": "^3.8.7",
     "gulp-concat": "^2.3.5",
