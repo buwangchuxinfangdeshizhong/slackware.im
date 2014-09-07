@@ -202,7 +202,7 @@ vich_uploader:
 hwi_oauth:
     firewall_name: main
     resource_owners:
-        any_name:
+        sina_weibo:
             type:                sina_weibo
-            client_id:           <client_id>
-            client_secret:       <client_secret>
+            client_id:           aaa
+            client_secret:       aaa

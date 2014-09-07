@@ -16,6 +16,9 @@ security:
 
     firewalls:
         main:
+            oauth:
+                resource_owners:
+                    sina_weibo:          "/login/check-sina_weibo"
             pattern: ^/
             form_login:
                 provider: fos_userbundle
