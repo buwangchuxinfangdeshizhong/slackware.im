@@ -13,13 +13,13 @@
 <table class="table">
 {% for post in posts %}
 <td width=70>
-    <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
   {% if post.member.image %}
-  <img src="{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
-  {% else %}
-  <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
-  {% endif %}
     <a href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+      <img src="{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
+    </a>
+  {% else %}
+    <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail" style="display:inline-block"/>
+  {% endif %}
 </td>
 <td>
   <a href="{{path('post_show',{id:post.id})}}"  style="display:inline-block;font-size:14px;margin:10px 0px 5px 0px;text-decoration:none">

@@ -18,7 +18,7 @@
                 {{post.content|code|striptags('<pre>')|raw|nl2br}}
                 {% if post.attachment %}
                     <div style="margin:20px 0px" class="clearfix">
-                        <a href="{{vich_uploader_asset(post,'image')|imagine_filter('page_image')}}" class="colorbox">
+                        <a href="{{vich_uploader_asset(post,'image')}}" class="colorbox">
                             <img src="{{vich_uploader_asset(post,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display:inline-block"/>
                         </a>
                     </div>
@@ -28,11 +28,13 @@
                 <p>
                     {% if post.member.nickname %}
                         <a title="{{post.member.nickname}}" href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
-                            <img src='{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}' />
+                            <img src='{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}' class="thumbnail"/>
                             <br />
                             {{post.member.nickname}}
                         </a>
                     {% else %}
+                        <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
+                        <br />
                         {{post.member.username}}
                     {% endif %}
                 </p>
@@ -57,7 +59,7 @@
                 {{comment.content|code|striptags('<pre>')|raw|nl2br}}
                 {% if comment.attachment %}
                     <div style="margin:20px 0px" class="clearfix">
-                        <a href="{{vich_uploader_asset(comment,'image')|imagine_filter('page_image')}}" class="colorbox">
+                        <a href="{{vich_uploader_asset(comment,'image')}}" class="colorbox">
                             <img src="{{vich_uploader_asset(comment,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display: inline-block"/>
                         </a>
                     </div>
@@ -72,6 +74,8 @@
                             {{comment.member.nickname}}
                         </a>
                     {% else %}
+                        <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
+                        <br />
                         {{comment.member.username}}
                     {% endif %}
                 </p>
