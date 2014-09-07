@@ -9,8 +9,13 @@
 {% block body %}
     {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
     <div class="news-item">
-        <div class="box content-box mini-bold news-item-box">
-            {{post.title}}
+        <div class="box content-box mini-bold news-item-box clearfix">
+            <div class="pull-left">{{post.title}}</div>
+            <div class="pull-right">
+              {% if app.user %}
+              <input type="checkbox" class="checkbox" id="watch" {% if checked %}checked{%endif %} /> <small>关注帖子更新</small>
+              {% endif %}
+            </div>
         </div>
 
         <div class="row-fluid box">

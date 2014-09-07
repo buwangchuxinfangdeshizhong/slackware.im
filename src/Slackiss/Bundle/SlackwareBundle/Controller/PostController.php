@@ -9,12 +9,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Slackiss\Bundle\SlackwareBundle\Entity\Post;
 use Slackiss\Bundle\SlackwareBundle\Entity\PostComment;
 
 use Slackiss\Bundle\SlackwareBundle\Form\PostType;
 use Slackiss\Bundle\SlackwareBundle\Form\PostCommentType;
+
+
 
 
 class PostController extends Controller
@@ -108,7 +111,36 @@ class PostController extends Controller
         $form = $this->getCommentForm($post,$comment);
 
         $param['form'] = $form->createView();
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $current = $this->get('security.context')->getToken()->getUser();
+            $repo = $em->getRepository('SlackissSlackwareBundle:PostEmailNotice');
+            $entity = $repo->findOneBy([
+                'member'=>$current->getId(),
+                'post'=>$post->getId()
+            ]);
+            $checked = $entity?true:false;
+        }else{
+            $checked = false;
+        }
+        $param['checked'] = $checked;
         return $param;
+    }
+
+    /**
+     * @Route("/postnotice/{postId}",name="post_notice_update")
+     * @Method({"method"})
+     */
+    public function actionNameAction(Request $request,$postId)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
+        if($post){
+            $this->get('slackiss_slackware.notice')->setPostNotice($current,$post);
+        }
+        return new JsonResponse('success');
     }
 
     /**

@@ -33,7 +33,7 @@ class PostEmailNotice
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Post")
-     * @ORM\JoinColumn(name="post_id",referencedColumnName"id")
+     * @ORM\JoinColumn(name="post_id",referencedColumnName="id")
      */
     private $post;
 
