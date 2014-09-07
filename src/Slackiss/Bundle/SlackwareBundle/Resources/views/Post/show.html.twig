@@ -13,7 +13,10 @@
             <div class="pull-left">{{post.title}}</div>
             <div class="pull-right">
               {% if app.user %}
-              <input type="checkbox" class="checkbox" id="watch" {% if checked %}checked{%endif %} /> <small>关注帖子更新</small>
+              <script>
+                var watchPostUrl = "{{path('post_notice_update',{postId:post.id})}}";
+              </script>
+              <input type="checkbox" class="checkbox" id="watch-post" {% if checked %}checked{%endif %} /> <small>关注帖子更新</small>
               {% endif %}
             </div>
         </div>

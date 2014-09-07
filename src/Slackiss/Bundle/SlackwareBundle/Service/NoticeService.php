@@ -4,6 +4,7 @@ namespace Slackiss\Bundle\SlackwareBundle\Service;
 
 use Symfony\Component\HttpKernel\Kernel;
 use Slackiss\Bundle\SlackwareBundle\Entity\NoticeEmailSetting;
+use Slackiss\Bundle\SlackwareBundle\Entity\PostEmailNotice;
 
 class NoticeService {
 

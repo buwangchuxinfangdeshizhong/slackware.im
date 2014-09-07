@@ -129,14 +129,14 @@ class PostController extends Controller
 
     /**
      * @Route("/postnotice/{postId}",name="post_notice_update")
-     * @Method({"method"})
+     * @Method({"GET"})
      */
     public function actionNameAction(Request $request,$postId)
     {
         $param =  array();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
-        $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
+        $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($postId);
         if($post){
             $this->get('slackiss_slackware.notice')->setPostNotice($current,$post);
         }
