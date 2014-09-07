@@ -13,3 +13,5 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    oauth_weibo_key:   weibo-key
+    oauth_weibo_value: weibo-value

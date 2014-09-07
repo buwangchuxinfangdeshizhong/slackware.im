@@ -195,6 +195,22 @@ class Member extends BaseUser
 
 
     /**
+     * @ORM\Column(name="oauth_weibo_id",type="string",length=255,nullable=true)
+     */
+    private $weiboId;
+
+    public function setWeiboId($weiboId)
+    {
+        $this->weiboId = $weiboId;
+        return $this;
+    }
+
+    public function getWeiboId()
+    {
+        return $this->weiboId;
+    }
+
+    /**
      * Set created
      *
      * @param \DateTime $created

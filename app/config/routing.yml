@@ -35,3 +35,6 @@ hwi_oauth_redirect:
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /login
+
+hwi_weibo_login:
+    pattern: /login/check-weibo

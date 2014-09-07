@@ -202,11 +202,12 @@ vich_uploader:
 hwi_oauth:
     firewall_name: main
     resource_owners:
-        sina_weibo:
+        weibo:
             type:                sina_weibo
-            client_id:           aaa
-            client_secret:       aaa
+            client_id:           %oauth_weibo_key%
+            client_secret:       %oauth_weibo_value%
+            scope:               "member"
     fosub:
         username_iterations: 30
         properties:
-            sina_weibo: sinaWeiboID
+            weibo: weiboId
