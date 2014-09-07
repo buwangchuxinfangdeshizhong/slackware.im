@@ -198,3 +198,11 @@ vich_uploader:
             upload_destination: misc_fs
             delete_on_remove: true
             inject_on_load: true     
+
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        any_name:
+            type:                sina_weibo
+            client_id:           <client_id>
+            client_secret:       <client_secret>
