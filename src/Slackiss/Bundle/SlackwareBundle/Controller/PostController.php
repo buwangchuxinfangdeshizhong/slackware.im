@@ -164,6 +164,7 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('SlackissSlackwareBundle:Post')->find($id);
         if($post){
+            $this->get('slackiss_slackware.notice')->removePostNotices($post);
             $em->remove($post);
             $em->flush();
         }
