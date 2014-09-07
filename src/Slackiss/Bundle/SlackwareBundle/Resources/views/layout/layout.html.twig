@@ -84,13 +84,19 @@
 
 
               {% if app.user %}
-
               {% if nav_active|default('')== 'nav_active_notice' %}
             </div>
             <div class="box mini-bold left-nav">
               {% endif %}
               <span class="left-nav-item">
-                <a href="#">消息中心</a>
+                <a href="{{path('notice')}}">消息中心</a>
+                {% if nav_active|default('')== 'nav_active_notice' %}
+                <div class="left-sub-nav">
+                  <span class="left-sub-nav-item">
+                    <a href="{{path('notice_email_setting')}}">通知设置</a>
+                  </span>
+                </div>
+                {% endif %}
               </span>
               {% if nav_active|default('')== 'nav_active_notice' %}
             </div>

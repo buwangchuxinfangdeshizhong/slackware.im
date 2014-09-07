@@ -1,0 +1,26 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}通知设置{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>通知设置<br />
+    <small>
+      设置消息通知与邮件通知
+    </small>
+  </h2>
+</div>
+
+<div class="row-fluid">
+  <div class="span12 box">
+    {{ form_start(form,{'attr':{'style':'padding:20px'}})}}
+    <div>
+      <label class="checkbox">
+        是否接收站内邮件通知,您可以设置多个信箱接收通知 {{form_widget(form.sendEmail)}}
+      </label>
+    </div>
+    {{ form_end(form) }}
+  </div>
+</div>
+
+{% endblock %}
