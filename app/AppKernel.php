@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             //new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Slackend\Bundle\TwigExtraBundle\SlackendTwigExtraBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
