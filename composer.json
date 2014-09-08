@@ -32,7 +32,8 @@
         "simplepie/simplepie": "dev-master",
         "liip/imagine-bundle": "v0.21.1",
         "slackiss/slackend-twigextra-bundle": "2.3.*@dev",
-        "hwi/oauth-bundle": "0.4.*@dev"
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "sensio/buzz-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

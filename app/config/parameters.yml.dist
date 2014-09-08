@@ -15,3 +15,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     oauth_weibo_key:   weibo-key
     oauth_weibo_value: weibo-value
+    oauth_github_key:  github-key
+    oauth_github_value: github-value

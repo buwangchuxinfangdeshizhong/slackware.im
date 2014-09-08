@@ -201,13 +201,24 @@ vich_uploader:
 
 hwi_oauth:
     firewall_name: main
+    #account_connector: hwi_oauth.user.provider.fosub_bridge
+    #registration_form_handler: hwi_oauth.registration.form.handler.fosub_bridge
+    #registration_form: fos_user.registration.form
+    connect:
+        confirmation: true
     resource_owners:
         weibo:
             type:                sina_weibo
             client_id:           %oauth_weibo_key%
             client_secret:       %oauth_weibo_value%
-            scope:               "member"
+            scope:               "email"
+        github:
+            type:                github
+            client_id:           %oauth_github_key%
+            client_secret:       %oauth_github_value%
+            scope:               ""
     fosub:
-        username_iterations: 30
+        username_iterations: 120
         properties:
             weibo: weiboId
+            github: githubId

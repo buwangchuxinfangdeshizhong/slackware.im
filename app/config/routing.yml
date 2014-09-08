@@ -36,5 +36,12 @@ hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /login
 
-hwi_sina_weibo_login:
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_weibo_login:
     pattern: /login/check-weibo
+
+hwi_github_login:
+    pattern: /login/check-github

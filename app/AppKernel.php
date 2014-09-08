@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Slackend\Bundle\TwigExtraBundle\SlackendTwigExtraBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

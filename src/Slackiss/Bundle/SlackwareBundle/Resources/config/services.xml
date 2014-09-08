@@ -26,6 +26,13 @@
             <argument type="service" id="router">route</argument>
             <argument type="service" id="request">req</argument>
         </service>
+        <service id="slackiss_slackware.foshwiuserprovider" class="Slackiss\Bundle\SlackwareBundle\Service\FOSHWIUserProvider">
+            <argument type="service" id="fos_user.user_manager"></argument>
+            <argument type="collection">
+                <argument key="weibo">weiboId</argument>
+                <argument key="github">githubId</argument>
+            </argument>
+        </service>
     </services>
 
 </container>

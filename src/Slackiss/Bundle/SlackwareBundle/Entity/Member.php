@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @UniqueEntity(
  *     fields={"username", "email"},
- *     message="用户名和电子信箱不能重复"
+ *     message="用户名或者电子信箱不能与已注册的用户重复"
  * )
  * @Vich\Uploadable
  * @ORM\Table(name="member")
@@ -195,7 +195,7 @@ class Member extends BaseUser
 
 
     /**
-     * @ORM\Column(name="oauth_weibo_id",type="string",length=255,nullable=true)
+     * @ORM\Column(name="oauth_weibo_id",type="string",length=500,nullable=true)
      */
     private $weiboId;
 
@@ -210,6 +210,31 @@ class Member extends BaseUser
         return $this->weiboId;
     }
 
+    /**
+     * @ORM\Column(name="oauth_weibo_access_token",type="string",length=500,nullable=true)
+     */
+    private $weiboAccessToken;
+
+    /**
+     * @ORM\Column(name="oauth_github_id",type="string",length=500,nullable=true)
+     */
+    private $githubId;
+
+    public function setGithubId($githubId)
+    {
+        $this->githubId = $githubId;
+        return $this;
+    }
+
+    public function getGithubId()
+    {
+        return $this->githubId;
+    }
+
+    /**
+     * @ORM\Column(name="oauth_github_access_token",type="string",length=500,nullable=true)
+     */
+    private $githubAccessToken;
     /**
      * Set created
      *
@@ -521,5 +546,51 @@ class Member extends BaseUser
     public function getGithub()
     {
         return $this->github;
+    }
+
+    /**
+     * Set weiboAccessToken
+     *
+     * @param string $weiboAccessToken
+     * @return Member
+     */
+    public function setWeiboAccessToken($weiboAccessToken)
+    {
+        $this->weiboAccessToken = $weiboAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get weiboAccessToken
+     *
+     * @return string
+     */
+    public function getWeiboAccessToken()
+    {
+        return $this->weiboAccessToken;
+    }
+
+    /**
+     * Set githubAccessToken
+     *
+     * @param string $githubAccessToken
+     * @return Member
+     */
+    public function setGithubAccessToken($githubAccessToken)
+    {
+        $this->githubAccessToken = $githubAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get githubAccessToken
+     *
+     * @return string
+     */
+    public function getGithubAccessToken()
+    {
+        return $this->githubAccessToken;
     }
 }
