@@ -23,9 +23,11 @@ class DefaultController extends Controller
                 $response = $buzz->get('https://api.weibo.com/2/account/profile/email.json?access_token='.$current->getWeiboAccessToken());
                 $response = json_decode($response);
                 $email = $response['email'];
-                $current->setEmail($email);
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
+                if($email){
+                    $current->setEmail($email);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->flush();
+                }
             }
         }
         $param=array('nav_active'=>'nav_active_news');
