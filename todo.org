@@ -22,12 +22,21 @@
 **** TODO 绑定多个社会化网站功能
 **** TODO 整合Slacker功能
 ** 站内搜索
+**** TODO 全站综合搜索
+**** TODO 知识库搜索
+**** TODO 社区搜索
+**** TODO Slacker搜索
+**** TODO SlackParty搜索
 ** Slacker工具
 ** SlackParty
+**** 城市支持
+**** 校园支持
+**** 社交讨论
 ** 消息中心
 *** TODO 全局设置是否接收邮件通知
+*** TODO 实现消息查看中心
 ** 站点优化
-**** TODO 分享到微博和微信
+*** TODO 分享到微博和微信朋友圈
 *** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
 ** Bugs
 ** APP
