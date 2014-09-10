@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html xmlns:wb="http://open.weibo.com/wb">
 <!--[if IE 8]>
     <html class="no-js lt-ie9" lang="zh_CN" >
       <![endif]-->
@@ -15,6 +15,7 @@
         <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/html5shiv.js')}}"></script>
         <script src="{{asset('bundles/slackissslackware/vendor/css3-mediaqueries.js')}}"></script>
         <![endif]-->
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=4179708155" type="text/javascript" charset="utf-8"></script>
     {% if app.debug %}
     <link href="{{asset('bundles/slackissslackware/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('bundles/slackissslackware/css/style.css')}}">
@@ -406,6 +407,7 @@
       <div class="wrapper">
         <div class="clearfix">
           <div class="pull-right box text-box">
+            <wb:login-button type="6,2" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
             <small>Slackware&reg; 是 <A HREF="http://slackware.com/trademark/trademark.php">Slackware Linux, Inc的注册商标</A>，本站是非官方的中文Slackware社区。<a href="https://github.com/saharabear/slackware.im" target="_blank">查看源代码</a>,
             </small>
           </div>
