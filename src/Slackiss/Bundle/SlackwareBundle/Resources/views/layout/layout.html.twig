@@ -370,9 +370,13 @@
 
             <div class="box mini-bold left-nav">
               {% if app.user %}
+              {% if not app.user.weiboId
+                  and not app.user.githubId
+              %}
               <span class="left-nav-item">
                 <a href="{{path('fos_user_change_password')}}">修改密码</a>
               </span>
+              {% endif %}
               <span class="left-nav-item">
                 <a href="{{path('fos_user_security_logout')}}">登出</a>
               </span>
