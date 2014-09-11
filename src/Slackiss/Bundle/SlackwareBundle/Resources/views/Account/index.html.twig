@@ -1,0 +1,18 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %} 帐户设置 {% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>修改个人帐户<br />
+    <small>
+      您可以修改自己的用户名和电子信箱,如果您是通过社会化站点登录到Slackware中文社区,那么您的用户名和电子信箱可能不准确,您可以修改成合适的信息.
+    </small>
+  </h2>
+</div>
+
+<div class="box text-box bold about-box about">
+  {{form(form)}}
+</div>
+
+{% endblock %}

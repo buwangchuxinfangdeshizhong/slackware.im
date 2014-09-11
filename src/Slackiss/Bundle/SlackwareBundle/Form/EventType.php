@@ -23,7 +23,7 @@ class EventType extends AbstractType
                 'label'=>'活动封面',
                 'required'=>true,
                 'attr'=>array(
-                    
+
                 )
             ))
             ->add('content','textarea',array(

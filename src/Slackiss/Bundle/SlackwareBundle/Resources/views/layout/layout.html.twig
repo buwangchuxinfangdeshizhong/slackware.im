@@ -370,6 +370,9 @@
 
             <div class="box mini-bold left-nav">
               {% if app.user %}
+              <span class="left-nav-item">
+                <a href="{{path('member_account')}}">帐户</a>
+              </span>
               {% if not app.user.weiboId
                   and not app.user.githubId
               %}
