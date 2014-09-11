@@ -384,6 +384,12 @@
               <span class="left-nav-item">
                 <a href="{{path('fos_user_security_login')}}">登录</a>
               </span>
+              <span class="left-nav-item">
+                <wb:login-button type="6,2" onlogin="login" onlogout="logout">微博登录</wb:login-button>
+              </span>
+              <span class="left-nav-item">
+                <a href="/connect/github">Github登录</a>
+              </span>
               {% endif %}
             </div>
           </div>
@@ -407,7 +413,6 @@
       <div class="wrapper">
         <div class="clearfix">
           <div class="pull-right box text-box">
-            <wb:login-button type="6,2" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
             <small>Slackware&reg; 是 <A HREF="http://slackware.com/trademark/trademark.php">Slackware Linux, Inc的注册商标</A>，本站是非官方的中文Slackware社区。<a href="https://github.com/saharabear/slackware.im" target="_blank">查看源代码</a>,
             </small>
           </div>
