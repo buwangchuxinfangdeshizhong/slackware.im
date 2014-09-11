@@ -87,7 +87,17 @@ display:inline-block;
 
     {% if app.request.get('_route') == 'fos_user_security_login' %}
     <div class="clearfix">
-    <a class="pull-right" href="{{path('fos_user_resetting_request')}}">忘记密码?</a>
+      <div class="pull-left">
+        <a href="/connect/weibo">
+          <img src="{{asset('bundles/slackissslackware/images/oauth_weibo.png')}}" />
+        </a>
+        <a href="/connect/github">
+          <img src="{{asset('bundles/slackissslackware/images/oauth_github.png')}}" />
+        </a>
+      </div>
+      <div class="pull-right">
+        <a href="{{path('fos_user_resetting_request')}}">忘记密码?</a>
+      </div>
     </div>
     {% endif %}
   </div>

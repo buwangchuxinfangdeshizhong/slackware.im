@@ -1,4 +1,4 @@
-<!DOCTYPE html xmlns:wb="http://open.weibo.com/wb">
+<!DOCTYPE html>
 <!--[if IE 8]>
     <html class="no-js lt-ie9" lang="zh_CN" >
       <![endif]-->
@@ -15,7 +15,6 @@
         <script src="{{asset('bundles/slackissslackware/bootstrap/docs/assets/js/html5shiv.js')}}"></script>
         <script src="{{asset('bundles/slackissslackware/vendor/css3-mediaqueries.js')}}"></script>
         <![endif]-->
-    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=4179708155" type="text/javascript" charset="utf-8"></script>
     {% if app.debug %}
     <link href="{{asset('bundles/slackissslackware/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('bundles/slackissslackware/css/style.css')}}">
@@ -383,12 +382,6 @@
               </span>
               <span class="left-nav-item">
                 <a href="{{path('fos_user_security_login')}}">登录</a>
-              </span>
-              <span class="left-nav-item">
-                <wb:login-button type="6,2" onlogin="login" onlogout="logout">微博登录</wb:login-button>
-              </span>
-              <span class="left-nav-item">
-                <a href="/connect/github">Github登录</a>
               </span>
               {% endif %}
             </div>
