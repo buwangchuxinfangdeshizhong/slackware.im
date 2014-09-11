@@ -69,6 +69,8 @@ class AccountController extends Controller
     protected function getForm($arr)
     {
         $form = $this->createFormBuilder($arr)
+            ->setMethod('POST')
+            ->setAction($this->generateUrl('member_account_update'))
                      ->add('username','text',[
                          'required'=>true,
                          'label'=>'用户名(4-36位英文或数字)',
