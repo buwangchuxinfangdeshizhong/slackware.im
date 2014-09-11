@@ -16,18 +16,16 @@
      CLOSED: [2014-09-08 一 10:09]
 **** DONE 社会化登录Github
      CLOSED: [2014-09-08 一 10:09]
-**** TODO 社会化登录后修正用户名问题
-**** TODO 修改个人信箱功能
-**** TODO 修改用户名功能
-**** TODO 绑定多个社会化网站功能
+**** DONE 社会化登录后修正用户名问题
+     CLOSED: [2014-09-12 五 02:20]
+**** DONE 修改个人信箱功能
+     CLOSED: [2014-09-12 五 02:20]
+**** DONE 修改用户名功能
+     CLOSED: [2014-09-12 五 02:20]
+**** DONE 绑定多个社会化网站功能
+     CLOSED: [2014-09-12 五 02:20]
 **** TODO 整合Slacker功能
-** 站内搜索
-**** TODO 全站综合搜索
-**** TODO 知识库搜索
-**** TODO 社区搜索
-**** TODO Slacker搜索
-**** TODO SlackParty搜索
-** Slacker工具
+**** TODO 修改用户名和密码后的有效性验证问题
 ** SlackParty
 **** 城市支持
 **** 校园支持
@@ -38,9 +36,16 @@
 ** 站点优化
 *** TODO 分享到微博和微信朋友圈
 *** TODO 和Slackware.com一样，左侧导航点击后动态显示标题
-** Bugs
 ** APP
 *** API
 *** Android
 *** iOS
 *** WP
+** 站内搜索
+**** TODO 全站综合搜索
+**** TODO 知识库搜索
+**** TODO 社区搜索
+**** TODO Slacker搜索
+**** TODO SlackParty搜索
+** Slacker工具
+** Bugs
