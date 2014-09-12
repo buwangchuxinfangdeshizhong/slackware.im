@@ -1,6 +1,6 @@
 {% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
 
-{% block title %}{{member.nickname}}{% endblock %}
+{% block title %}{{member.name}}{% endblock %}
 {% block header %}
 {% if member.css %}
 <style>
@@ -19,7 +19,7 @@
       <table class="table">
         <tr>
           <td>ID</td>
-          <td>{{member.nickname}}</td>
+          <td>{{member.name}}</td>
         </tr>
         <tr>
           <td>座标</td>
@@ -88,7 +88,7 @@
           <td colspan="2">
 
 
-            <a href="{{app.request.scheme}}://{{app.request.httpHost ~ app.request.basePath ~ path('slacker_show',{id:member.id})}}" target="_blank" title="Slacker: {{member.nickname}}">
+            <a href="{{app.request.scheme}}://{{app.request.httpHost ~ app.request.basePath ~ path('slacker_show',{id:member.id})}}" target="_blank" title="Slacker: {{member.name}}">
               {{app.request.scheme}}://{{app.request.httpHost ~ app.request.basePath ~ path('slacker_show',{id:member.id})}}
             </a>
           </td>

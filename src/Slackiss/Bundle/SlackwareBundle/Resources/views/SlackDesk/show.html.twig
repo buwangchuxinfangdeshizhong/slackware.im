@@ -46,7 +46,7 @@
       {{comment.member.nickname}}
       </a>
       {% else %}
-      {{comment.member.username}}
+      {{comment.member.name}}
       {% endif %}
       {{time_diff(comment.created)}}
       {% if is_granted('ROLE_MANAGER')%}

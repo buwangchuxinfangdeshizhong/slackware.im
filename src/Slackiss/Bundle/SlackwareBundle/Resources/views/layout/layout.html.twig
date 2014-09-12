@@ -398,7 +398,7 @@
             {% if app.user %}
             {% if not app.user.avatar %}
             <div class="alert alert-warning">
-              {{ app.user.username }}，您好，自从您于{{ time_diff(app.user.created) }}加入Slackware中文社区以来，还没有上传您的社区头像，请点击
+              {{ app.user.name }}，您好，自从您于{{ time_diff(app.user.created) }}加入Slackware中文社区以来，还没有上传您的社区头像，请点击
               <a href="{{path('member_slacker_edit')}}" target="_blank">维护档案</a>
               上传您的社区头像，谢谢。
             </div>

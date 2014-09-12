@@ -51,7 +51,7 @@ class SlackerController extends Controller
         if(!$member->getNickname()){
             $member->setNickname($member->getUsername());
         }
-		$isEdit = $member->getAvatar()!='';
+        $isEdit = $member->getAvatar()!='';
         $slackerType = new SlackerType($isEdit);
         $form = $this->createForm($slackerType,$member,array(
             'action'=>$this->generateUrl('member_slacker_update'),
@@ -74,7 +74,7 @@ class SlackerController extends Controller
         $member = $this->getDoctrine()->getManager()
                        ->getRepository('SlackissSlackwareBundle:Member')
                        ->find($current->getId());
-		$isEdit = $member->getAvatar()!='';
+        $isEdit = $member->getAvatar()!='';
         $slackerType = new SlackerType($isEdit);
         $form = $this->createForm($slackerType,$member,array(
             'action'=>$this->generateUrl('member_slacker_update'),

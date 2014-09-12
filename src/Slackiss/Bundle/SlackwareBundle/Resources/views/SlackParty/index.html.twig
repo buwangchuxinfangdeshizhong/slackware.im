@@ -37,10 +37,10 @@
         <td>
           {% if event.member.nickname%}
           <a href="{{path('slacker_show',{id:event.member.id})}}" target="_blank">
-          {{event.member.nickname}}
+          {{event.member.name}}
           </a>
           {% else %}
-          {{event.member.username}}
+          {{event.member.name}}
           {% endif %}
         </td>
       </tr>

@@ -14,7 +14,7 @@
 <div class="thumbnails">
 {% for member in members %}
 <a href="{{path('slacker_show',{id:member.id})}}" target="_blank"
-   title="{{member.nickname|default(member.username)}}">
+   title="{{member.name|default(member.username)}}">
 <img class="pull-left thumbnail" style="margin:0px 20px 20px 0px" src="{{vich_uploader_asset(member,'image')|imagine_filter('large_avatar_image')}}"/>
 </a>
 {% endfor %}

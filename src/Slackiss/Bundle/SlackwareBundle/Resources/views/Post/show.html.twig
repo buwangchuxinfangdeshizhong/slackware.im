@@ -68,7 +68,7 @@
         {% else %}
         <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
         <br />
-        {{post.member.username}}
+        {{post.member.name}}
         {% endif %}
       </p>
       <p>
@@ -115,7 +115,7 @@
       {% else %}
       <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
       <br />
-      {{comment.member.username}}
+      {{comment.member.name}}
       {% endif %}
     </p>
     <p>

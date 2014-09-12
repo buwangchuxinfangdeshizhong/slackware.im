@@ -165,19 +165,19 @@ class Member extends BaseUser
      *
      * @var string $imageName
      */
-	private $avatar;
+    private $avatar;
 
     /**
      * @Assert\File(
      *     maxSize="10M",
      *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-	 *                          "image/jpg","image/gif"}
+     *                          "image/jpg","image/gif"}
      * )
      * @Vich\UploadableField(mapping="avatar_image", fileNameProperty="avatar")
      *
      * @var File $image
      */
-	private $image;
+    private $image;
 
     /**
      * @var \DateTime
@@ -282,30 +282,30 @@ class Member extends BaseUser
     }
 
 
-	public function setAvatar($avatar)
-	{
-		$this->avatar = $avatar;
-		return $this;
-	}
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
 
-	public function getAvatar()
-	{
-		return $this->avatar;
-	}
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
 
-	public function setImage($image)
-	{
-		$this->image = $image;
+    public function setImage($image)
+    {
+        $this->image = $image;
         if($image){
             $this->avatar = $image->getFileName();
         }
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getImage()
-	{
-		return $this->image;
-	}
+    public function getImage()
+    {
+        return $this->image;
+    }
 
     /**
      * Get id
@@ -592,5 +592,10 @@ class Member extends BaseUser
     public function getGithubAccessToken()
     {
         return $this->githubAccessToken;
+    }
+
+    public function getName()
+    {
+        return $this->getNickname()?$this->getNickname():$this->getUsername();
     }
 }
