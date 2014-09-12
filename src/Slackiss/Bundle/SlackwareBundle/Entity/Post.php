@@ -96,24 +96,30 @@ class Post
      */
     protected $comments;
 
+
+    /**
+     * @ORM\Column(name="append",type="text",nullable=true)
+     */
+    protected $append;
+
     /**
      * @ORM\Column(type="string", length=255, name="attachment",nullable = true)
      *
      * @var string $imageName
      */
-	private $attachment;
-    
+    private $attachment;
+
     /**
      * @Assert\File(
      *     maxSize="10M",
      *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-	 *                          "image/jpg","image/gif"}
+     *                          "image/jpg","image/gif"}
      * )
      * @Vich\UploadableField(mapping="discuss_image", fileNameProperty="attachment")
      *
      * @var File $image
      */
-	private $image;
+    private $image;
 
     public function setImage($image)
     {
@@ -137,7 +143,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -160,7 +166,7 @@ class Post
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -183,7 +189,7 @@ class Post
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -206,7 +212,7 @@ class Post
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -229,7 +235,7 @@ class Post
     /**
      * Get modified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModified()
     {
@@ -252,7 +258,7 @@ class Post
     /**
      * Get lastCommentTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastCommentTime()
     {
@@ -275,7 +281,7 @@ class Post
     /**
      * Get commentCount
      *
-     * @return integer 
+     * @return integer
      */
     public function getCommentCount()
     {
@@ -308,7 +314,7 @@ class Post
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -331,7 +337,7 @@ class Post
     /**
      * Get member
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member
      */
     public function getMember()
     {
@@ -347,17 +353,40 @@ class Post
     public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
-    
+
         return $this;
     }
 
     /**
      * Get attachment
      *
-     * @return string 
+     * @return string
      */
     public function getAttachment()
     {
         return $this->attachment;
+    }
+
+    /**
+     * Set append
+     *
+     * @param string $append
+     * @return Post
+     */
+    public function setAppend($append)
+    {
+        $this->append = $append;
+
+        return $this;
+    }
+
+    /**
+     * Get append
+     *
+     * @return string 
+     */
+    public function getAppend()
+    {
+        return $this->append;
     }
 }
