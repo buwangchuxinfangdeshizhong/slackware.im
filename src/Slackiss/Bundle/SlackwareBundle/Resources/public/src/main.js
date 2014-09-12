@@ -6,3 +6,6 @@ watchNotice($);
 
 var postAppend = require('./post/append.js');
 postAppend($,$('#append-button'),$('#post-append'),$('#post-append-form'));
+
+var postEdit   = require('./post/edit.js');
+postEdit($,$('#post-edit-button'),$('.post-content'),$('.post-content-form'));

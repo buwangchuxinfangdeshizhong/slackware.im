@@ -57,7 +57,7 @@ class Post
      *
      * @ORM\Column(name="content", type="text")
      * @Assert\Length(
-     *      min = "0",
+     *      min = "1",
      *      minMessage = "不能发布空内容的讨论"
      * )
      */
@@ -383,10 +383,18 @@ class Post
     /**
      * Get append
      *
-     * @return string 
+     * @return string
      */
     public function getAppend()
     {
         return $this->append;
+    }
+
+    public function editable()
+    {
+        $created = $this->getCreated();
+        $created = $created->modify('+1 days');
+        $now     = new \DateTime();
+        return $now<$created;
     }
 }

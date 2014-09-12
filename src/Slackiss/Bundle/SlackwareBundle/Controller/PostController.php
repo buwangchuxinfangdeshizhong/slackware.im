@@ -120,9 +120,12 @@ class PostController extends Controller
                 'post'=>$post->getId()
             ]);
             $checked = $entity?true:false;
+            $editable = $post->editable();
         }else{
-            $checked = false;
+            $checked = false;//是否关注了当前帖子(邮件通知)
+            $editable = false;//是否在24小时内,是否可以编辑
         }
+        $param['editable'] = $editable;
         $param['checked'] = $checked;
         return $param;
     }
@@ -165,7 +168,26 @@ class PostController extends Controller
         return $this->redirect($this->generateUrl('post_show',['id'=>$id]));
     }
 
-
+    /**
+     * @Route("/member/post/update/{id}",name="post_update")
+     * @Method({"POST"})
+     */
+    public function updateAction(Request $request,$id)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Post');
+        $current = $this->get('security.context')->getToken()->getUser();
+        $post = $repo->findOneBy(['member'=>$current->getId(),'id'=>$id]);
+        $content = $request->request->get('content');
+        if($post&&$post->editable()&&!empty($content)){
+            $post->setContent($content);
+            $em->persist($post);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('post_show',['id'=>$id]));
+    }
 
     /**
      * @Route("/member/post/comment/update/{id}",name="post_comment_create")

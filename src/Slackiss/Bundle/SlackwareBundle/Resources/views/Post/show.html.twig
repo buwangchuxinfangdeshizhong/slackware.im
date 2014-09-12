@@ -23,7 +23,18 @@
 
   <div class="row-fluid box">
     <div class="span10 news-item-box content-box">
+      <div class="post-content">
       {{post.content|code|striptags('<pre>')|raw|nl2br}}
+      </div>
+      {% if app.user and app.user.id == post.member.id %}
+      <div class="post-content-form hide">
+          <form action="{{path('post_update',{id:post.id})}}" method="POST">
+            <textarea name="content" rows=5 style="width:100%" placeholder="编辑帖子">{{post.content}}</textarea>
+            <br />
+            <button class="" type="submit">保存</button>
+          </form>
+      </div>
+      {% endif %}
         {% if post.attachment %}
         <div style="margin:20px 0px" class="clearfix">
           <a href="{{vich_uploader_asset(post,'image')}}" class="colorbox">
@@ -68,6 +79,9 @@
       </p>
       {% if app.user and app.user.id == post.member.id %}
       <a id="append-button" href="#" title="对帖子做出补充">补充</a>
+      {% if editable %}
+      <a id="post-edit-button" href="#" title="帖子创建24小时内可以编辑">编辑</a>
+      {% endif %}
       {% endif %}
       {% if is_granted('ROLE_MANAGER')%}
       <a onclick="return confirm('您确定要删除这个帖子吗?')"
