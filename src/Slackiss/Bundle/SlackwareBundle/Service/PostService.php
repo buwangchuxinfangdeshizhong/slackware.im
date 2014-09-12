@@ -22,7 +22,7 @@ class PostService
         $this->route = $route;
         $this->req = $req;
     }
-    
+
     public function getLastComment($post)
     {
         $commentRepo = $this->em->getRepository('SlackissSlackwareBundle:PostComment');
@@ -40,7 +40,7 @@ class PostService
         }
         return $comment;
     }
-    
+
     public function notify($post)
     {
         $lastComment = $this->getLastComment($post);
@@ -59,7 +59,7 @@ class PostService
                 $emails[] = $email;
             }
         }
-        
+
         $subject = '[slackware.im] 您参与的帖子\"'.$post->getTitle().'"有了新回复';
         $content = array();
         $content['post']=$post;
@@ -72,8 +72,9 @@ class PostService
             $this->req->getBasePath().
             $this->route->generate('post_show',array('id'=>$post->getId()));
         foreach($emails as $to){
-            $message = $this->mail->buildMessage($to,$subject,$content,'postcomment'); 
+            $message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
             $this->mail->send($message);
         }
     }
+
 }

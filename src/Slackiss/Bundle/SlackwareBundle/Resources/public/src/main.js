@@ -3,3 +3,6 @@ require('../bootstrap/js/bootstrap.js');
 
 var watchNotice = require('./post/notice.js');
 watchNotice($);
+
+var postAppend = require('./post/append.js');
+postAppend($,$('#append-button'),$('#post-append'),$('#post-append-form'));

@@ -131,7 +131,7 @@ class PostController extends Controller
      * @Route("/postnotice/{postId}",name="post_notice_update")
      * @Method({"GET"})
      */
-    public function actionNameAction(Request $request,$postId)
+    public function postNoticeAction(Request $request,$postId)
     {
         $param =  array();
         $em = $this->getDoctrine()->getManager();
@@ -142,6 +142,30 @@ class PostController extends Controller
         }
         return new JsonResponse('success');
     }
+
+
+    /**
+     * @Route("/member/post/append/update/{id}",name="post_append_update")
+     * @Method({"POST"})
+     */
+    public function postAppendAction(Request $request,$id)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Post');
+        $current = $this->get('security.context')->getToken()->getUser();
+        $post = $repo->findOneBy(['member'=>$current->getId(),'id'=>$id]);
+        if($post){
+            $append = $post->getAppend();
+            $append = $append."\n".$request->request->get('append');
+            $post->setAppend($append);
+            $em->persist($post);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('post_show',['id'=>$id]));
+    }
+
+
 
     /**
      * @Route("/member/post/comment/update/{id}",name="post_comment_create")

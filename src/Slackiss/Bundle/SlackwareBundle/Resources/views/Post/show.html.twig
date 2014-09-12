@@ -3,116 +3,133 @@
 {% block title %}{{post.title}}{% endblock %}
 
 {% block top %}
-    <link href="{{asset('bundles/slackissslackware/vendor/colorbox-master/example1/colorbox.css')}}" rel="stylesheet">
+<link href="{{asset('bundles/slackissslackware/vendor/colorbox-master/example1/colorbox.css')}}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
-    <div class="news-item">
-        <div class="box content-box mini-bold news-item-box clearfix">
-            <div class="pull-left">{{post.title}}</div>
-            <div class="pull-right">
-              {% if app.user %}
-              <script>
-                var watchPostUrl = "{{path('post_notice_update',{postId:post.id})}}";
-              </script>
-              <input type="checkbox" class="checkbox" id="watch-post" {% if checked %}checked{%endif %} /> <small>关注帖子更新</small>
-              {% endif %}
-            </div>
-        </div>
-
-        <div class="row-fluid box">
-            <div class="span10 news-item-box content-box">
-                {{post.content|code|striptags('<pre>')|raw|nl2br}}
-                {% if post.attachment %}
-                    <div style="margin:20px 0px" class="clearfix">
-                        <a href="{{vich_uploader_asset(post,'image')}}" class="colorbox">
-                            <img src="{{vich_uploader_asset(post,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display:inline-block"/>
-                        </a>
-                    </div>
-                {% endif %}
-            </div>
-            <div class="span2 text-box min-bold news-item-box" style="padding-top:20px">
-                <p>
-                    {% if post.member.nickname %}
-                        <a title="{{post.member.nickname}}" href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
-                            <img src='{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}' class="thumbnail"/>
-                            <br />
-                            {{post.member.nickname}}
-                        </a>
-                    {% else %}
-                        <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
-                        <br />
-                        {{post.member.username}}
-                    {% endif %}
-                </p>
-                <p>
-                    {{time_diff(post.created)}}
-                </p>
-                <p>
-                    {{post.commentCount}}回复
-                </p>
-                {% if is_granted('ROLE_MANAGER')%}
-                    <a onclick="return confirm('您确定要删除这个帖子吗?')"
-                       href="{{path('post_delete',{'id':post.id})}}">删除</a>
-                {% endif %}
-            </div>
-        </div>
+{% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+<div class="news-item">
+  <div class="box content-box mini-bold news-item-box clearfix">
+    <div class="pull-left">{{post.title}}</div>
+    <div class="pull-right">
+      {% if app.user %}
+      <script>
+        var watchPostUrl = "{{path('post_notice_update',{postId:post.id})}}";
+      </script>
+      <input type="checkbox" class="checkbox" id="watch-post" {% if checked %}checked{%endif %} /> <small>关注帖子更新</small>
+      {% endif %}
     </div>
+  </div>
 
-
-    {% for comment in comments %}
-        <div class="row-fluid post-comment box">
-            <div class="span10 news-item-box content-box">
-                {{comment.content|code|striptags('<pre>')|raw|nl2br}}
-                {% if comment.attachment %}
-                    <div style="margin:20px 0px" class="clearfix">
-                        <a href="{{vich_uploader_asset(comment,'image')}}" class="colorbox">
-                            <img src="{{vich_uploader_asset(comment,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display: inline-block"/>
-                        </a>
-                    </div>
-                {% endif %}
-            </div>
-            <div class="span2 text-box min-bold  news-item-box">
-                <p>
-                    {% if comment.member.nickname %}
-                        <a title="{{comment.member.nickname}}" href="{{path('slacker_show',{id:comment.member.id})}}" target="_blank">
-                            <img src='{{vich_uploader_asset(comment.member,'image')|imagine_filter('avatar_image')}}' />
-                            <br />
-                            {{comment.member.nickname}}
-                        </a>
-                    {% else %}
-                        <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
-                        <br />
-                        {{comment.member.username}}
-                    {% endif %}
-                </p>
-                <p>
-                    {{time_diff(comment.created)}}
-                </p>
-                {% if is_granted('ROLE_MANAGER')%}
-                    <a onclick="return confirm('您确定要删除这个回复吗?')"
-                       href="{{path('postcomment_delete',{'id':comment.id})}}">删除</a>
-                {% endif %}
-            </div>
+  <div class="row-fluid box">
+    <div class="span10 news-item-box content-box">
+      {{post.content|code|striptags('<pre>')|raw|nl2br}}
+        {% if post.attachment %}
+        <div style="margin:20px 0px" class="clearfix">
+          <a href="{{vich_uploader_asset(post,'image')}}" class="colorbox">
+            <img src="{{vich_uploader_asset(post,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display:inline-block"/>
+          </a>
         </div>
-    {% endfor %}
-
-    {{knp_pagination_render(comments)}}
-
-    <div class="box download-box post-comment-form">
-        {% if is_granted('ROLE_USER') %}
-            {{form(form)}}
-        {% else %}
-            <center>请登录后再添加评论</center>
+        {% endif %}
+        <div id="post-append" {% if post.append %}class="post-append"{% endif %}>
+          {% if post.append %}
+          {{post.append|code|striptags('<pre>')|raw|nl2br}}
+            {% endif %}
+        </div>
+      {% if app.user and app.user.id == post.member.id %}
+        <div id="post-append-form" class="hide" style="margin-top:20px">
+          <form action="{{path('post_append_update',{id:post.id})}}" method="POST">
+            <textarea name="append" rows=5 style="width:100%" placeholder="补充帖子"></textarea>
+            <br />
+            <button class="" type="submit">补充</button>
+          </form>
+        </div>
         {% endif %}
     </div>
+    <div class="span2 text-box min-bold news-item-box" style="padding-top:20px">
+      <p>
+        {% if post.member.nickname %}
+        <a title="{{post.member.nickname}}" href="{{path('slacker_show',{id:post.member.id})}}" target="_blank">
+          <img src='{{vich_uploader_asset(post.member,'image')|imagine_filter('avatar_image')}}' class="thumbnail"/>
+          <br />
+          {{post.member.nickname}}
+        </a>
+        {% else %}
+        <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
+        <br />
+        {{post.member.username}}
+        {% endif %}
+      </p>
+      <p>
+        {{time_diff(post.created)}}
+      </p>
+      <p>
+        {{post.commentCount}}回复
+      </p>
+      {% if app.user and app.user.id == post.member.id %}
+      <a id="append-button" href="#" title="对帖子做出补充">补充</a>
+      {% endif %}
+      {% if is_granted('ROLE_MANAGER')%}
+      <a onclick="return confirm('您确定要删除这个帖子吗?')"
+         href="{{path('post_delete',{'id':post.id})}}">删除</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% for comment in comments %}
+<div class="row-fluid post-comment box">
+  <div class="span10 news-item-box content-box">
+    {{comment.content|code|striptags('<pre>')|raw|nl2br}}
+      {% if comment.attachment %}
+      <div style="margin:20px 0px" class="clearfix">
+        <a href="{{vich_uploader_asset(comment,'image')}}" class="colorbox">
+          <img src="{{vich_uploader_asset(comment,'image')|imagine_filter('page_image_small')}}" class="thumbnail" style="display: inline-block"/>
+        </a>
+      </div>
+      {% endif %}
+  </div>
+  <div class="span2 text-box min-bold  news-item-box">
+    <p>
+      {% if comment.member.nickname %}
+      <a title="{{comment.member.nickname}}" href="{{path('slacker_show',{id:comment.member.id})}}" target="_blank">
+        <img src='{{vich_uploader_asset(comment.member,'image')|imagine_filter('avatar_image')}}' />
+        <br />
+        {{comment.member.nickname}}
+      </a>
+      {% else %}
+      <img src="{{asset('bundles/slackissslackware/images/avatar.png')|imagine_filter('avatar_image')}}" class="thumbnail"/>
+      <br />
+      {{comment.member.username}}
+      {% endif %}
+    </p>
+    <p>
+      {{time_diff(comment.created)}}
+    </p>
+    {% if is_granted('ROLE_MANAGER')%}
+    <a onclick="return confirm('您确定要删除这个回复吗?')"
+       href="{{path('postcomment_delete',{'id':comment.id})}}">删除</a>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+{{knp_pagination_render(comments)}}
+
+<div class="box download-box post-comment-form">
+  {% if is_granted('ROLE_USER') %}
+  {{form(form)}}
+  {% else %}
+  <center>请登录后再添加评论</center>
+  {% endif %}
+</div>
 
 {% endblock %}
 
 {% block bottom %}
-    <script src="{{asset('bundles/slackissslackware/vendor/colorbox-master/jquery.colorbox-min.js')}}"></script>
-    <script>
-        $('a.colorbox').colorbox();
-    </script>
+<script src="{{asset('bundles/slackissslackware/vendor/colorbox-master/jquery.colorbox-min.js')}}"></script>
+<script>
+  $('a.colorbox').colorbox();
+</script>
 {% endblock %}

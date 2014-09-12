@@ -138,6 +138,11 @@ a:hover {
   padding: 20px;
   width: 100%;
 }
+.post-append {
+  margin-top: 20px;
+  border-top: 1px dotted #696969;
+  color: #696969;
+}
 .post-comment {
   margin: 10px 0px;
 }
