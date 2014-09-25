@@ -1,5 +1,4 @@
 * slackware.im
-
 ** 中文社区
 **** DONE 优化社区图片的显示
      CLOSED: [2014-09-07 日 06:30]
@@ -20,6 +19,9 @@
 **** TODO 知识管理
 **** TODO 评论及管理
 **** TODO 快捷文件上传
+** 消息中心
+**** TODO 统一展示消息与提醒
+**** TODO 根据消息设置发送邮件通知
 ** SlackParty
 **** 城市支持
 **** 校园支持
@@ -37,7 +39,6 @@
 **** TODO Slacker搜索
 **** TODO SlackParty搜索
 ** APP
-*** API
 *** Android
 *** iOS
 *** WP
