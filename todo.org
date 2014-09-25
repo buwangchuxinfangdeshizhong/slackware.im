@@ -1,4 +1,8 @@
 * slackware.im
+** 站点优化
+*** TODO 分享到微博和微信朋友圈
+*** DONE 和Slackware.com一样，左侧导航点击后动态显示标题
+    CLOSED: [2014-09-25 四 11:08]
 ** 中文社区
 **** DONE 优化社区图片的显示
      CLOSED: [2014-09-07 日 06:30]
@@ -19,6 +23,29 @@
 **** TODO 知识管理
 **** TODO 评论及管理
 **** TODO 快捷文件上传
+** SlackParty
+**** 城市支持
+**** 校园支持
+**** 社交讨论
+** 消息中心
+*** TODO 全局设置是否接收邮件通知
+*** TODO 实现消息查看中心
+*** TODO 实现站内@某个会员的功能
+*** TODO 发送消息通知时,根据邮件通知的相关设置进行处理
+*** TODO 消息发送邮件提醒
+** 站内搜索
+**** TODO 全站综合搜索
+**** TODO 知识库搜索
+**** TODO 社区搜索
+**** TODO Slacker搜索
+**** TODO SlackParty搜索
+** APP
+*** API
+*** Android
+*** iOS
+*** WP
+** Slacker工具
+** Bugs
 ** 个人中心
 **** DONE 社会化登录Weibo
      CLOSED: [2014-09-08 一 10:09]
@@ -42,31 +69,3 @@
    CLOSED: [2014-09-25 四 11:08]
 **** DONE 帖子显示第N楼
    CLOSED: [2014-09-25 四 11:08]
-
-** SlackParty
-**** 城市支持
-**** 校园支持
-**** 社交讨论
-** 消息中心
-*** TODO 全局设置是否接收邮件通知
-*** TODO 实现消息查看中心
-*** TODO 实现站内@某个会员的功能
-*** TODO 发送消息通知时,根据邮件通知的相关设置进行处理
-*** TODO 消息发送邮件提醒
-** 站点优化
-*** TODO 分享到微博和微信朋友圈
-*** DONE 和Slackware.com一样，左侧导航点击后动态显示标题
-    CLOSED: [2014-09-25 四 11:08]
-** APP
-*** API
-*** Android
-*** iOS
-*** WP
-** 站内搜索
-**** TODO 全站综合搜索
-**** TODO 知识库搜索
-**** TODO 社区搜索
-**** TODO Slacker搜索
-**** TODO SlackParty搜索
-** Slacker工具
-** Bugs
