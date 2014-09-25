@@ -1,8 +1,5 @@
 * slackware.im
-** 站点优化
-*** TODO 分享到微博和微信朋友圈
-*** DONE 和Slackware.com一样，左侧导航点击后动态显示标题
-    CLOSED: [2014-09-25 四 11:08]
+
 ** 中文社区
 **** DONE 优化社区图片的显示
      CLOSED: [2014-09-07 日 06:30]
@@ -44,8 +41,7 @@
 *** Android
 *** iOS
 *** WP
-** Slacker工具
-** Bugs
+** SlackDevs
 ** 个人中心
 **** DONE 社会化登录Weibo
      CLOSED: [2014-09-08 一 10:09]
@@ -69,3 +65,9 @@
    CLOSED: [2014-09-25 四 11:08]
 **** DONE 帖子显示第N楼
    CLOSED: [2014-09-25 四 11:08]
+
+** 站点优化
+*** DONE 分享到微博和微信朋友圈
+    CLOSED: [2014-09-25 四 11:52]
+*** DONE 和Slackware.com一样，左侧导航点击后动态显示标题
+    CLOSED: [2014-09-25 四 11:08]
