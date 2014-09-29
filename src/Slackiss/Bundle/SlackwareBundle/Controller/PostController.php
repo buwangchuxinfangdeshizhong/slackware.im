@@ -42,6 +42,39 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/post/category/{id}",name="post_category")
+     * @Method({"GET"})
+     * @Template("SlackissSlackwareBundle:Post:index.html.twig")
+     */
+    public function categoryAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_post');
+        $page = $request->query->get('page',1);
+        $query = $this->getDoctrine()->getManager()
+                      ->getRepository('SlackissSlackwareBundle:Post')
+                      ->createQueryBuilder('p')
+                      ->where('p.category = :category')
+                      ->setParameters([':category'=>$id])
+                      ->orderBy('p.lastCommentTime','desc')
+                      ->getQuery();
+        $posts = $this->get('knp_paginator')->paginate($query,$page,50);
+        $param['posts']=$posts;
+        return $param;
+    }
+
+    /**
+     * @Route("/post/categorylist",name="post_category_list")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function categoryNavAction(Request $request)
+    {
+        $categories = $this->get('slackiss_slackware.post')->getCategories();
+        $param['categories'] = $categories;
+        return $param;
+    }
+
+    /**
      * @Route("/post/new",name="post_new")
      * @Template()
      * @Method({"GET"})

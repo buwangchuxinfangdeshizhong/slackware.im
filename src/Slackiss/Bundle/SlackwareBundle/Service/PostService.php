@@ -41,6 +41,19 @@ class PostService
         return $comment;
     }
 
+    public function getCategories()
+    {
+        $repo = $this->em->getRepository('SlackissSlackwareBundle:PostCategory');
+        $query = $repo->createQueryBuilder('c')
+                      ->orderBy('c.sequence','asc')
+                      ->where('c.status = true and c.enabled = true')
+                      ->getQuery();
+        return $query->getResult();
+    }
+
+    /**
+     * 刚看到自己几年前这段代码,真烂
+     */
     public function notify($post)
     {
         $lastComment = $this->getLastComment($post);
@@ -64,8 +77,8 @@ class PostService
         $content = array();
         $content['post']=$post;
         /**
-          app.request.scheme :// app.request.httpHost app.request.basePath
-         */
+           app.request.scheme :// app.request.httpHost app.request.basePath
+        */
         $content['url'] =
             $this->req->getScheme()."://".
             $this->req->getHttpHost().
