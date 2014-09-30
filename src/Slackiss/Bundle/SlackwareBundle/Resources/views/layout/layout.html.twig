@@ -118,7 +118,7 @@
                   </span>
                 </div>
                 {% endif %}
-                {% render %}
+                {% render(controller('SlackissSlackwareBundle:Post:categoryNavAction')) %}
               </span>
               {% if nav_active|default('')== 'nav_active_post' %}
             </div>
