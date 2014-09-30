@@ -116,9 +116,9 @@
                   <span class="left-sub-nav-item">
                     <a href="{{path('post_new')}}">创建讨论</a>
                   </span>
+                  {% render(controller('SlackissSlackwareBundle:Post:categoryNav')) %}
                 </div>
                 {% endif %}
-                {% render(controller('SlackissSlackwareBundle:Post:categoryNavAction')) %}
               </span>
               {% if nav_active|default('')== 'nav_active_post' %}
             </div>

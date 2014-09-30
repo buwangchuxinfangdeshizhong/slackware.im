@@ -12,6 +12,10 @@
   <div class="box content-box mini-bold news-item-box clearfix">
     <div class="pull-left">{{post.title}}</div>
     <div class="pull-right">
+      {% if post.category %}
+        <a href="{{path('post_category',{id:post.category.id})}}"><span class="label">{{post.category.name}}</span></a>
+      {% endif %}
+
       {% if app.user %}
       <script>
         var watchPostUrl = "{{path('post_notice_update',{postId:post.id})}}";

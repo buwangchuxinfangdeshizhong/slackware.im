@@ -38,6 +38,7 @@ class PostController extends Controller
                       ->getQuery();
         $posts = $this->get('knp_paginator')->paginate($query,$page,50);
         $param['posts']=$posts;
+        $param['category']=null;
         return $param;
     }
 
@@ -50,6 +51,12 @@ class PostController extends Controller
     {
         $param=array('nav_active'=>'nav_active_post');
         $page = $request->query->get('page',1);
+        $category = $this->getDoctrine()->getManager()
+            ->getRepository('SlackissSlackwareBundle:PostCategory')
+                         ->find($id);
+        if(!$category){
+            throw $this->createNotFoundException();
+        }
         $query = $this->getDoctrine()->getManager()
                       ->getRepository('SlackissSlackwareBundle:Post')
                       ->createQueryBuilder('p')
@@ -59,6 +66,7 @@ class PostController extends Controller
                       ->getQuery();
         $posts = $this->get('knp_paginator')->paginate($query,$page,50);
         $param['posts']=$posts;
+        $param['category']=$category;
         return $param;
     }
 

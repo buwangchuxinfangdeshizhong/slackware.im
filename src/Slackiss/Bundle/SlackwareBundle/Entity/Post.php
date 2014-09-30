@@ -403,4 +403,27 @@ class Post
         $now     = new \DateTime();
         return $now<$created;
     }
+
+    /**
+     * Set category
+     *
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\PostCategory $category
+     * @return Post
+     */
+    public function setCategory(\Slackiss\Bundle\SlackwareBundle\Entity\PostCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\PostCategory 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

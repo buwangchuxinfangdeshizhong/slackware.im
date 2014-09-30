@@ -19,6 +19,14 @@ class PostType extends AbstractType
                     'placeholder'=>'讨论标题'
                 )
             ))
+            ->add('category',null,[
+                'label'=>'版块',
+                'required'=>true,
+                'property'=>'name',
+                'attr'=>[
+                    'class'=>'input-block-level'
+                ]
+            ])
             ->add('content','textarea',array(
                 'label'=>'讨论内容(必填)',
                 'required'=>true,

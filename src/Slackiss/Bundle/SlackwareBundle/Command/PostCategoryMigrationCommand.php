@@ -26,9 +26,9 @@ class PostCategoryMigrationCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $em = $container->get('doctrine.orm.entity_manager');
         $defaultCategory = $this->getDefaultCategory();
-        $posts = $em->getRepository('SlackissSlackwareBundle:Post');
+        $posts = $em->getRepository('SlackissSlackwareBundle:Post')-findAll();
         foreach($posts as $post){
-            if(!$post->getCategory()){
+            if(null==$post->getCategory()){
                 $post->setCategory($defaultCategory);
                 $em->persist($post);
                 $em->flush();
@@ -41,10 +41,10 @@ class PostCategoryMigrationCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
         $categories = [
-            ['name'=>'桌面、用户体验与中文','uid'=>'zhuomianyonghutiyanyuzhongwen',
+            ['name'=>'桌面用户体验与中文','uid'=>'zhuomianyonghutiyanyuzhongwen',
              'description'=>'讨论Slackware桌面应用的相关话题',
              'sequence'=>100],
-            ['name'=>'系统启动、安装与升级','uid'=>'xitongqidonganzhuangyushengji',
+            ['name'=>'系统启动安装与升级','uid'=>'xitongqidonganzhuangyushengji',
              'description'=>'讨论Slackware系统启动，安装与升级相关的问题',
              'sequence'=>200],
             ['name'=>'Linux基础与讨论','uid'=>'linuxjichuyutaolun',
