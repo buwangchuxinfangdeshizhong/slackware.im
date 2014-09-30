@@ -47,7 +47,7 @@ class Member extends BaseUser
      *     maxMessage="用户名不能多于36个字符"
      * )
      * @Assert\Regex(
-     *    pattern="b/^[A-z0-9]*$/i",
+     *    pattern="/^[A-z0-9]*$/i",
      *    message="用户名只能使用英文字母和数字"
      * )
      */
