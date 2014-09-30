@@ -26,7 +26,7 @@ class PostCategoryMigrationCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $em = $container->get('doctrine.orm.entity_manager');
         $defaultCategory = $this->getDefaultCategory();
-        $posts = $em->getRepository('SlackissSlackwareBundle:Post')-findAll();
+        $posts = $em->getRepository('SlackissSlackwareBundle:Post')->findAll();
         foreach($posts as $post){
             if(null==$post->getCategory()){
                 $post->setCategory($defaultCategory);
