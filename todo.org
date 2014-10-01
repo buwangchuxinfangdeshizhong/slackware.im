@@ -1,4 +1,15 @@
 * slackware.im
+** sequence
+*** 活动
+*** 知识库
+*** 消息
+*** 搜索
+*** 优化
+*** SlackDEV
+*** 客户端
+**** iOS
+**** WP8
+**** Android
 ** SlackParty
 **** TODO 增加组织者的联系方式
 **** TODO 组织者可以设置最晚报名日期
