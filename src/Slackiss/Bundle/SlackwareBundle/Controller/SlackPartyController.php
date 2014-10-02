@@ -36,7 +36,7 @@ class SlackPartyController extends Controller
         $param['events']=$events;
         return $param;
     }
-    
+
     /**
      * @Route("/member/slackparty/new",name="member_slackparty_new")
      * @Template()
@@ -86,7 +86,7 @@ class SlackPartyController extends Controller
         }
         $param['event']=$event;
         $param['form']=$form->createView();
-        return $param;        
+        return $param;
     }
 
     /**
@@ -104,11 +104,20 @@ class SlackPartyController extends Controller
             throw $this->createNotFoundException("没有这个活动");
         }
         $param['event']=$event;
-        $param['form']=$this->createFormBuilder([])
-                            ->setAction($this->generateUrl('member_slackparty_join',array('id'=>$event->getId())))
-                            ->setMethod('POST')
-                            ->add('参加活动','submit')
-                            ->getForm()->createView();
+        $now = new \DateTime();
+        if($now<$event->getLastApplyDate()){
+            $param['form']=$this->createFormBuilder([])
+                                ->setAction($this->generateUrl('member_slackparty_join',array('id'=>$event->getId())))
+                                ->setMethod('POST')
+                                ->add('报名活动','submit')
+                                ->getForm()->createView();
+        }else{
+            $param['form']=$this->createFormBuilder([])
+                                ->setAction('#')
+                                ->setMethod('GET')
+                                ->add('报名已截止','submit')
+                                ->getForm()->createView();
+        }
         return $param;
     }
 
@@ -124,12 +133,14 @@ class SlackPartyController extends Controller
         if(!$event){
             throw $this->createNotFoundException('这个活动不存在');
         }
-        $event->removePlayer($current);
-        $event->addPlayer($current);
-        $em->persist($event);
-        $em->flush();
-        $this->get('session')->getFlashBag()->add('success','参加活动');
+        $now = new \DateTime();
+        if($now<$event->getLastApplyDate()){
+            $event->removePlayer($current);
+            $event->addPlayer($current);
+            $em->persist($event);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','参加活动');
+        }
         return $this->redirect($this->generateUrl('slackparty_show',array('id'=>$id)));
     }
 }
-
