@@ -370,6 +370,15 @@ class Event
         return $this;
     }
 
+    public function hasPlayer(\Slackiss\Bundle\SlackwareBundle\Entity\Member $member)
+    {
+        $players = $this->players;
+        $playerIds = [];
+        foreach($players as $player){
+            $playerIds[] = $player->getId();
+        }
+        return in_array($member->getId(),$playerIds);
+    }
     /**
      * Remove players
      *
@@ -406,7 +415,7 @@ class Event
     /**
      * Get contact
      *
-     * @return string 
+     * @return string
      */
     public function getContact()
     {
@@ -429,7 +438,7 @@ class Event
     /**
      * Get lastApplyDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastApplyDate()
     {

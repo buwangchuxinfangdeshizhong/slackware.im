@@ -31,6 +31,20 @@
         <td>{{event.fee}}</td>
       </tr>
       <tr>
+        <td><strong>联系方式</strong></td>
+        <td>
+          {% if not app.user %}
+          登录查看联系方式
+          {% else %}
+          {% if event.hasPlayer(app.user) %}
+          {{event.contact}}
+          {% else %}
+          请报名活动以查看联系方式
+          {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
         <td><strong>发起人</strong></td>
         <td>
           {% if event.member.nickname%}
