@@ -24,6 +24,7 @@ class Event
         $this->players = new ArrayCollection();
         $this->created = new DateTime();
     }
+
     /**
      * @var integer
      *
@@ -52,15 +53,15 @@ class Event
     private $avatar;
 
     /**
-	 * @Assert\File(
-	 *     maxSize="10M",
-	 *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-	 *                          "image/jpg","image/gif"}
-	 * )
-	 * @Vich\UploadableField(mapping="party_image", fileNameProperty="avatar")
-	 *
-	 * @var File $image
-	 */
+     * @Assert\File(
+     *     maxSize="10M",
+     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
+     *                          "image/jpg","image/gif"}
+     * )
+     * @Vich\UploadableField(mapping="party_image", fileNameProperty="avatar")
+     *
+     * @var File $image
+     */
     private $image;
 
     public function setImage($image)
@@ -121,30 +122,47 @@ class Event
      */
     private $created;
 
-   /**
-    * @var string
-    *
-    * @Assert\Length(
-    *     min="1",
-    *     max="250",
-    *     minMessage="活动地点不能为空",
-    *     maxMessage="活动地点不能超过250个字"
-    * )
-    * @ORM\Column(name="address",type="string",length=250)
-	*/
-	private $address;
-
     /**
+     * @var string
      *
      * @Assert\Length(
      *     min="1",
      *     max="250",
+     *     minMessage="活动地点不能为空",
+     *     maxMessage="活动地点不能超过250个字"
+     * )
+     * @ORM\Column(name="address",type="string",length=250)
+     */
+    private $address;
+
+    /**
+     *
+     * @Assert\Length(
+     *     min=1,
+     *     max=250,
      *     minMessage="活动费用不能为空",
      *     maxMessage="活动费用不能超过250个字"
      * )
-	 * @ORM\Column(name="fee",type="string",length=250)
-	 */
-	private $fee;
+     * @ORM\Column(name="fee",type="string",length=250)
+     */
+    private $fee;
+
+    /**
+     *
+     * @Assert\Length(
+     *     max=200,
+     *     maxMessage="现场联系方式不能超过250个字"
+     * )
+     * @ORM\Column(name="contact",type="string",length=250,nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @Assert\NotBlank(message="请设置最晚报名时间")
+     * @ORM\Column(name="last_apply_date",type="datetimetz",nullable=true)
+     */
+    private $lastApplyDate;
+
     /**
      * Get id
      *
@@ -233,14 +251,14 @@ class Event
     public function setEventdate($eventdate)
     {
         $this->eventdate = $eventdate;
-    
+
         return $this;
     }
 
     /**
      * Get eventdate
      *
-     * @return string 
+     * @return string
      */
     public function getEventdate()
     {
@@ -256,14 +274,14 @@ class Event
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -279,14 +297,14 @@ class Event
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -302,14 +320,14 @@ class Event
     public function setFee($fee)
     {
         $this->fee = $fee;
-    
+
         return $this;
     }
 
     /**
      * Get fee
      *
-     * @return string 
+     * @return string
      */
     public function getFee()
     {
@@ -325,14 +343,14 @@ class Event
     public function setMember(\Slackiss\Bundle\SlackwareBundle\Entity\Member $member = null)
     {
         $this->member = $member;
-    
+
         return $this;
     }
 
     /**
      * Get member
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member
      */
     public function getMember()
     {
@@ -348,7 +366,7 @@ class Event
     public function addPlayer(\Slackiss\Bundle\SlackwareBundle\Entity\Member $players)
     {
         $this->players[] = $players;
-    
+
         return $this;
     }
 
@@ -365,10 +383,56 @@ class Event
     /**
      * Get players
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param string $contact
+     * @return Event
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return string 
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * Set lastApplyDate
+     *
+     * @param \DateTime $lastApplyDate
+     * @return Event
+     */
+    public function setLastApplyDate($lastApplyDate)
+    {
+        $this->lastApplyDate = $lastApplyDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastApplyDate
+     *
+     * @return \DateTime 
+     */
+    public function getLastApplyDate()
+    {
+        return $this->lastApplyDate;
     }
 }
