@@ -14,6 +14,11 @@
 <div class="row-fluid">
   {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
   <div class="span8 offset2 box slackbook-box">
+    <style>
+      .last-apply-date>select{
+      width: 25%;
+      }
+    </style>
     {{form(form)}}
   </div>
 </div>

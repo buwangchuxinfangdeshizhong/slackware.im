@@ -56,9 +56,24 @@ class EventType extends AbstractType
                 'required'=>true,
                 'attr'=>array(
                     'class'=>'input-block-level',
-                    'placeholder'=>'例如:每个平均50元；或者:男士50元,女士免费'
+                    'placeholder'=>'例如:每个平均50元；再比如：免费'
                 )
             ))
+            ->add('contact','text',[
+                'label'=>'现场联系方式(报名用户才能够查看)',
+                'required'=>true,
+                'attr'=>[
+                    'class'=>'input-block-level',
+                    'placeholder'=>'手机：15854100000 微信：slackware.im 联系人：张三丰'
+                ]
+            ])
+            ->add('lastApplyDate','date',[
+                'label'=>'最晚报名日期',
+                'required'=>true,
+                'attr'=>[
+                    'class'=>'input-block-level last-apply-date',
+                ]
+            ])
             ->add('创建活动','submit',array(
                 'attr'=>array(
                     'style'=>'margin-top:20px'
