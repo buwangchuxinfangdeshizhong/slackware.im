@@ -5,11 +5,11 @@
 *** 消息
 *** 搜索
 *** 优化
-*** SlackDEV
 *** 客户端
 **** iOS
 **** WP8
 **** Android
+*** SlackDEV
 ** SlackParty
 **** DONE 增加组织者的联系方式
      CLOSED: [2014-10-02 四 21:50]
