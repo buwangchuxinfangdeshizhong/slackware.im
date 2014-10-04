@@ -1,0 +1,29 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}我参加的SlackParty{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>SlackParty<br />
+    <small>
+      我参加的Slackware用户的聚会
+    </small>
+  </h2>
+</div>
+
+<div class="box">
+  {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+  <table class="table">
+    {% for entity in entities %}
+    <tr>
+      <td><a href="{{path('slackparty_show',{id:entity.id})}}">{{entity.title}}</a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <td>您还没有发起SlackParty活动</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {{knp_pagination_render(entities)}}
+</div>
+{% endblock %}

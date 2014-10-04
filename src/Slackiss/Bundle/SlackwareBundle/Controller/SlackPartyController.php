@@ -143,4 +143,48 @@ class SlackPartyController extends Controller
         }
         return $this->redirect($this->generateUrl('slackparty_show',array('id'=>$id)));
     }
+
+    /**
+     * @Route("/member/slackparty/my",name="member_slackparty_my")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function mySlackpartyAction(Request $request)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $query = $repo->createQueryBuilder('e')
+                      ->where('e.member = :member')
+                      ->orderBy('e.id','desc')
+                      ->setParameters([':member'=>$current->getId()])
+                      ->getQuery();
+        $page = $request->query->get('page',1);
+        $param['entities'] = $this->get('knp_paginator')->paginate($query,$page,50);
+        return $param;
+    }
+
+    /**
+     * @Route("/member/slackparty/myjoin",name="member_slackparty_myjoin")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function myJoinSlackpartyAction(Request $request)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo  = $em->getRepository('SlackissSlackwareBundle:Event');
+        $query = $repo->createQueryBuilder('e')
+                      ->orderBy('e.id','desc')
+                      ->innerJoin('e.players','m')
+                      ->where('m = :member')
+                      ->setParameters([':member'=>$current->getId()])
+                      ->distinct()
+                      ->getQuery();
+        $page = $request->query->get('page',1);
+        $param['entities'] = $this->get('knp_paginator')->paginate($query,$page,50);
+        return $param;
+    }
 }

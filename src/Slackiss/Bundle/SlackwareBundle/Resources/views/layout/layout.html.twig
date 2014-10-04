@@ -125,8 +125,6 @@
             <div class="box mini-bold left-nav">
               {% endif %}
 
-
-
               {% if nav_active|default('')== 'nav_active_knowledge' %}
             </div>
             <div class="box mini-bold left-nav">
@@ -162,9 +160,6 @@
             </div>
             <div class="box mini-bold left-nav">
               {% endif %}
-
-
-
               {% if nav_active|default('')== 'nav_active_faq' %}
             </div>
             <div class="box mini-bold left-nav">
@@ -240,6 +235,16 @@
                   <span class="left-sub-nav-item">
                     <a href="{{path('member_slackparty_new')}}">创建活动</a>
                   </span>
+                  {% if app.user %}
+                  <br />
+                  <span class="left-sub-nav-item">
+                    <a href="{{path('member_slackparty_my')}}">我发起的</a>
+                  </span>
+                  <br />
+                  <span class="left-sub-nav-item">
+                    <a href="{{ path('member_slackparty_myjoin') }}">我参加的</a>
+                  </span>
+                  {% endif %}
                 </div>
                 {% endif %}
               </span>
