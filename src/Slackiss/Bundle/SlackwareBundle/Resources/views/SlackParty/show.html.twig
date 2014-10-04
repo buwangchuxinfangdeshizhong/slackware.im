@@ -59,6 +59,11 @@
       <tr>
         <td colspan=2>
           {{form(form)}}
+          {% if event.isExpired %}
+          补充
+          {% else %}
+          编辑
+          {% endif %}
         </td>
       </tr>
     </table>

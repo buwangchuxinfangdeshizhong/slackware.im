@@ -82,12 +82,21 @@ class Event
      * @var string
      * @Assert\NotBlank(message="活动介绍不能为空")
      * @Assert\Length(
-     *     max="5000",
+     *     max=5000,
      *     maxMessage="活动介绍不能超过5000个字"
      * )
      * @ORM\Column(name="content", type="text",nullable=true)
      */
     private $content;
+
+    /**
+     * @Assert\Length(
+     *    max=3000,
+     *    maxMessage="活动补充不能超过5000个字"
+     * )
+     * @ORM\Column(name="append",type="text",nullable=true)
+     */
+    private $append;
 
     /**
      * @ORM\ManyToOne(targetEntity="Member")
@@ -443,5 +452,34 @@ class Event
     public function getLastApplyDate()
     {
         return $this->lastApplyDate;
+    }
+
+    public function isExpired()
+    {
+        $now = new \DateTime();
+        reTurn !$this->lastApplyDate>$now;
+    }
+
+    /**
+     * Set append
+     *
+     * @param string $append
+     * @return Event
+     */
+    public function setAppend($append)
+    {
+        $this->append = $append;
+
+        return $this;
+    }
+
+    /**
+     * Get append
+     *
+     * @return string 
+     */
+    public function getAppend()
+    {
+        return $this->append;
     }
 }
