@@ -60,7 +60,7 @@
         <td colspan=2>
           {{form(form)}}
           {% if event.isExpired %}
-          <a href="">补充</a>
+          <a class="hide" href="#" id="event-append">补充</a>
           {% else %}
           <a href="{{path('member_slackparty_edit',{id:event.id})}}">编辑</a>
           {% endif %}
