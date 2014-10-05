@@ -1,0 +1,25 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}编辑SlackParty{% endblock %}
+
+{% block body %}
+<div class="page-header">
+  <h2>SlackParty<br />
+    <small>
+      编辑Slackware用户的聚会
+    </small>
+  </h2>
+</div>
+
+<div class="row-fluid">
+  {% include "SlackissSlackwareBundle:include:notice.html.twig" %}
+  <div class="span8 offset2 box slackbook-box">
+    <style>
+      .last-apply-date>select{
+      width: 25%;
+      }
+    </style>
+    {{form(form)}}
+  </div>
+</div>
+{% endblock %}

@@ -8,6 +8,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EventType extends AbstractType
 {
+
+    protected $isEdit;
+
+    public function __construct($isEdit = false)
+    {
+        $this->isEdit = $isEdit;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -21,7 +29,7 @@ class EventType extends AbstractType
             ))
             ->add('image','file',array(
                 'label'=>'活动封面',
-                'required'=>true,
+                'required'=>!$this->isEdit,
                 'attr'=>array(
 
                 )
@@ -74,7 +82,7 @@ class EventType extends AbstractType
                     'class'=>'input-block-level last-apply-date',
                 ]
             ])
-            ->add('创建活动','submit',array(
+            ->add('保存活动','submit',array(
                 'attr'=>array(
                     'style'=>'margin-top:20px'
                 )

@@ -62,7 +62,7 @@
           {% if event.isExpired %}
           <a href="">补充</a>
           {% else %}
-          <a href="">编辑</a>
+          <a href="{{path('member_slackparty_edit',{id:event.id})}}">编辑</a>
           {% endif %}
         </td>
       </tr>

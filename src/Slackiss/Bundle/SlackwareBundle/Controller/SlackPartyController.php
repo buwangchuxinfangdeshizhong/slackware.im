@@ -90,6 +90,69 @@ class SlackPartyController extends Controller
     }
 
     /**
+     * @Route("/member/slackparty/edit/{id}",name="member_slackparty_edit")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function editAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if($event->isExpired()){
+            throw $this->createNotFoundException('找不到这个页面,可能当前活动已经超过可编辑日期');
+        }
+        $eventType = new EventType(true);
+        $form = $this->createForm($eventType,$event,[
+            'action'=>$this->generateUrl('member_slackparty_update',['id'=>$id]),
+            'method'=>'POST'
+        ]);
+        $param['event'] = $event;
+        $param['form'] = $form->createView();
+        return $param;
+    }
+
+    /**
+     * @Route("/member/slackparty/update/{id}",name="member_slackparty_update")
+     * @Method({"PUT","POST"})
+     * @Template("SlackissSlackwareBundle:SlackParty:edit.html.twig")
+     */
+    public function updateAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if($event->isExpired()){
+            throw $this->createNotFoundException('找不到这个页面,可能当前活动已经超过可编辑日期');
+        }
+        $eventType = new EventType(true);
+        $form = $this->createForm($eventType,$event,[
+            'action'=>$this->generateUrl('member_slackparty_update',['id'=>$id]),
+            'method'=>'POST'
+        ]);
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em->persist($event);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','保存成功');
+            return $this->redirect($this->generateUrl('slackparty_show',['id'=>$id]));
+        }
+        $param['event'] = $event;
+        $param['form'] = $form->createView();
+        return $param;
+    }
+
+    /**
      * @Route("/slackparty/{id}",name="slackparty_show")
      * @Method({"GET"})
      * @Template()
