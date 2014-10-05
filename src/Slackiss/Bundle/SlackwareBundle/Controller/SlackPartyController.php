@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Slackiss\Bundle\SlackwareBundle\Entity\Member;
 use Slackiss\Bundle\SlackwareBundle\Entity\Event;
@@ -88,6 +89,39 @@ class SlackPartyController extends Controller
         $param['form']=$form->createView();
         return $param;
     }
+
+    /**
+     * @Route("/member/slackparty/append/{id}",name="member_slackparty_append")
+     * @Method({"POST"})
+     * @Template()
+     */
+    public function appendAction(Request $request,$id)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if(!$event->isExpired()){
+            throw $this->createNotFoundException('活动停止报名后才可以做补充');
+        }
+        $append = $request->request->query('append');
+        if($append){
+            if(mb_strlen($append)>5000){
+                $append = mb_substr($append,0,5000);
+            }
+            $event->setAppend($append);
+            $em->persist($event);
+            $em->flush();
+        }
+
+        return new JsonResponse('success');
+    }
+
+
 
     /**
      * @Route("/member/slackparty/edit/{id}",name="member_slackparty_edit")

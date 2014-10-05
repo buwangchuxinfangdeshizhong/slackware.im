@@ -457,7 +457,7 @@ class Event
     public function isExpired()
     {
         $now = new \DateTime();
-        reTurn !$this->lastApplyDate>$now;
+        reTurn !$this->lastApplyDate<$now;
     }
 
     /**
@@ -476,7 +476,7 @@ class Event
     /**
      * Get append
      *
-     * @return string 
+     * @return string
      */
     public function getAppend()
     {
