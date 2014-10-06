@@ -15,17 +15,15 @@ class EventPictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image')
-            ->add('created')
-            ->add('modified')
-            ->add('status')
-            ->add('enabled')
-            ->add('remark')
-            ->add('description')
-            ->add('event')
+            ->add('attach',null,[
+                'label'=>'活动照片'
+            ])
+            ->add('submit','submit',[
+                'label'=>'上传'
+            ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
