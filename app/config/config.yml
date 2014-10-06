@@ -133,6 +133,9 @@ knp_gaufrette:
         party_adapter:
             local:
                 directory: %kernel.root_dir%/../web/assets/party
+        partyimages_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/assets/partyimages
         desk_adapter:
             local:
                 directory: %kernel.root_dir%/../web/assets/desk
@@ -149,6 +152,8 @@ knp_gaufrette:
             adapter:    avatar_adapter
         party_fs:
             adapter:    party_adapter
+        partyimages_fs:
+            adapter:    partyimages_adapter
         desk_fs:
             adapter:    desk_adapter
         discuss_fs:
@@ -178,6 +183,12 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             uri_prefix: /assets/party
             upload_destination: party_fs
+            delete_on_remove: true
+            inject_on_load: true
+        party_images:
+            namer: vich_uploader.namer_uniqid
+            uri_prefix: /assets/partyimages
+            upload_destination: partyimages_fs
             delete_on_remove: true
             inject_on_load: true
         desk_image:

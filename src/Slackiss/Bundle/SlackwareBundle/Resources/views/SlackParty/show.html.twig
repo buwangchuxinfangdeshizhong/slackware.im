@@ -60,7 +60,8 @@
         <td colspan=2>
           {{form(form)}}
           {% if event.isExpired %}
-          <a class="hide" href="#" id="event-append">补充</a>
+          <a class="" href="{{path('member_slackparty_append_page',{id:event.id})}}" id="event-append">补充</a>
+          <a class="" href="">上传照片</a>
           {% else %}
           <a href="{{path('member_slackparty_edit',{id:event.id})}}">编辑</a>
           {% endif %}
@@ -84,6 +85,11 @@
       {{m.username}}
     {% endif %}
     {% endfor%}
+    <hr />
+    {% if event.append %}
+    <h3>活动补充</h3>
+    {{event.append|nl2br}}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -91,9 +91,31 @@ class SlackPartyController extends Controller
     }
 
     /**
+     * @Route("/member/slackparty/appendpage/{id}",name="member_slackparty_append_page")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function appendPageAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if(!$event->isExpired()){
+            throw $this->createNotFoundException('活动停止报名后才可以做补充');
+        }
+        $param['event'] = $event;
+        return $param;
+    }
+
+    /**
      * @Route("/member/slackparty/append/{id}",name="member_slackparty_append")
      * @Method({"POST"})
-     * @Template()
+     * @Template("SlackissSlackwareBundle:SlackParty:appendPage.html.twig")
      */
     public function appendAction(Request $request,$id)
     {
@@ -108,7 +130,7 @@ class SlackPartyController extends Controller
         if(!$event->isExpired()){
             throw $this->createNotFoundException('活动停止报名后才可以做补充');
         }
-        $append = $request->request->query('append');
+        $append = $request->request->get('append');
         if($append){
             if(mb_strlen($append)>5000){
                 $append = mb_substr($append,0,5000);
@@ -116,9 +138,11 @@ class SlackPartyController extends Controller
             $event->setAppend($append);
             $em->persist($event);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success','保存成功');
+            return $this->redirect($this->generateUrl('slackparty_show',['id'=>$id]));
         }
-
-        return new JsonResponse('success');
+        $param['event'] = $event;
+        return $param;
     }
 
 
