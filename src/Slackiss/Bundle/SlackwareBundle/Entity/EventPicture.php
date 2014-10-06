@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * EventPicture
- *
+ * @Vich\Uploadable
  * @ORM\Table(name="event_picture")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\EventPictureRepository")
  */

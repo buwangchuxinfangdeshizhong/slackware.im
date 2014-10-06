@@ -119,7 +119,10 @@ liip_imagine:
             quality: 75
             filters:
                 relative_resize: { widen: 600 }
-
+        event_picture:
+            quality: 75
+            filters:
+                thumbnail: { size: [128, 128], mode: outbound }
 
 knp_gaufrette:
     stream_wrapper: ~

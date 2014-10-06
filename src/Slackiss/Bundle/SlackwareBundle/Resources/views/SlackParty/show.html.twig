@@ -59,12 +59,14 @@
       <tr>
         <td colspan=2>
           {{form(form)}}
-          {% if event.isExpired %}
+
+          {% if event.isExpired and app.user and app.user.id == event.member.id%}
           <a class="" href="{{path('member_slackparty_append_page',{id:event.id})}}" id="event-append">补充</a>
-          <a class="" href="">上传照片</a>
+          <a href="{{path('member_slackparty_eventimage',{id:event.id})}}">上传照片</a>
           {% else %}
           <a href="{{path('member_slackparty_edit',{id:event.id})}}">编辑</a>
           {% endif %}
+
         </td>
       </tr>
     </table>
@@ -92,4 +94,25 @@
     {% endif %}
   </div>
 </div>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+  {% for image in images %}
+  <a href="{{vich_uploader_asset(image,'attach')}}" target="_blank" class="colorbox">
+    <img src="{{vich_uploader_asset(image,'attach')|imagine_filter('event_picture')}}" class="img-rounded" />
+  </a>
+  {% endfor %}
+  <div>
+</div>
+{% endblock %}
+
+{% block top %}
+<link href="{{asset('bundles/slackissslackware/vendor/colorbox-master/example1/colorbox.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block bottom %}
+<script src="{{asset('bundles/slackissslackware/vendor/colorbox-master/jquery.colorbox-min.js')}}"></script>
+<script>
+  $('a.colorbox').colorbox();
+</script>
 {% endblock %}

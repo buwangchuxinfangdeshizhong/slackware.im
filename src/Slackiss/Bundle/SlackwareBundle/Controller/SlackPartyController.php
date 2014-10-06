@@ -13,7 +13,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Slackiss\Bundle\SlackwareBundle\Entity\Member;
 use Slackiss\Bundle\SlackwareBundle\Entity\Event;
+use Slackiss\Bundle\SlackwareBundle\Entity\EventPicture;
 use Slackiss\Bundle\SlackwareBundle\Form\EventType;
+use Slackiss\Bundle\SlackwareBundle\Form\EventPictureType;
 
 
 class SlackPartyController extends Controller
@@ -145,8 +147,6 @@ class SlackPartyController extends Controller
         return $param;
     }
 
-
-
     /**
      * @Route("/member/slackparty/edit/{id}",name="member_slackparty_edit")
      * @Method({"GET"})
@@ -226,6 +226,7 @@ class SlackPartyController extends Controller
         }
         $param['event']=$event;
         $now = new \DateTime();
+        $param['images'] = $this->getEventImages($event);
         if($now<$event->getLastApplyDate()){
             $param['form']=$this->createFormBuilder([])
                                 ->setAction($this->generateUrl('member_slackparty_join',array('id'=>$event->getId())))
@@ -240,6 +241,13 @@ class SlackPartyController extends Controller
                                 ->getForm()->createView();
         }
         return $param;
+    }
+
+    protected function getEventImages($event)
+    {
+        return $this->getDoctrine()->getManager()
+                    ->getRepository('SlackissSlackwareBundle:EventPicture')
+                    ->findBy(['event'=>$event->getId()]);
     }
 
     /**
@@ -308,4 +316,79 @@ class SlackPartyController extends Controller
         $param['entities'] = $this->get('knp_paginator')->paginate($query,$page,50);
         return $param;
     }
+
+    /**
+     * @Route("/member/slackparty/eventimage/{id}",name="member_slackparty_eventimage")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function eventImageAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if(!$event->isExpired()){
+            throw $this->createNotFoundException('活动停止报名后才可以上传活动照片');
+        }
+        $param['event'] = $event;
+
+        $formType = new EventPictureType();
+        $eventPicture = new EventPicture();
+        $eventPicture->setEvent($event);
+        $form = $this->createForm($formType,$eventPicture,[
+            'method'=>'POST',
+            'action'=>$this->generateUrl('member_slackparty_eventimage_upload',['id'=>$id])
+        ]);
+
+        $param['form'] = $form->createView();
+
+        return $param;
+    }
+
+    /**
+     * @Route("/member/slackparty/eventimageupload/{id}",name="member_slackparty_eventimage_upload")
+     * @Method({"POST"})
+     * @Template("SlackissSlackwareBundle:SlackParty:eventImage.html.twig")
+     */
+    public function eventImageUploadAction(Request $request,$id)
+    {
+        $param=array('nav_active'=>'nav_active_slackparty');
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Event');
+        $event = $repo->find($id);
+        if(!$event||$current->getId()!==$event->getMember()->getId()){
+            throw $this->createNotFoundException('没找到这个活动');
+        }
+        if(!$event->isExpired()){
+            throw $this->createNotFoundException('活动停止报名后才可以上传活动照片');
+        }
+        $param['event'] = $event;
+
+        $formType = new EventPictureType();
+        $eventPicture = new EventPicture();
+        $eventPicture->setEvent($event);
+        $form = $this->createForm($formType,$eventPicture,[
+            'method'=>'POST',
+            'action'=>$this->generateUrl('member_slackparty_eventimage_upload',['id'=>$id])
+        ]);
+
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em->persist($eventPicture);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','上传成功');
+            return $this->redirect($this->generateUrl('member_slackparty_eventimage',['id'=>$id]));
+        }
+
+        $param['form'] = $form->createView();
+
+        return $param;
+    }
+
 }
