@@ -230,6 +230,7 @@ class SlackPartyController extends Controller
         $now = new \DateTime();
         $param['images'] = $this->getEventImages($event);
         $page  =  $request->query->get('page',1);
+        $limit = 50;
         $param['comments'] = $this->getEventComments($event, $page, $limit);
         if($now<$event->getLastApplyDate()){
             $param['form']=$this->createFormBuilder([])
@@ -255,7 +256,7 @@ class SlackPartyController extends Controller
         $type = new EventCommentType();
         $form = $this->createForm($type, $comment,[
             'method'=>'POST',
-            'action'=>$this->generateUrl('member_event_comment')
+            'action'=>$this->generateUrl('member_event_comment',['id'=>$comment->getEvent()->getId()])
         ]);
         return $form;
     }
@@ -269,6 +270,7 @@ class SlackPartyController extends Controller
         $param =  array();
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository('SlackissSlackwareBundle:Event')->find($id);
+        $current = $this->get('security.context')->getToken()->getUser();
         if(!$event){
             throw $this->createNotFoundException('没找到这个SlackParty');
         }
@@ -276,6 +278,7 @@ class SlackPartyController extends Controller
         $comment->setEvent($event);
         $comment->setMember($current);
         $form = $this->getCommentForm($comment);
+        $form->handleRequest($request);
         if($form->isValid()){
             $em->persist($comment);
             $em->flush();
@@ -283,7 +286,7 @@ class SlackPartyController extends Controller
         }else{
             $this->get('session')->getFlashBag()->add('danger','请输入评论内容');
         }
-        return $this->redirect($this->generateUrl('event_show',['id'=>$id]));
+        return $this->redirect($this->generateUrl('slackparty_show',['id'=>$id]));
     }
 
     protected function getEventComments($event, $page, $limit)
