@@ -3,15 +3,25 @@
 namespace Slackiss\Bundle\SlackwareBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * EventComment
  *
- * @ORM\Table()
+ * @ORM\Table(name="event_comment")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\EventCommentRepository")
  */
 class EventComment
 {
+
+    public function __construct()
+    {
+        $time          = new \DateTime();
+        $this->created = $time;
+        $this->modified = $time;
+        $this->status =true;
+        $this->enabled = true;
+    }
+
     /**
      * @var integer
      *
@@ -24,20 +34,22 @@ class EventComment
     /**
      * @var string
      *
-     * @ORM\Column(name="member", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Member")
+     * @ORM\JoinColumn(name="member_id",referencedColumnName="id")
      */
     private $member;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="event", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumn(name="event_id",referencedColumnName="id")
      */
     private $event;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="评论内容不能为空")
      * @ORM\Column(name="content", type="text")
      */
     private $content;
@@ -73,7 +85,7 @@ class EventComment
     /**
      * @var string
      *
-     * @ORM\Column(name="remark", type="text")
+     * @ORM\Column(name="remark", type="text",nullable=true)
      */
     private $remark;
 
@@ -81,7 +93,7 @@ class EventComment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,7 +116,7 @@ class EventComment
     /**
      * Get member
      *
-     * @return string 
+     * @return string
      */
     public function getMember()
     {
@@ -127,7 +139,7 @@ class EventComment
     /**
      * Get event
      *
-     * @return string 
+     * @return string
      */
     public function getEvent()
     {
@@ -150,7 +162,7 @@ class EventComment
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -173,7 +185,7 @@ class EventComment
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -196,7 +208,7 @@ class EventComment
     /**
      * Get modified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModified()
     {
@@ -219,7 +231,7 @@ class EventComment
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -242,7 +254,7 @@ class EventComment
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -265,7 +277,7 @@ class EventComment
     /**
      * Get remark
      *
-     * @return string 
+     * @return string
      */
     public function getRemark()
     {
