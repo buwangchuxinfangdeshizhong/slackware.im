@@ -13,8 +13,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Slackiss\Bundle\SlackwareBundle\Entity\Member;
 use Slackiss\Bundle\SlackwareBundle\Entity\Event;
+use Slackiss\Bundle\SlackwareBundle\Entity\EventComment;
 use Slackiss\Bundle\SlackwareBundle\Entity\EventPicture;
 use Slackiss\Bundle\SlackwareBundle\Form\EventType;
+use Slackiss\Bundle\SlackwareBundle\Form\EventCommentType;
 use Slackiss\Bundle\SlackwareBundle\Form\EventPictureType;
 
 
@@ -227,6 +229,8 @@ class SlackPartyController extends Controller
         $param['event']=$event;
         $now = new \DateTime();
         $param['images'] = $this->getEventImages($event);
+        $page  =  $request->query->get('page',1);
+        $param['comments'] = $this->getEventComments($event, $page, $limit);
         if($now<$event->getLastApplyDate()){
             $param['form']=$this->createFormBuilder([])
                                 ->setAction($this->generateUrl('member_slackparty_join',array('id'=>$event->getId())))
@@ -240,7 +244,57 @@ class SlackPartyController extends Controller
                                 ->add('报名已截止','submit')
                                 ->getForm()->createView();
         }
+        $comment = new EventComment();
+        $comment->setEvent($event);
+        $param['commentForm'] = $this->getCommentForm($comment)->createView();
         return $param;
+    }
+
+    protected function getCommentForm($comment)
+    {
+        $type = new EventCommentType();
+        $form = $this->createForm($type, $comment,[
+            'method'=>'POST',
+            'action'=>$this->generateUrl('member_event_comment')
+        ]);
+        return $form;
+    }
+
+    /**
+     * @Route("/member/event/comment/{id}",name="member_event_comment")
+     * @Method({"POST"})
+     */
+    public function eventCommentAction(Request $request,$id)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('SlackissSlackwareBundle:Event')->find($id);
+        if(!$event){
+            throw $this->createNotFoundException('没找到这个SlackParty');
+        }
+        $comment = new EventComment();
+        $comment->setEvent($event);
+        $comment->setMember($current);
+        $form = $this->getCommentForm($comment);
+        if($form->isValid()){
+            $em->persist($comment);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success','评论成功');
+        }else{
+            $this->get('session')->getFlashBag()->add('danger','请输入评论内容');
+        }
+        return $this->redirect($this->generateUrl('event_show',['id'=>$id]));
+    }
+
+    protected function getEventComments($event, $page, $limit)
+    {
+        $em   = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('SlackissSlackwareBundle:EventComment');
+        $query = $repo->createQueryBuilder('c')
+                      ->where('c.event = :event and c.status = true and c.enabled = true')
+                      ->setParameters([':event'=>$event->getId()])
+                      ->getQuery();
+        return $this->get('knp_paginator')->paginate($query, $page, $limit);
     }
 
     protected function getEventImages($event)
