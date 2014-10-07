@@ -15,17 +15,20 @@ class EventCommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('member')
-            ->add('event')
-            ->add('content')
-            ->add('created')
-            ->add('modified')
-            ->add('status')
-            ->add('enabled')
-            ->add('remark')
+            ->add('content','textarea',[
+                'label'=>'发表评论',
+                'required'=>true,
+                'attr'=>array(
+                    'class'=>'input-block-level',
+                    'rows'=>6
+                )
+            ])
+            ->add('submit','submit',[
+                'label'=>'保存'
+            ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
