@@ -8,6 +8,7 @@
         <parameter key="slackiss_slackware.mail.class">Slackiss\Bundle\SlackwareBundle\Service\MailService</parameter>
         <parameter key="slackiss_slackware.post.class">Slackiss\Bundle\SlackwareBundle\Service\PostService</parameter>
         <parameter key="slackiss_slackware.notice.class">Slackiss\Bundle\SlackwareBundle\Service\NoticeService</parameter>
+        <parameter key="slackiss_slackware.message.class">Slackiss\Bundle\SlackwareBundle\Service\MessageService</parameter>
     </parameters>
 
     <services>
@@ -16,6 +17,10 @@
             <argument type="service" id="templating">template</argument>
         </service>
         <service id="slackiss_slackware.notice" class="%slackiss_slackware.notice.class%">
+            <argument type="service" id="doctrine.orm.entity_manager">em</argument>
+            <argument type="service" id="knp_paginator">paginator</argument>
+        </service>
+        <service id="slackiss_slackware.message" class="%slackiss_slackware.message.class%">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
             <argument type="service" id="knp_paginator">paginator</argument>
         </service>
