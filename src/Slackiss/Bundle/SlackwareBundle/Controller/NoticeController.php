@@ -10,6 +10,7 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Slackiss\Bundle\SlackwareBundle\Form\NoticeEmailSettingType;
+
 /**
  * @Route("/notice")
  */
@@ -24,6 +25,11 @@ class NoticeController extends Controller
     public function indexAction(Request $request)
     {
         $param =  ['nav_active'=>'nav_active_notice'];
+        $messageService = $this->get('slackiss_slackware.message');
+        $current = $this->get('security.context')->getToken()->getUser();
+        $page    = $request->query->get('page',1);
+        $messages = $messageService->getMessages($current,$page,50);
+        $param['messages'] = $messages;
         return $param;
     }
 
