@@ -7,11 +7,21 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table()
+ * @ORM\Table(name="message")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\MessageRepository")
  */
 class Message
 {
+    public function __construct()
+    {
+        $this->created  = new \DateTime();
+        $this->modified = $this->created;
+        $this->status   = true;
+        $this->enabled  = true;
+        $this->remark   = "";
+        $this->read     = false;
+        $this->mail     = false;
+    }
     /**
      * @var integer
      *
@@ -24,7 +34,8 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="member", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Member")
+     * @ORM\JoinColumn(name="member_id",referencedColumnName="id")
      */
     private $member;
 
@@ -52,14 +63,14 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="action", type="string", length=255)
+     * @ORM\Column(name="action", type="string", length=255,nullable=true)
      */
     private $action;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="params", type="text")
+     * @ORM\Column(name="params", type="text",nullable=true)
      */
     private $params;
 
