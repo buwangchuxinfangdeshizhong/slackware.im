@@ -17,7 +17,7 @@ class MessageService {
         $this->em        = $em;
         $this->paginator = $paginator;
         $this->mail      = $mail;
-        $this->route = $route;
+        $this->route     = $route;
     }
 
     public function getMessages($member,$page=1,$limit=50)
@@ -59,9 +59,9 @@ class MessageService {
     {
         $repo = $this->em->getRepository('SlackissSlackwareBundle:Message');
         $query = $repo->createQueryBuilder('m')
-            ->where('m.mail = false')
+                      ->where('m.mail = false')
                       ->getQuery();
-        $messages = $query->getResults();
+        $messages = $query->getResult();
         foreach($messages as $message){
             $subject = '[slackware.im] 您收到了新的消息，请注意查收';
             $content = [];

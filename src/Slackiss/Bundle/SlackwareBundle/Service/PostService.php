@@ -51,9 +51,6 @@ class PostService
         return $query->getResult();
     }
 
-    /**
-     * 刚看到自己几年前这段代码,真烂
-     */
     public function notify($post)
     {
         $lastComment = $this->getLastComment($post);
@@ -85,7 +82,7 @@ class PostService
             $this->req->getBasePath().
             $this->route->generate('post_show',array('id'=>$post->getId()));
         foreach($emails as $to){
-            $message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
+            //$message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
             $this->mail->send($message);
         }
     }
