@@ -25,6 +25,7 @@
             <argument type="service" id="knp_paginator">paginator</argument>
             <argument type="service" id="slackiss_slackware.mail">mail</argument>
             <argument type="service" id="router">route</argument>
+            <argument type="service" id="slackiss_slackware.notice">noticeService</argument>
         </service>
         <service id="slackiss_slackware.post" class="%slackiss_slackware.post.class%" scope="request">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>

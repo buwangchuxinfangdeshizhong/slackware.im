@@ -11,13 +11,15 @@ class MessageService {
     protected $paginator;
     protected $mail;
     protected $route;
+    protected $noticeService;
 
-    public function __construct($em,$paginator,$mail, $route)
+    public function __construct($em,$paginator,$mail, $route,$noticeService)
     {
         $this->em        = $em;
         $this->paginator = $paginator;
         $this->mail      = $mail;
         $this->route     = $route;
+        $this->noticeService = $noticeService;
     }
 
     public function getMessages($member,$page=1,$limit=50)
@@ -75,8 +77,9 @@ class MessageService {
             $noticeSetting = $this->noticeService->getSetting($member);
             if($noticeSetting->getSendEmail()){
                 foreach($noticeSetting->getEmails() as $email){
-                    $message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
-                    $this->mail->send($message);
+                    $msg = $this->mail->buildMessage($email,$subject,$content,'postcomment');
+                    $this->mail->send($msg);
+
                 }
             }
             $message->setMail(true);
