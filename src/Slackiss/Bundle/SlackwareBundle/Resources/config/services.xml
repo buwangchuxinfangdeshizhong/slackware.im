@@ -32,6 +32,7 @@
             <argument type="service" id="security.context">security</argument>
             <argument type="service" id="router">route</argument>
             <argument type="service" id="request">req</argument>
+            <argument type="service" id="slackiss_slackware.message">messageService</argument>
         </service>
         <service id="slackiss_slackware.foshwiuserprovider" class="Slackiss\Bundle\SlackwareBundle\Service\FOSHWIUserProvider">
             <argument type="service" id="fos_user.user_manager"></argument>

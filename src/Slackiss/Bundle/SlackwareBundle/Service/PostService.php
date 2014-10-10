@@ -13,14 +13,16 @@ class PostService
     protected $security;
     protected $route;
     protected $req;
+    protected $messageService;
 
-    public function __construct($em,$mail,$security,$route,$req)
+    public function __construct($em,$mail,$security,$route,$req,$messageService)
     {
         $this->mail = $mail;
         $this->em   = $em;
         $this->security = $security;
         $this->route = $route;
         $this->req = $req;
+        $this->messageService = $messageService;
     }
 
     public function getLastComment($post)
@@ -53,37 +55,24 @@ class PostService
 
     public function notify($post)
     {
-        $lastComment = $this->getLastComment($post);
-        $currentEmail = "";
-        if($lastComment){
-            $currentEmail = $lastComment->getMember()->getEmail();
-        }
-        $emails = array();
-        if($currentEmail!=$post->getMember()->getEmail()){
-            $emails[] = $post->getMember()->getEmail();
-        }
-        $comments = $post->getComments();
-        foreach($comments as $c){
-            $email = $c->getMember()->getEmail();
-            if(!in_array($email,$emails)&&$email!=$currentEmail){
-                $emails[] = $email;
-            }
-        }
+        $postEmailNotices = $this->em->getRepository('SlackissSlackwareBundle:PostEmailNotice')
+                            ->findBy(['post'=>$post->getId()]);
 
-        $subject = '[slackware.im] 您参与的帖子\"'.$post->getTitle().'"有了新回复';
-        $content = array();
-        $content['post']=$post;
-        /**
-           app.request.scheme :// app.request.httpHost app.request.basePath
-        */
-        $content['url'] =
+        $url =
             $this->req->getScheme()."://".
             $this->req->getHttpHost().
             $this->req->getBasePath().
             $this->route->generate('post_show',array('id'=>$post->getId()));
-        foreach($emails as $to){
-            //$message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
-            $this->mail->send($message);
+        $content = '您关注的帖子\"'.$post->getTitle().'"有了新回复';
+        $content = $content.' 您可以点击下面的链接查看： ';
+        $content = $content.$url;
+
+        /**
+           app.request.scheme :// app.request.httpHost app.request.basePath
+        */
+        foreach($postEmailNotices as $notice){
+            $member = $notice->getMember();
+            $this->messageService->pushMessage($member, $content,'post_show',['id'=>$post->getId()]);
         }
     }
 

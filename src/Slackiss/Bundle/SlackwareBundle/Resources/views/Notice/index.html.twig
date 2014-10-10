@@ -13,15 +13,16 @@
 
 <div class="related-sites box">
   <div class="row-fluid">
-    {% for message in entities %}
+    {% for message in messages %}
     <blockquote>
       {{message.content}}
       {% if message.action %}
       <a href="{{path(message.action,message.params)}}" target="_blank">查看</a>
       {% endif %}
+      <span class="label label=default">{{time_diff(message.created)}}</span>
     </blockquote>
     {% endfor %}
-    {{knp_pagination_render(entities)}}
+    {{knp_pagination_render(messages)}}
   </div>
 </div>
 {% endblock %}
