@@ -9,11 +9,15 @@ class MessageService {
 
     protected $em;
     protected $paginator;
+    protected $mail;
+    protected $route;
 
-    public function __construct($em,$paginator)
+    public function __construct($em,$paginator,$mail, $route)
     {
         $this->em        = $em;
         $this->paginator = $paginator;
+        $this->mail      = $mail;
+        $this->route = $route;
     }
 
     public function getMessages($member,$page=1,$limit=50)
@@ -59,10 +63,25 @@ class MessageService {
                       ->getQuery();
         $messages = $query->getResults();
         foreach($messages as $message){
-            //send email
-            //message->setMail(true);
-            //$this->em->persist($message);
-            //$this->em->flush();
+            $subject = '[slackware.im] 您收到了新的消息，请注意查收';
+            $content = [];
+            $content['message']=$message;
+            if($message->getAction()){
+                $content['url'] ='http://slackware.im/'.
+                    $this->route->generate($message->getAction(),$message->getParams());
+            }
+
+            $member = $message->getMember();
+            $noticeSetting = $this->noticeService->getSetting($member);
+            if($noticeSetting->getSendEmail()){
+                foreach($noticeSetting->getEmails() as $email){
+                    $message = $this->mail->buildMessage($to,$subject,$content,'postcomment');
+                    $this->mail->send($message);
+                }
+            }
+            $message->setMail(true);
+            $this->em->persist($message);
+            $this->em->flush();
         }
     }
 

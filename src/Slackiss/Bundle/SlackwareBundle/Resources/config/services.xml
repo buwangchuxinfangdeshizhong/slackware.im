@@ -23,6 +23,7 @@
         <service id="slackiss_slackware.message" class="%slackiss_slackware.message.class%">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
             <argument type="service" id="knp_paginator">paginator</argument>
+            <argument type="service" id="slackiss_slackware.mail">mail</argument>
         </service>
         <service id="slackiss_slackware.post" class="%slackiss_slackware.post.class%" scope="request">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
