@@ -21,6 +21,7 @@ class Item
         $this->status = true;
         $this->enabled = true;
         $this->remark = "";
+        $this->version = 1;
     }
 
     /**
@@ -35,20 +36,22 @@ class Item
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="ItemCategory")
+     * @ORM\JoinColumn(name="category_id",referencedColumnName="id")
      */
     private $category;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank(message="请输入标题")
+     * @Assert\Length(max=500, maxMessage="标题不能超过500个字")
+     * @ORM\Column(name="title", type="string", length=500)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="请输入内容")
      * @ORM\Column(name="content", type="text")
      */
     private $content;
@@ -62,7 +65,7 @@ class Item
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="请输入知识库变更日志")
      * @ORM\Column(name="changelog", type="text")
      */
     private $changelog;
@@ -168,6 +171,11 @@ class Item
     public function getVersion()
     {
         return $this->version;
+    }
+
+    public function updateVersion()
+    {
+        $this->version = $this->version+1;
     }
 
     /**
