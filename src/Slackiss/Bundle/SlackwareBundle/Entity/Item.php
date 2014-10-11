@@ -3,15 +3,26 @@
 namespace Slackiss\Bundle\SlackwareBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Item
  *
- * @ORM\Table()
+ * @ORM\Table(name="item")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SlackwareBundle\Entity\ItemRepository")
  */
 class Item
 {
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->modified = $this->created;
+        $this->status = true;
+        $this->enabled = true;
+        $this->remark = "";
+    }
+
     /**
      * @var integer
      *
@@ -60,7 +71,7 @@ class Item
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +94,7 @@ class Item
     /**
      * Get category
      *
-     * @return string 
+     * @return string
      */
     public function getCategory()
     {
@@ -106,7 +117,7 @@ class Item
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -129,7 +140,7 @@ class Item
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -152,7 +163,7 @@ class Item
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -175,7 +186,7 @@ class Item
     /**
      * Get changelog
      *
-     * @return string 
+     * @return string
      */
     public function getChangelog()
     {
