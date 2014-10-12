@@ -27,4 +27,3 @@ class AboutController extends Controller
         return $param;
     }
 }
-

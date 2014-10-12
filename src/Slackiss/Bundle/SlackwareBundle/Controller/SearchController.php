@@ -23,7 +23,7 @@ class SearchController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $param =  array();
+        $param=array('nav_active'=>'nav_active_search');
         return $param;
     }
 }
