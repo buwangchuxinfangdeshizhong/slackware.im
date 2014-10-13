@@ -65,11 +65,14 @@ class Item
     private $version;
 
     /**
+     * 设置当前Item是否为最新版本，以方便检索
      * @ORM\Column(name="last", type="boolean")
      */
     private $last;
 
     /**
+     * 第一个Item，则永远保持top为空，并且version==1
+     * 所有version大于1的Item，其top全部指向top=null的Item
      * @ORM\ManyToOne(targetEntity="Item")
      * @ORM\JoinColumn(name="top_id",referencedColumnName="id",nullable=true)
      */
@@ -251,7 +254,7 @@ class Item
     /**
      * Get top
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Item 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Item
      */
     public function getTop()
     {
