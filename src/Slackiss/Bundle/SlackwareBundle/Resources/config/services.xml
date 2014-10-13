@@ -20,6 +20,10 @@
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
             <argument type="service" id="knp_paginator">paginator</argument>
         </service>
+        <service id="slackiss_slackware.item" class="Slackiss\Bundle\SlackwareBundle\Service\ItemService">
+            <argument type="service" id="doctrine.orm.entity_manager">em</argument>
+            <argument type="service" id="knp_paginator">paginator</argument>
+        </service>
         <service id="slackiss_slackware.message" class="%slackiss_slackware.message.class%">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
             <argument type="service" id="knp_paginator">paginator</argument>
