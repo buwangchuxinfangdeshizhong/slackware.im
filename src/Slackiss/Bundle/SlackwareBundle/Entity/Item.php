@@ -70,6 +70,11 @@ class Item
     private $last;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Item")
+     * @ORM\JoinColumn(name="top_id",referencedColumnName="id",nullable=true)
+     */
+    private $top;
+    /**
      * @var string
      * @Assert\NotBlank(message="请输入知识库变更日志")
      * @ORM\Column(name="changelog", type="text")
@@ -223,10 +228,33 @@ class Item
     /**
      * Get last
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getLast()
     {
         return $this->last;
+    }
+
+    /**
+     * Set top
+     *
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\Item $top
+     * @return Item
+     */
+    public function setTop(\Slackiss\Bundle\SlackwareBundle\Entity\Item $top = null)
+    {
+        $this->top = $top;
+
+        return $this;
+    }
+
+    /**
+     * Get top
+     *
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Item 
+     */
+    public function getTop()
+    {
+        return $this->top;
     }
 }

@@ -43,6 +43,15 @@ class ItemService {
 
     public function createItem($path, $item)
     {
-        $category =
+        $category = $this->buildCategory($path);
+        $item->setCategory($category);
+        $this->em->persist($item);
+        $this->em->flush();
+        return $item;
+    }
+
+    public function editItem($path, $item, $newItem)
+    {
+
     }
 }
