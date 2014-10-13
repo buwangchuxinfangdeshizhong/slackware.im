@@ -15,4 +15,25 @@ class ItemService {
         $this->paginator = $paginator;
     }
 
+    public function getTopCategories()
+    {
+        $repo = $this->em->getRepository('SlackissSlackwareBundle:ItemCategory');
+        $query = $repo->createQueryBuilder('c')
+                      ->where('c.status = true and c.enabled = true and c.parent is null')
+                      ->orderBy('c.id','asc')
+                      ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getSubCategories($category)
+    {
+        $repo = $this->em->getRepository('SlackissSlackwareBundle:ItemCategory');
+        $query = $repo->createQueryBuilder('c')
+                      ->where('c.status = true and c.enabled = true and c.parent = :parent')
+                      ->orderBy('c.id','asc')
+                      ->setParameters([':parent'=>$category->getId()])
+                      ->getQuery();
+        return $query->getResult();
+    }
+
 }
