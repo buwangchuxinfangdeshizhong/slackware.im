@@ -36,4 +36,13 @@ class ItemService {
         return $query->getResult();
     }
 
+    public function buildCategory($path)
+    {
+        return null;
+    }
+
+    public function createItem($path, $item)
+    {
+        $category =
+    }
 }

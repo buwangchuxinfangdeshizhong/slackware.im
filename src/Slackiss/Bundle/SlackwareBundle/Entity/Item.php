@@ -22,6 +22,7 @@ class Item
         $this->enabled = true;
         $this->remark = "";
         $this->version = 1;
+        $this->last = true;
     }
 
     /**
@@ -62,6 +63,11 @@ class Item
      * @ORM\Column(name="version", type="integer")
      */
     private $version;
+
+    /**
+     * @ORM\Column(name="last", type="boolean")
+     */
+    private $last;
 
     /**
      * @var string
@@ -199,5 +205,28 @@ class Item
     public function getChangelog()
     {
         return $this->changelog;
+    }
+
+    /**
+     * Set last
+     *
+     * @param boolean $last
+     * @return Item
+     */
+    public function setLast($last)
+    {
+        $this->last = $last;
+
+        return $this;
+    }
+
+    /**
+     * Get last
+     *
+     * @return boolean 
+     */
+    public function getLast()
+    {
+        return $this->last;
     }
 }
