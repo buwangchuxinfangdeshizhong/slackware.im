@@ -1,2 +1,2 @@
 #!/bin/sh
-php vendor/phpunit/phpunit/phpunit -c app
+vendor/phpunit/phpunit/phpunit -c app
