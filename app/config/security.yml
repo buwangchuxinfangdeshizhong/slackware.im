@@ -46,6 +46,8 @@ security:
         - { path: ^/resetting,   role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connect,     role: IS_AUTHENTICATED_ANONYMOUSLY }     
         - { path: ^/member,      role: ROLE_USER}
+        - { path: ^/knowledge/member, role: ROLE_USER}
+        - { path: ^/knowledge/manage, role: ROLE_MANAGER}
         - { path: ^/notice,      role: ROLE_USER}
         - { path: ^/manage/,     role: ROLE_MANAGER}
         - { path: ^/admin/,      role: ROLE_ADMIN}
