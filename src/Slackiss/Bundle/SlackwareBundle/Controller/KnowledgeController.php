@@ -10,6 +10,10 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Slackiss\Bundle\SlackwareBundle\Form\ItemType;
+use Slackiss\Bundle\SlackwareBundle\Entity\Item;
+use Slackiss\Bundle\SlackwareBundle\Entity\ItemCategory;
+
 /**
  * @Route("/knowledge")
  */
@@ -26,4 +30,20 @@ class KnowledgeController extends Controller
         $param =  array();
         return $param;
     }
+
+    /**
+     * @Route("/member/new",name="knowledge_new")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function newAction(Request $request)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+
+        return $param;
+    }
+
+
 }

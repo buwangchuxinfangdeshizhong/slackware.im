@@ -11,5 +11,17 @@
 
 <div class="box">
 {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
-
+<div class="row">
+  <div class="span4 knowledge-tree">
+    {% if app.user %}
+    <a href="{{path('knowledge_new')}}">
+      <button class="btn btn-inverse">新建文章</button>
+    </a>
+    {% endif %}
+  </div>
+  <div class="span8 knowledge-content">
+    content
+  </div>
+</div>
+</div>
 {% endblock %}
