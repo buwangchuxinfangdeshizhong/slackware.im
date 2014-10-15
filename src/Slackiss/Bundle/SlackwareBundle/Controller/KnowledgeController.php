@@ -45,5 +45,20 @@ class KnowledgeController extends Controller
         return $param;
     }
 
+    /**
+     * @Route("/member/update",name="knowledge_create")
+     * @Method({"POST"})
+     * @Template("SlackissSlackwareBundle:Knowledge:new.html.twig")
+     */
+    public function createAction(Request $request)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+
+        return $param;
+    }
+
+
 
 }
