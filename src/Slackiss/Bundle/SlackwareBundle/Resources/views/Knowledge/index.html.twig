@@ -2,6 +2,9 @@
 
 {% block title %}Slackware中文知识库{% endblock %}
 
+{% block top %}
+  <link rel="stylesheet" href="{{asset('bundles/slackissslackware/vendor/jstree/dist/themes/default/style.min.css')}}" />
+{% endblock %}
 {% block body %}
 <div class="page-header">
   <h2>
@@ -21,7 +24,15 @@
       </div>
       {% endif %}
       <div class="knowledge-tree">
-
+        <ul>
+          <li>Linux
+            <ul>
+              <li id="child_node_1">Slackware</li>
+              <li>Redhat</li>
+            </ul>
+          </li>
+          <li>Slackware</li>
+        </ul>
       </div>
     </div>
     <div class="span8 knowledge-content">
@@ -34,6 +45,8 @@
 {% block footer %}
 <script src="{{asset('bundles/slackissslackware/vendor/jstree/dist/jstree.min.js')}}" ></script>
 <script>
-
+  $(function () {
+      $('.knowledge-tree').jstree();
+  });
 </script>
 {% endblock %}
