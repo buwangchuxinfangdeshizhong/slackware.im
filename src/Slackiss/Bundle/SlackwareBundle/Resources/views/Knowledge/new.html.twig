@@ -1,0 +1,41 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}创建文章 - Slackware中文知识库{% endblock %}
+
+{% block top %}
+
+{% endblock %}
+{% block body %}
+<div class="page-header">
+  <h2>
+    创建文章 - Slackware中文知识库
+  </h2>
+</div>
+
+<div class="box download-box">
+  {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
+  {{form_start(form)}}
+  <div class="item-form-title">
+    {{form_row(form.title)}}
+    <small>使用类Unix路径管理文章栏目, 比如标题 /linux/slackware/install/install-to-usb ，则会在linux栏目下创建子栏目slackware，在slackware下再创建子栏目install，然后创建标题为install-to-usb的文章</small>
+  </div>
+  <div class="row" style="margin:0px 0px">
+    <h5>知识库文章内容 <small>支持<a href="http://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>语法<small></h5>
+    <div class="span6" id="content-div">
+      {{form_widget(form.content)}}
+    </div>
+    <div class="span6">
+      <div class="well">
+
+      </div>
+    </div>
+  </div>
+  {{form_end(form)}}
+</div>
+{% endblock %}
+
+{% block bottom %}
+<script>
+
+</script>
+{% endblock %}

@@ -27,7 +27,7 @@ class ItemType extends AbstractType
                 'required'=>true,
                 'attr'=>[
                     'class'=>'input-block-level',
-                    'rows'=>18
+                    'rows'=>26
                 ]
             ])
             ->add('changelog','textarea',[
