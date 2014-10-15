@@ -10,18 +10,30 @@
 </div>
 
 <div class="box">
-{% include "SlackissSlackwareBundle:include:notice.html.twig"%}
-<div class="row">
-  <div class="span4 knowledge-tree">
-    {% if app.user %}
-    <a href="{{path('knowledge_new')}}">
-      <button class="btn btn-inverse">新建文章</button>
-    </a>
-    {% endif %}
-  </div>
-  <div class="span8 knowledge-content">
-    content
+  {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
+  <div class="row-fluid">
+    <div class="span4 knowledge-side">
+      {% if app.user %}
+      <div style="padding:20px">
+      <a href="{{path('knowledge_new')}}">
+        <button class="btn btn-inverse">新建文章</button>
+      </a>
+      </div>
+      {% endif %}
+      <div class="knowledge-tree">
+
+      </div>
+    </div>
+    <div class="span8 knowledge-content">
+      content
+    </div>
   </div>
 </div>
-</div>
+{% endblock %}
+
+{% block footer %}
+<script src="{{asset('bundles/slackissslackware/vendor/jstree/dist/jstree.min.js')}}" ></script>
+<script>
+
+</script>
 {% endblock %}
