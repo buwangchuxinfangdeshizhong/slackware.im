@@ -41,7 +41,8 @@ class KnowledgeController extends Controller
         $param =  array();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
-
+        $item = new Item();
+        $
         return $param;
     }
 
@@ -59,6 +60,14 @@ class KnowledgeController extends Controller
         return $param;
     }
 
-
+    public function createCreateForm($item)
+    {
+        $type = new ItemType();
+        $form = $this->createForm($type, $item, [
+            'method'=>'POST',
+            'action'=>$this->generateUrl('knowledge_create')
+        ]);
+        return $form;
+    }
 
 }

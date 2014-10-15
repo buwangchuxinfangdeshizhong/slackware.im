@@ -84,6 +84,11 @@ class Item
      */
     private $changelog;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Member")
+     * @ORM\JoinColumn(name="member_id",referencedColumnName="id")
+     * /
+    private $member;
 
     /**
      * Get id
