@@ -42,7 +42,9 @@ class KnowledgeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
         $item = new Item();
-        $
+        $item->setMember($current);
+        $form = $this->createCreateForm($item);
+        $param['form'] = $form->createView();
         return $param;
     }
 
@@ -56,7 +58,17 @@ class KnowledgeController extends Controller
         $param =  array();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
-
+        $item = new Item();
+        $item->setMember($current);
+        $form = $this->createCreateForm($item);
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $itemService = $this->get('slackiss_slackware.item');
+            $itemService->createItem($item);
+            //success
+            //redirect
+        }
+        $param['form'] = $form->createView();
         return $param;
     }
 
@@ -66,6 +78,9 @@ class KnowledgeController extends Controller
         $form = $this->createForm($type, $item, [
             'method'=>'POST',
             'action'=>$this->generateUrl('knowledge_create')
+        ]);
+        $form->add('submit','submit',[
+            'label' => '保存',
         ]);
         return $form;
     }
