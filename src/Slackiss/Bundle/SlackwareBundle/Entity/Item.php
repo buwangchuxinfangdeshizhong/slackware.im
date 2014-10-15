@@ -87,7 +87,7 @@ class Item
     /**
      * @ORM\ManyToOne(targetEntity="Member")
      * @ORM\JoinColumn(name="member_id",referencedColumnName="id")
-     * /
+     */
     private $member;
 
     /**
@@ -264,5 +264,28 @@ class Item
     public function getTop()
     {
         return $this->top;
+    }
+
+    /**
+     * Set member
+     *
+     * @param \Slackiss\Bundle\SlackwareBundle\Entity\Member $member
+     * @return Item
+     */
+    public function setMember(\Slackiss\Bundle\SlackwareBundle\Entity\Member $member = null)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
+     */
+    public function getMember()
+    {
+        return $this->member;
     }
 }
