@@ -65,8 +65,7 @@ class KnowledgeController extends Controller
         if($form->isValid()){
             $itemService = $this->get('slackiss_slackware.item');
             $itemService->createItem($item);
-            //success
-            //redirect
+
         }
         $param['form'] = $form->createView();
         return $param;
@@ -83,6 +82,20 @@ class KnowledgeController extends Controller
             'label' => '保存',
         ]);
         return $form;
+    }
+
+    /**
+     * @Route("/show/{id}",name="knowledge_show")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function showAction(Request $request)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+
+        return $param;
     }
 
 }
