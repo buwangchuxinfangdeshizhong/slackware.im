@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\TimeBundle\KnpTimeBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             //new SimpleThings\FormExtraBundle\SimpleThingsFormExtraBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Slackend\Bundle\TwigExtraBundle\SlackendTwigExtraBundle(),
