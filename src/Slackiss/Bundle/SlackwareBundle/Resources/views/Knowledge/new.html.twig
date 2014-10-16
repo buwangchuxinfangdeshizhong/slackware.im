@@ -3,7 +3,8 @@
 {% block title %}创建文章 - Slackware中文知识库{% endblock %}
 
 {% block top %}
-
+<link rel="stylesheet" href="{{asset('bundles/slackissslackware/vendor/crevasse/lib/css/crevasse.css')}}" />
+<link rel="stylesheet" href="{{asset('bundles/slackissslackware/vendor/crevasse/dependencies/solarized-light.css')}}">
 {% endblock %}
 {% block body %}
 <div class="page-header">
@@ -25,8 +26,7 @@
       {{form_widget(form.content)}}
     </div>
     <div class="span6">
-      <div class="well">
-
+      <div class="well" id="previewer">
       </div>
     </div>
   </div>
@@ -35,7 +35,17 @@
 {% endblock %}
 
 {% block bottom %}
+<script src="{{asset('bundles/slackissslackware/vendor/crevasse/dependencies/jquery.caret.js')}}" ></script>
+<script src="{{asset('bundles/slackissslackware/vendor/crevasse/dependencies/jquery.scrollTo.min.js')}}" ></script>
+<script src="{{asset('bundles/slackissslackware/vendor/crevasse/dependencies/marked.js')}}" ></script>
+<script src="{{asset('bundles/slackissslackware/vendor/crevasse/dependencies/rainbow-custom.min.js')}}" ></script>
+<script src="{{asset('bundles/slackissslackware/vendor/crevasse/lib/js/crevasse.js')}}" ></script>
+<script src="{{asset('bundles/slackissslackware/vendor/elastic/jquery.elastic.source.js')}}"></script>
 <script>
 
+$("#slackiss_bundle_slackwarebundle_item_content").crevasse({
+  previewer: $("#previewer")
+});
+$("#slackiss_bundle_slackwarebundle_item_content").elastic();
 </script>
 {% endblock %}
