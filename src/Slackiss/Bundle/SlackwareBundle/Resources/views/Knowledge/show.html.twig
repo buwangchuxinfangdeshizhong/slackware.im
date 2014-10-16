@@ -1,0 +1,52 @@
+{% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
+
+{% block title %}{{entity.title}} - Slackware中文知识库{% endblock %}
+
+{% block top %}
+  <link rel="stylesheet" href="{{asset('bundles/slackissslackware/vendor/jstree/dist/themes/default/style.min.css')}}" />
+{% endblock %}
+{% block body %}
+<div class="page-header">
+  <h2>
+    {{entity.title}} - Slackware中文知识库
+  </h2>
+</div>
+
+<div class="box">
+  {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
+  <div class="row-fluid">
+    <div class="span4 knowledge-side">
+      {% if app.user %}
+      <div style="padding:20px">
+      <a href="{{path('knowledge_new')}}">
+        <button class="btn btn-inverse">新建文章</button>
+      </a>
+      </div>
+      {% endif %}
+      <div class="knowledge-tree">
+        <ul>
+          <li>Linux
+            <ul>
+              <li id="child_node_1">Slackware</li>
+              <li>Redhat</li>
+            </ul>
+          </li>
+          <li>Slackware</li>
+        </ul>
+      </div>
+    </div>
+    <div class="span8 knowledge-content">
+      {{entity.content|markdown}}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="{{asset('bundles/slackissslackware/vendor/jstree/dist/jstree.min.js')}}" ></script>
+<script>
+  $(function () {
+      $('.knowledge-tree').jstree();
+  });
+</script>
+{% endblock %}
