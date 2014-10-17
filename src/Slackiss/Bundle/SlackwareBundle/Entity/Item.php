@@ -91,6 +91,14 @@ class Item
     private $member;
 
     /**
+     * @var string
+     * @Assert\NotBlank(message="请输入标题")
+     * @Assert\Length(max=500, maxMessage="标题不能超过500个字")
+     * @ORM\Column(name="path",type="text",length=1000)
+     */
+    private $path;
+
+    /**
      * Get id
      *
      * @return integer
@@ -282,10 +290,33 @@ class Item
     /**
      * Get member
      *
-     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SlackwareBundle\Entity\Member
      */
     public function getMember()
     {
         return $this->member;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Item
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }
