@@ -41,6 +41,12 @@ class ItemService {
         return null;
     }
 
+    public function getTitle($path)
+    {
+        $arr = explode('/', $path);
+
+    }
+
     public function createItem(p$item)
     {
         $category = $this->buildCategory($path);
