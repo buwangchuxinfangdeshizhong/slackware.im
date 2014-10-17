@@ -17,7 +17,7 @@
   {% include "SlackissSlackwareBundle:include:notice.html.twig"%}
   {{form_start(form)}}
   <div class="item-form-title">
-    {{form_row(form.title)}}
+    {{form_row(form.path)}}
     <small>使用类Unix路径管理文章栏目, 比如标题 /linux/slackware/install/install-to-usb ，则会在linux栏目下创建子栏目slackware，在slackware下再创建子栏目install，然后创建标题为install-to-usb的文章。另外，知识库最多拥有五级目录，也就是说超过五级目录的内容会被当成标题对待。</small>
   </div>
   <div class="row" style="margin:0px 0px">

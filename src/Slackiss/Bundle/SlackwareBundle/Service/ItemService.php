@@ -44,7 +44,14 @@ class ItemService {
     public function getTitle($path)
     {
         $arr = explode('/', $path);
-
+        $count = count($arr);
+        if($count>7){
+            $titleArr = array_slice($arr,6,$count-6);
+            $title = implode('',$titleArr);
+        }else{
+            $title = $arr[$count-1];
+        }
+        return $title;
     }
 
     public function createItem(p$item)
