@@ -15,7 +15,7 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text',[
+            ->add('path','text',[
                 'label'=>'标题',
                 'required'=>true,
                 'attr'=>[
