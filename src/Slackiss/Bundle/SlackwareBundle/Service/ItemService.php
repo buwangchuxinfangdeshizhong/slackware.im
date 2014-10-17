@@ -38,7 +38,20 @@ class ItemService {
 
     public function buildCategory($path)
     {
-        return null;
+        $arr = explode('/', $path);
+        $count = count($arr);
+        if($count>7){
+            $categoryArr = array_slice($arr,1,5);
+        }else{
+            if($count<=2){
+                return false;
+            }
+            if(empty($arr[2])){
+                return false;
+            }
+            $categoryArr = array_slice($arr,-2,$count-2);
+        }
+        return $categoryArr;
     }
 
     public function getTitle($path)
@@ -54,17 +67,71 @@ class ItemService {
         return $title;
     }
 
+    public function getCategoryFromArr($arr)
+    {
+        $category     = false;
+        for($i=1;$i<count($arr); $i++){
+            if(empty($arr[$i])){
+                continue;
+            }
+
+            if(mb_strlen($arr[$i])>25){
+                $arr[$i] = $mb_substr($arr[$i],0,24);
+            }
+
+            $categoryUid = urlencode($arr[$i]);
+            $categoryName = trim($arr[$i]);
+
+
+            if($i==1){
+                $cats = $this->getTopCategories();
+                foreach($cats as $c){
+                    if($c->getUid()===$categoryUid){
+                        $category = $c;
+                    }else{
+                        $category = new ItemCategory();
+                        $categoty->setUid($categoryUid);
+                        $categOry->setName($categoryName);
+                        $this->em->persist($category);
+                        $this->em->flush();
+                    }
+                }
+            }else{
+                if($category!==false){
+                    $subCategories = $this->getSubCategories($category);
+                    foreach($subCategories as $c){
+                       if($c->getUid()===$categoryUid){
+                           $category = $c;
+                       }else{
+                           $newCategory = new ItemCategory();
+                           $newCategory->setUid($categoryUid);
+                           $newCategory->setName($categoryName);
+                           $newCategory->setParent($category);
+                           $this->em->persist($newCategory);
+                           $this->em->flush();
+                           $category = $newCategory;
+                       }
+                    }
+                }
+            }
+        }
+        return $catgory;
+    }
+
     public function createItem(p$item)
     {
-        $category = $this->buildCategory($path);
-        $title    = $this->getTitle($path);
-        $item->setCategory($category);
-        $item->setTitle($title);
-        $item->setVersion(1);
-        $item->setLast(true);
-        $item->setTop(null);
-        $this->em->persist($item);
-        $this->em->flush();
+        $categoryArr = $this->buildCategory($path);
+        if($categoryArr){
+            $category = $this->getCategoryFromArr($categoryArr);
+            $item->setCategory($category);
+            $title    = $this->getTitle($path);
+            $item->setTitle($title);
+            $item->setVersion(1);
+            $item->setLast(true);
+            $item->setTop(null);
+            $this->em->persist($item);
+            $this->em->flush();
+        }
         return $item;
     }
 

@@ -49,7 +49,7 @@ class ItemCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="uid", type="string", length=255,unique=true)
+     * @ORM\Column(name="uid", type="string", length=255)
      */
     private $uid;
 
