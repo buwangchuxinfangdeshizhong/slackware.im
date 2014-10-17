@@ -64,8 +64,8 @@ class KnowledgeController extends Controller
         $form->handleRequest($request);
         if($form->isValid()){
             $itemService = $this->get('slackiss_slackware.item');
-            $itemService->createItem($item);
-
+            $item = $itemService->createItem($item);
+            return $this->redirect($this->generateUrl('knowledge_show',['id'=>$item->getId()]));
         }
         $param['form'] = $form->createView();
         return $param;

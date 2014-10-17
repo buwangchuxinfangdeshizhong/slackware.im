@@ -41,10 +41,15 @@ class ItemService {
         return null;
     }
 
-    public function createItem($path, $item)
+    public function createItem(p$item)
     {
         $category = $this->buildCategory($path);
+        $title    = $this->getTitle($path);
         $item->setCategory($category);
+        $item->setTitle($title);
+        $item->setVersion(1);
+        $item->setLast(true);
+        $item->setTop(null);
         $this->em->persist($item);
         $this->em->flush();
         return $item;
