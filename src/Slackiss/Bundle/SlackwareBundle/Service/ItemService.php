@@ -70,9 +70,9 @@ class ItemService {
             if(empty($arr[2])){
                 return false;
             }
-            $categoryArr = array_slice($arr,-2,$count-2);//这里有问题，单元测试写错了
+            $categoryArr = array_slice($arr,1,$count-1);//这里有问题，单元测试写错了
         }
-
+        //var_dump($categoryArr);exit;
         return $categoryArr;
     }
 
