@@ -70,9 +70,9 @@ class ItemService {
             if(empty($arr[2])){
                 return false;
             }
-            $categoryArr = array_slice($arr,1,$count-2);
+            $categoryArr = array_slice($arr,-2,$count-2);
         }
-        return $this->getCategoryFromArr($categoryArr);
+        return $categoryArr;
     }
 
     public function getTitle($path)
@@ -91,7 +91,7 @@ class ItemService {
     public function getCategoryFromArr($arr)
     {
         $category     = false;
-        for($i=0;$i<count($arr); $i++){
+        for($i=1;$i<count($arr); $i++){
             if(empty($arr[$i])){
                 continue;
             }
@@ -102,6 +102,7 @@ class ItemService {
 
             $categoryUid = urlencode($arr[$i]);
             $categoryName = trim($arr[$i]);
+
 
             if($i==1){
                 $cats = $this->getTopCategories();

@@ -22,7 +22,7 @@ class ItemServiceTest extends SymfonyTestCase
         parent::tearDown();
     }
 
-    public function testGetBuildCategory()
+    public function testBuildCategory()
     {
         $this->assertTrue(true);
         $path1 = '/';
