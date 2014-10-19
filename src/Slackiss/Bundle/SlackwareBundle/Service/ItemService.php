@@ -70,9 +70,9 @@ class ItemService {
             if(empty($arr[2])){
                 return false;
             }
-            $categoryArr = array_slice($arr,-2,$count-2);
+            $categoryArr = array_slice($arr,1,$count-2);
         }
-        return $categoryArr;
+        return $this->getCategoryFromArr($categoryArr);
     }
 
     public function getTitle($path)
@@ -91,18 +91,17 @@ class ItemService {
     public function getCategoryFromArr($arr)
     {
         $category     = false;
-        for($i=1;$i<count($arr); $i++){
+        for($i=0;$i<count($arr); $i++){
             if(empty($arr[$i])){
                 continue;
             }
 
             if(mb_strlen($arr[$i])>25){
-                $arr[$i] = $mb_substr($arr[$i],0,24);
+                $arr[$i] = mb_substr($arr[$i],0,24);
             }
 
             $categoryUid = urlencode($arr[$i]);
             $categoryName = trim($arr[$i]);
-
 
             if($i==1){
                 $cats = $this->getTopCategories();
@@ -136,16 +135,20 @@ class ItemService {
                 }
             }
         }
-        return $catgory;
+        return $category;
     }
 
-    public function createItem(p$item)
+    public function createItem($item)
     {
+        $path = $item->getPath();
         $categoryArr = $this->buildCategory($path);
         if($categoryArr){
             $category = $this->getCategoryFromArr($categoryArr);
+            if(false===$category){
+                return false;
+            }
             $item->setCategory($category);
-            $title    = $this->getTitle($path);
+            $title = $this->getTitle($path);
             $item->setTitle($title);
             $item->setVersion(1);
             $item->setLast(true);

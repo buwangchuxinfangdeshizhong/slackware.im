@@ -44,8 +44,6 @@ class Item
 
     /**
      * @var string
-     * @Assert\NotBlank(message="请输入标题")
-     * @Assert\Length(max=500, maxMessage="标题不能超过500个字")
      * @ORM\Column(name="title", type="string", length=500)
      */
     private $title;
@@ -94,7 +92,7 @@ class Item
      * @var string
      * @Assert\NotBlank(message="请输入标题")
      * @Assert\Length(max=500, maxMessage="标题不能超过500个字")
-     * @ORM\Column(name="path",type="text",length=1000)
+     * @ORM\Column(name="path",type="string",length=1000)
      */
     private $path;
 
@@ -313,7 +311,7 @@ class Item
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {

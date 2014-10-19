@@ -49,7 +49,7 @@ class KnowledgeController extends Controller
     }
 
     /**
-     * @Route("/member/update",name="knowledge_create")
+     * @Route("/member/create",name="knowledge_create")
      * @Method({"POST"})
      * @Template("SlackissSlackwareBundle:Knowledge:new.html.twig")
      */
