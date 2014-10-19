@@ -70,8 +70,9 @@ class ItemService {
             if(empty($arr[2])){
                 return false;
             }
-            $categoryArr = array_slice($arr,-2,$count-2);
+            $categoryArr = array_slice($arr,-2,$count-2);//这里有问题，单元测试写错了
         }
+
         return $categoryArr;
     }
 
@@ -91,7 +92,7 @@ class ItemService {
     public function getCategoryFromArr($arr)
     {
         $category     = false;
-        for($i=1;$i<count($arr); $i++){
+        for($i=0;$i<count($arr); $i++){
             if(empty($arr[$i])){
                 continue;
             }
@@ -102,9 +103,7 @@ class ItemService {
 
             $categoryUid = urlencode($arr[$i]);
             $categoryName = trim($arr[$i]);
-
-
-            if($i==1){
+            if($i==0){
                 $cats = $this->getTopCategories();
                 foreach($cats as $c){
                     if($c->getUid()===$categoryUid){
