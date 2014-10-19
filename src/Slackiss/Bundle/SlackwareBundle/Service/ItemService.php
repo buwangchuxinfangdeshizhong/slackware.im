@@ -15,6 +15,11 @@ class ItemService {
         $this->paginator = $paginator;
     }
 
+    public function getCategoryTree()
+    {
+
+    }
+
     public function getTopCategories()
     {
         $repo = $this->em->getRepository('SlackissSlackwareBundle:ItemCategory');
