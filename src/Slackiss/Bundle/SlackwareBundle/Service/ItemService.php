@@ -72,7 +72,6 @@ class ItemService {
             }
             $categoryArr = array_slice($arr,1,$count-1);//这里有问题，单元测试写错了
         }
-        //var_dump($categoryArr);exit;
         return $categoryArr;
     }
 
