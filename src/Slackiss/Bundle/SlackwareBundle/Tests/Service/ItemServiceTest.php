@@ -22,9 +22,15 @@ class ItemServiceTest extends SymfonyTestCase
         parent::tearDown();
     }
 
+    public function testExplode()
+    {
+        $this->assertEquals(2,count(explode('/','/ok')));
+        $this->assertEquals(3,count(explode('/','/ok/')));
+        $this->assertTrue(true);
+    }
+
     public function testBuildCategory()
     {
-        $this->assertTrue(true);
         $path1 = '/';
         $arr = $this->itemService->buildCategory($path1);
         $this->assertFalse($arr);
@@ -37,12 +43,25 @@ class ItemServiceTest extends SymfonyTestCase
         $path4 = '/ok/ok/ok/ok/ok/ok/ok/ok';
         $arr = $this->itemService->buildCategory($path4);
         $this->assertEquals('okokokokok',implode('',$arr));
+        $path4 = '/ok/ok/ok/ok/ok/ok/ok/ok';
+        $arr = $this->itemService->buildCategory($path4);
+        $this->assertEquals('okokokokok',implode('',$arr));
         $path5 = '/ok/ok/ok/ok';
         $arr = $this->itemService->buildCategory($path5);
         $this->assertEquals('okokok',implode('',$arr));
         $path6 = '/ok/ok/ok/ok/ok';
         $arr = $this->itemService->buildCategory($path6);
         $this->assertEquals('okokokok',implode('',$arr));
+        $path7 = '/';
+        $arr = $this->itemService->buildCategory($path7);
+        $this->assertFalse($arr);
+        $path8 = '//';
+        $arr = $this->itemService->buildCategory($path8);
+        $this->assertFalse($arr);
+
+        $path9 = '/ok/ok/';
+        $arr = $this->itemService->buildCategory($path9);
+        $this->assertFalse($arr);
     }
 
     public function testGetTitle()

@@ -61,16 +61,21 @@ class ItemService {
     {
         $arr = explode('/', $path);
         $count = count($arr);
+        if(empty($arr[$count-1])){
+            return false;
+        }
+
         if($count>7){
-            $categoryArr = array_slice($arr,1,5);
+            $categoryArr = array_slice($arr,1,5);//no problem
         }else{
             if($count<=2){
                 return false;
             }
-            if(empty($arr[2])){
+            if(empty($arr[1])||empty($arr[2])){
                 return false;
             }
-            $categoryArr = array_slice($arr,1,$count-1);//这里有问题，单元测试写错了
+
+            $categoryArr = array_slice($arr,1,$count-2);
         }
         return $categoryArr;
     }
