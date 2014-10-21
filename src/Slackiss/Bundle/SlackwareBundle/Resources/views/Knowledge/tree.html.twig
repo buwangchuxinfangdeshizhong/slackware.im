@@ -1,0 +1,5 @@
+{% if ktree is not defined %}
+{% import "SlackissSlackwareBundle:Knowledge:ktree.html.twig" as ktree %}
+{% endif %}
+
+{{ktree.ktree(tree)}}

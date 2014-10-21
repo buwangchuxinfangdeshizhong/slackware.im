@@ -20,6 +20,13 @@ use Slackiss\Bundle\SlackwareBundle\Entity\ItemCategory;
 class KnowledgeController extends Controller
 {
 
+    protected function getParam()
+    {
+        $param = [];
+        $param['tree'] = $this->get('slackiss_slackware.item')->getCategoryTree();
+        return $param;
+    }
+
     /**
      * @Route("/",name="knowledge")
      * @Method({"GET"})
@@ -27,7 +34,7 @@ class KnowledgeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $param =  array();
+        $param = $this->getParam();
         return $param;
     }
 
@@ -38,7 +45,7 @@ class KnowledgeController extends Controller
      */
     public function newAction(Request $request)
     {
-        $param =  array();
+        $param = $this->getParam();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
         $item = new Item();
@@ -55,7 +62,7 @@ class KnowledgeController extends Controller
      */
     public function createAction(Request $request)
     {
-        $param =  array();
+        $param = $this->getParam();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
         $item = new Item();
@@ -94,12 +101,28 @@ class KnowledgeController extends Controller
      */
     public function showAction(Request $request,$id)
     {
-        $param =  array();
+        $param = $this->getParam();
         $em = $this->getDoctrine()->getManager();
-        $current = $this->get('security.context')->getToken()->getUser();
         $entity = $em->getRepository('SlackissSlackwareBundle:Item')->find($id);
         $param['entity'] = $entity;
         return $param;
     }
+
+        /**
+         * @Route("/list/{id}",name="knowledge_list")
+         * @Method({"GET"})
+         * @Template()
+         */
+    public function listAction(Request $request,$id)
+    {
+        $param =  array();
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('SlackissSlackwareBundle:Item');
+        $pgae = $request->query->get($id);
+
+        return $param;
+    }
+
+
 
 }

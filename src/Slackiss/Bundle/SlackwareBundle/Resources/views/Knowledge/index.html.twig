@@ -24,15 +24,7 @@
       </div>
       {% endif %}
       <div class="knowledge-tree">
-        <ul>
-          <li>Linux
-            <ul>
-              <li id="child_node_1">Slackware</li>
-              <li>Redhat</li>
-            </ul>
-          </li>
-          <li>Slackware</li>
-        </ul>
+        {% include "SlackissSlackwareBundle:Knowledge:tree.html.twig" %}
       </div>
     </div>
     <div class="span8 knowledge-content">

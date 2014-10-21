@@ -1,0 +1,13 @@
+{% macro ktree(tree) %}
+    {% import _self as ktree %}
+    {% for t in tree %}
+    <ul>
+      <li>
+        <a href="{{path('knowledge_list',{id:t.cat.id})}}">
+          {{t.cat.name}}
+        </a>
+        {{ktree.ktree(t.subCats)}}
+        </li>
+    </ul>
+    {% endfor %}
+{% endmacro %}
