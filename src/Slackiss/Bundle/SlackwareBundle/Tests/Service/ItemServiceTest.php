@@ -40,6 +40,9 @@ class ItemServiceTest extends SymfonyTestCase
         $path5 = '/ok/ok/ok/ok';
         $arr = $this->itemService->buildCategory($path5);
         $this->assertEquals('okokok',implode('',$arr));
+        $path6 = '/ok/ok/ok/ok/ok';
+        $arr = $this->itemService->buildCategory($path6);
+        $this->assertEquals('okokokok',implode('',$arr));
     }
 
     public function testGetTitle()
