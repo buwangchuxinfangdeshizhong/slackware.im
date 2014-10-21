@@ -7,9 +7,9 @@
 {% endblock %}
 {% block body %}
 <div class="page-header">
-  <h2>
+  <h1>
     {{entity.title}} - Slackware中文知识库
-  </h2>
+  </h1>
 </div>
 
 <div class="box">
@@ -36,7 +36,6 @@
       </div>
     </div>
     <div class="span8 knowledge-content" style="padding:20px 0px">
-      <h3>{{entity.title}}</h3>
       {{entity.content|markdown}}
     </div>
   </div>
