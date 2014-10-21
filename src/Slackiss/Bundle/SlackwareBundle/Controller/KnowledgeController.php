@@ -65,10 +65,13 @@ class KnowledgeController extends Controller
         if($form->isValid()){
             $itemService = $this->get('slackiss_slackware.item');
             $item = $itemService->createItem($item);
-            return $this->redirect($this->generateUrl('knowledge_show',['id'=>$item->getId()]));
         }
-        $param['form'] = $form->createView();
-        return $param;
+        if($item){
+            return $this->redirect($this->generateUrl('knowledge_show',['id'=>$item->getId()]));
+        }else{
+            $param['form'] = $form->createView();
+            return $param;
+        }
     }
 
     public function createCreateForm($item)
@@ -89,12 +92,13 @@ class KnowledgeController extends Controller
      * @Method({"GET"})
      * @Template()
      */
-    public function showAction(Request $request)
+    public function showAction(Request $request,$id)
     {
         $param =  array();
         $em = $this->getDoctrine()->getManager();
         $current = $this->get('security.context')->getToken()->getUser();
-
+        $entity = $em->getRepository('SlackissSlackwareBundle:Item')->find($id);
+        $param['entity'] = $entity;
         return $param;
     }
 

@@ -3,6 +3,9 @@
 namespace Slackiss\Bundle\SlackwareBundle\Service;
 
 use Symfony\Component\HttpKernel\Kernel;
+use Slackiss\Bundle\SlackwareBundle\Entity\Item;
+use Slackiss\Bundle\SlackwareBundle\Entity\ItemCategory;
+
 
 class ItemService {
 
@@ -118,29 +121,35 @@ class ItemService {
                 foreach($cats as $c){
                     if($c->getUid()===$categoryUid){
                         $category = $c;
-                    }else{
-                        $category = new ItemCategory();
-                        $categoty->setUid($categoryUid);
-                        $categOry->setName($categoryName);
-                        $this->em->persist($category);
-                        $this->em->flush();
+                        break;
                     }
+                }
+                if(!$category){
+                    $category = new ItemCategory();
+                    $category->setUid($categoryUid);
+                    $category->setName($categoryName);
+                    $this->em->persist($category);
+                    $this->em->flush();
                 }
             }else{
                 if($category!==false){
                     $subCategories = $this->getSubCategories($category);
+                    $newCategory = false;
                     foreach($subCategories as $c){
                        if($c->getUid()===$categoryUid){
-                           $category = $c;
-                       }else{
-                           $newCategory = new ItemCategory();
-                           $newCategory->setUid($categoryUid);
-                           $newCategory->setName($categoryName);
-                           $newCategory->setParent($category);
-                           $this->em->persist($newCategory);
-                           $this->em->flush();
+                           $newCategory = $c;
                            $category = $newCategory;
+                           break;
                        }
+                    }
+                    if(!$newCategory){
+                        $newCategory = new ItemCategory();
+                        $newCategory->setUid($categoryUid);
+                        $newCategory->setName($categoryName);
+                        $newCategory->setParent($category);
+                        $this->em->persist($newCategory);
+                        $this->em->flush();
+                        $category = $newCategory;
                     }
                 }
             }
@@ -152,7 +161,7 @@ class ItemService {
     {
         $path = $item->getPath();
         $categoryArr = $this->buildCategory($path);
-        if($categoryArr){
+        if(false!==$categoryArr){
             $category = $this->getCategoryFromArr($categoryArr);
             if(false===$category){
                 return false;
