@@ -59,24 +59,30 @@ class ItemService {
 
     public function buildCategory($path)
     {
-        $arr = explode('/', $path);
-        $count = count($arr);
-        if(empty($arr[$count-1])){
+        $preArr = explode('/', $path);
+
+        $count = count($preArr);
+        if(empty($preArr[$count-1])){
             return false;
         }
+
+        $arr = [];
+        foreach($preArr as $a){
+            if(!empty($a)){
+                $arr[] = $a;
+            }
+        }
+        $count = count($arr);
 
         if($count>7){
             $categoryArr = array_slice($arr,1,5);//no problem
         }else{
-            if($count<=2){
+            if($count<=1){
                 return false;
             }
-            if(empty($arr[1])||empty($arr[2])){
-                return false;
-            }
-
-            $categoryArr = array_slice($arr,1,$count-2);
+            $categoryArr = array_slice($arr,0,$count-1);
         }
+
         return $categoryArr;
     }
 
