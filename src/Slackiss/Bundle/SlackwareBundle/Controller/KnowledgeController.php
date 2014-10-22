@@ -115,14 +115,22 @@ class KnowledgeController extends Controller
          */
     public function listAction(Request $request,$id)
     {
-        $param =  array();
+        $param =  $this->getParam();
         $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('SlackissSlackwareBundle:ItemCategory')
+                       ->find($id);
+        if(!$category){
+            throw $this->createNotFoundException('没找到这个知识库分类');
+        }
         $repo = $em->getRepository('SlackissSlackwareBundle:Item');
-        $pgae = $request->query->get($id);
-
+        $page = $request->query->get('page',1);
+        $query = $repo->createQueryBuilder('i')
+                      ->orderBy('i.id','desc')
+                      ->where('i.category = :category and i.last = true')
+                      ->setParameters([':category'=>$id])
+                      ->getQuery();
+        $param['category'] = $category;
+        $param['entities'] = $this->get('knp_paginator')->paginate($query,$page,50);
         return $param;
     }
-
-
-
 }

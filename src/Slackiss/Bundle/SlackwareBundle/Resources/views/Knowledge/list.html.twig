@@ -1,6 +1,6 @@
 {% extends "SlackissSlackwareBundle:layout:layout.html.twig" %}
 
-{% block title %}{{entity.title}} - Slackware中文知识库{% endblock %}
+{% block title %}{{category.name}} - Slackware中文知识库{% endblock %}
 
 {% block top %}
   <link rel="stylesheet" href="{{asset('bundles/slackissslackware/vendor/jstree/dist/themes/default/style.min.css')}}" />
@@ -8,7 +8,7 @@
 {% block body %}
 <div class="page-header">
   <h1>
-    {{entity.title}} - Slackware中文知识库
+    {{category.name}} - Slackware中文知识库
   </h1>
 </div>
 
@@ -28,7 +28,17 @@
       </div>
     </div>
     <div class="span8 knowledge-content" style="padding:20px 0px">
-      {{entity.content|markdown}}
+      <ul>
+        {% for entity in entities %}
+        <li>
+          <a href="{{path('knowledge_show',{id:entity.id})}}">
+            {{ entity.title }}
+          </a>
+        </li>
+        {% else %}
+        <li>这个栏目下暂时没有知识</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
