@@ -150,6 +150,7 @@ class KnowledgeController extends Controller
             $item = new Item();
         }
         $item->setMember($current);
+        $item->setChangelog('');
         $form = $this->createEditForm($item);
         $param['form'] = $form->createView();
         return $param;

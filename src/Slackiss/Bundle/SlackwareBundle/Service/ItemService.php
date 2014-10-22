@@ -177,8 +177,33 @@ class ItemService {
         return $item;
     }
 
-    public function editItem($path, $item, $newItem)
+    public function updateItem($item)
     {
-
+        $path = $item->getPath();
+        $newItem = false;
+        $categoryArr = $this->buildCategory($path);
+        if(false!==$categoryArr){
+            $category = $this->getCategoryFromArr($categoryArr);
+            if(false===$category){
+                return false;
+            }
+            $newItem = new Item();
+            $title = $this->getTitle($path);
+            $newItem->setCategory($category);
+            $newItem->setTitle($title);
+            $newItem->setPath($path);
+            $newItem->setContent($item->getContent());
+            $newItem->setVersion(($item->getVersion()+1));
+            $newItem->setLast(true);
+            $newItem->setChangelog($item->getChangeLog());
+            $newItem->setMember($item->getMember());
+            $item = $this->em->getRepository('SlackissSlackwareBundle:Item')->find($item->getId());
+            $item->setLast(false);
+            $this->em->persist($item);
+            $newItem->setTop($item);
+            $this->em->persist($newItem);
+            $this->em->flush();
+        }
+        return $newItem;
     }
 }
