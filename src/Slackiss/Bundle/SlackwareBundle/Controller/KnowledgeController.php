@@ -133,4 +133,68 @@ class KnowledgeController extends Controller
         $param['entities'] = $this->get('knp_paginator')->paginate($query,$page,50);
         return $param;
     }
+
+
+    /**
+     * @Route("/member/edit/{id}",name="knowledge_edit")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function editAction(Request $request,$id)
+    {
+        $param = $this->getParam();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $item = $em->getRepository('SlackissSlackwareBundle:Item')->find($id);
+        if(!$item){
+            $item = new Item();
+        }
+        $item->setMember($current);
+        $form = $this->createEditForm($item);
+        $param['form'] = $form->createView();
+        return $param;
+    }
+
+    /**
+     * @Route("/member/update/{id}",name="knowledge_update")
+     * @Method({"POST"})
+     * @Template("SlackissSlackwareBundle:Knowledge:edit.html.twig")
+     */
+    public function updateAction(Request $request,$id)
+    {
+        $param = $this->getParam();
+        $em = $this->getDoctrine()->getManager();
+        $current = $this->get('security.context')->getToken()->getUser();
+        $item = $em->getRepository('SlackissSlackwareBundle:Item')->find($id);
+        if(!$item){
+            $item = new Item();
+        }
+        $item->setMember($current);
+        $form = $this->createEditForm($item);
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $itemService = $this->get('slackiss_slackware.item');
+            $item = $itemService->updateItem($item);
+        }
+        if($item){
+            return $this->redirect($this->generateUrl('knowledge_show',['id'=>$item->getId()]));
+        }else{
+            $param['form'] = $form->createView();
+            return $param;
+        }
+    }
+
+    public function createEditForm($item)
+    {
+        $type = new ItemType();
+        $form = $this->createForm($type, $item, [
+            'method'=>'POST',
+            'action'=>$this->generateUrl('knowledge_update',['id'=>$item->getId()])
+        ]);
+        $form->add('submit','submit',[
+            'label' => '保存',
+        ]);
+        return $form;
+    }
+
 }

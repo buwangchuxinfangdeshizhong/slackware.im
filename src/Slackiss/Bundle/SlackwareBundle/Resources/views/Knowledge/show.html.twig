@@ -29,6 +29,13 @@
     </div>
     <div class="span8 knowledge-content" style="padding:20px 0px">
       {{entity.content|markdown}}
+      <div style="margin-top:20px">
+        {% if app.user %}
+        <a href="{{path('knowledge_edit',{id:entity.id})}}">
+          <button class="btn btn-info">编辑</button>
+        </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
