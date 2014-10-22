@@ -21,16 +21,17 @@ class ItemService {
     public function getCategoryTree()
     {
         $topCategories = $this->getTopCategories();
-        return $this->getCategoryArr($topCategories,[]);
+        return $this->getCategoryArr($topCategories);
     }
 
-    public function getCategoryArr($categories,$res=[]){
+    public function getCategoryArr($categories){
+        $res = [];
         foreach($categories as $category){
             $subCategories = $this->getSubCategories($category);
             if(count($subCategories)===0){
                 $subCategories = [];
             }else{
-                $subCategories = $this->getCategoryArr($subCategories,$res);
+                $subCategories = $this->getCategoryArr($subCategories);
             }
             $res[] = ['cat'=>$category,'subCats'=>$subCategories];
         }
