@@ -4,7 +4,9 @@
 
 {% block fos_user_content %}
 {% if error %}
-    <div>{{ error|trans }}</div>
+<div class="alert alert-error">
+  用户名或者密码不正确
+  </div>
 {% endif %}
 
 <form action="{{ path("fos_user_security_check") }}" method="post">
